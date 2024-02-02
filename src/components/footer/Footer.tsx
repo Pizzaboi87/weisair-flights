@@ -5,23 +5,36 @@ import { MdOutlineAlternateEmail } from "react-icons/md";
 
 const Footer = () => {
   return (
-    <footer className="mt-16">
-      <div className="container mx-auto px-4">
+    <footer className="bg-bgprimary relative">
+      <div className="custom-shape-divider-top-1706911286">
+        <svg
+          data-name="Layer 1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M1200 120L0 16.48 0 0 1200 0 1200 120z"
+            className="shape-fill"
+          ></path>
+        </svg>
+      </div>
+      <div className="container mx-auto px-4 pt-16">
         <Link href="/" className="font-black text-[1.2rem] text-tertiary-dark">
           2024 - WeisAIR®
         </Link>
         <h4 className="font-semibold text-[2rem] pt-4 pb-2">Contact</h4>
-        <div className="flex flex-wrap gap-16 items-center justify-between">
+        <div className="flex flex-wrap gap-16 items-center justify-between text-[1.2rem]">
           <div className="flex-1">
-            <span className="text-black flex gap-2 pt-2 items-center">
+            <span className="flex gap-2 pt-2 items-center">
               <FaMapLocationDot />
               <p>1026 Budapest, Széchenyi street 4.</p>
             </span>
-            <span className="text-black flex gap-2 pt-2 items-center">
+            <span className="flex gap-2 pt-2 items-center">
               <FaMobileAlt />
               <p>+36 70 225 2256</p>
             </span>
-            <span className="text-black flex gap-2 pt-2 items-center">
+            <span className="flex gap-2 pt-2 items-center">
               <MdOutlineAlternateEmail />
               <p>contact@weisair.hu</p>
             </span>

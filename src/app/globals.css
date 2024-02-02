@@ -17,15 +17,10 @@
 }
 
 body {
-  background-image: linear-gradient(
-    to top,
-    #f3e7e9 0%,
-    #e3eeff 99%,
-    #e3eeff 100%
-  );
+  background-color: #fefae0;
 }
 
-.custom-shape-divider-top-1706903393 {
+.custom-shape-divider-top-1706909798 {
   position: absolute;
   top: 0;
   left: 0;
@@ -35,16 +30,36 @@ body {
   z-index: -1;
 }
 
-.custom-shape-divider-top-1706903393 svg {
+.custom-shape-divider-top-1706909798 svg {
   position: relative;
   display: block;
-  width: calc(181% + 1.3px);
-  height: 140px;
+  width: calc(131% + 1.3px);
+  height: 50vh;
   transform: rotateY(180deg);
 }
 
-.custom-shape-divider-top-1706903393 .shape-fill {
-  fill: #f1b273;
+.custom-shape-divider-top-1706909798 .shape-fill {
+  fill: #faedcd;
+}
+
+.custom-shape-divider-top-1706911286 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-top-1706911286 svg {
+  position: relative;
+  display: block;
+  width: calc(160% + 1.3px);
+  height: 110px;
+}
+
+.custom-shape-divider-top-1706911286 .shape-fill {
+  fill: #fefae0;
 }
 
 @layer utilities {
