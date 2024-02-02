@@ -19,7 +19,7 @@ const Footer = () => {
           ></path>
         </svg>
       </div>
-      <div className="container mx-auto px-4 pt-16">
+      <div className="container mx-auto px-4 pt-24">
         <Link href="/" className="font-black text-[1.2rem] text-tertiary-dark">
           2024 - WeisAIR®
         </Link>

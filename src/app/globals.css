@@ -55,7 +55,7 @@ body {
   position: relative;
   display: block;
   width: calc(160% + 1.3px);
-  height: 110px;
+  height: 30vh;
 }
 
 .custom-shape-divider-top-1706911286 .shape-fill {
