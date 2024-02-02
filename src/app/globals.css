@@ -17,13 +17,34 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-image: linear-gradient(
+    to top,
+    #f3e7e9 0%,
+    #e3eeff 99%,
+    #e3eeff 100%
+  );
+}
+
+.custom-shape-divider-top-1706903393 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: -1;
+}
+
+.custom-shape-divider-top-1706903393 svg {
+  position: relative;
+  display: block;
+  width: calc(181% + 1.3px);
+  height: 140px;
+  transform: rotateY(180deg);
+}
+
+.custom-shape-divider-top-1706903393 .shape-fill {
+  fill: #f1b273;
 }
 
 @layer utilities {
