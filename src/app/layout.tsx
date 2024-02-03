@@ -3,6 +3,7 @@ import { Cuprum } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
+import ThemeProvider from "@/components/themeProvider/ThemeProvider";
 
 const cuprum = Cuprum({
   subsets: ["latin"],
@@ -24,24 +25,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cuprum.className}>
-        <div className="custom-shape-divider-top-1706909798">
-          <svg
-            data-name="Layer 1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1200 120"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M1200 120L0 16.48 0 0 1200 0 1200 120z"
-              className="shape-fill"
-            ></path>
-          </svg>
-        </div>
-        <main className="font-normal">
-          <Header />
-          {children}
-          <Footer />
-        </main>
+        <ThemeProvider>
+          <main className="font-normal">
+            <Header />
+            {children}
+            <Footer />
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );

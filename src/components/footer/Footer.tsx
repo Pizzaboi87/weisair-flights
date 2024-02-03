@@ -1,11 +1,17 @@
+"use client";
+
+import ThemeContext from "@/context/themeContext";
 import Link from "next/link";
+import { useContext } from "react";
 import { FaGithub, FaMobileAlt } from "react-icons/fa";
 import { FaMapLocationDot } from "react-icons/fa6";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 
 const Footer = () => {
+  const { darkTheme } = useContext(ThemeContext);
+
   return (
-    <footer className="bg-bgprimary relative">
+    <footer className={`${darkTheme ? "bg-bgdark" : "bg-bglight"} relative`}>
       <div className="custom-shape-divider-top-1706911286">
         <svg
           data-name="Layer 1"
