@@ -9,6 +9,7 @@
   width: 100%;
   overflow: hidden;
   line-height: 0;
+  z-index: 1;
 }
 
 .custom-shape-divider-top-1707038123 svg,
@@ -18,20 +19,18 @@
   width: calc(100% + 1.3px);
 }
 
-.custom-shape-divider-top-1707038123 {
-  top: -3vh;
-  z-index: 1;
-}
-
 .custom-shape-divider-top-1707038123 svg {
-  height: 25vh;
   transform: rotateY(180deg);
 }
 
-.custom-shape-divider-top-1706911286 {
-  top: 0;
+.input-container:focus-within label {
+  transform: translate(-0.5rem, 0.5rem) scale(0.8);
 }
 
-.custom-shape-divider-top-1706911286 svg {
-  height: 30vh;
+.lightinput:focus {
+  box-shadow: 0 0 0 2px #79b1ff;
+}
+
+.darkinput:focus {
+  box-shadow: 0 0 0 2px #fff989;
 }

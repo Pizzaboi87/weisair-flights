@@ -21,12 +21,13 @@ const Header = () => {
 
   return (
     <header className="py-10 px-16 mx-auto text-xl flex flex-wrap md:flex-nowrap items-center justify-between relative dark:text-textlight">
-      <div className="custom-shape-divider-top-1707038123">
+      <div className="custom-shape-divider-top-1707038123 md:top-[-3vh] top-0">
         <svg
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1200 120"
           preserveAspectRatio="none"
+          className="h-[40vh] md:h-[25vh]"
         >
           <path
             d="M1200 120L0 16.48 0 0 1200 0 1200 120z"

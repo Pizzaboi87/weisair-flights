@@ -9,6 +9,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        gradientlight: "radial-gradient(circle 763px at 18.3% 24.1%, rgba(255, 249, 137, 1) 7.4%, rgba(226, 183, 40, 1) 58.3% )",
+        gradientdark: "radial-gradient( circle 975px at 2.6% 48.3%,  rgba(0,8,120,1) 0%, rgba(95,184,224,1) 99.7% );"
+      },
       colors: {
         primary: "#038C7F",
         secondary: "#F2C641",
@@ -17,10 +21,11 @@ const config: Config = {
         bgdark: "#565656",
         bglight: "#FEFAE0",
         textlight: "#FAEDCD",
+        textdark: "#14213d",
         tertiary: {
-          dark: "#3032A3",
+          dark: "#fca311",
           light: "#bde0fe"
-        }
+        },
       },
       fontFamily: {
         cuprum: ["var(--font-cuprum)", "sans-serif"],

@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cuprum.className}>
+      <body className={`${cuprum.className} overflow-x-hidden`}>
         <ThemeProvider>
           <main className="font-normal dark:bg-bgdark bg-bglight w-full h-full">
             <Header />

@@ -8,12 +8,13 @@ import { MdOutlineAlternateEmail } from "react-icons/md";
 const Footer = () => {
   return (
     <footer className="dark:bg-filldark dark:text-textlight bg-filllight relative">
-      <div className="custom-shape-divider-top-1706911286">
+      <div className="custom-shape-divider-top-1706911286 top-0">
         <svg
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1200 120"
           preserveAspectRatio="none"
+          className="h-[30vh]"
         >
           <path
             d="M1200 120L0 16.48 0 0 1200 0 1200 120z"
