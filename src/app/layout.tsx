@@ -26,7 +26,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={cuprum.className}>
         <ThemeProvider>
-          <main className="font-normal">
+          <main className="font-normal dark:bg-bgdark bg-bglight w-full h-full">
             <Header />
             {children}
             <Footer />

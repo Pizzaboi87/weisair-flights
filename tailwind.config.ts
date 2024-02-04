@@ -12,10 +12,14 @@ const config: Config = {
       colors: {
         primary: "#038C7F",
         secondary: "#F2C641",
-        bglight: "#FAEDCD",
+        filllight: "#FAEDCD",
+        filldark: "#264653",
+        bgdark: "#565656",
+        bglight: "#FEFAE0",
+        textlight: "#FAEDCD",
         tertiary: {
           dark: "#3032A3",
-          light: "#32BFFF"
+          light: "#bde0fe"
         }
       },
       fontFamily: {

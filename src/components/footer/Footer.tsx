@@ -1,17 +1,13 @@
 "use client";
 
-import ThemeContext from "@/context/themeContext";
 import Link from "next/link";
-import { useContext } from "react";
 import { FaGithub, FaMobileAlt } from "react-icons/fa";
 import { FaMapLocationDot } from "react-icons/fa6";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 
 const Footer = () => {
-  const { darkTheme } = useContext(ThemeContext);
-
   return (
-    <footer className={`${darkTheme ? "bg-bgdark" : "bg-bglight"} relative`}>
+    <footer className="dark:bg-filldark dark:text-textlight bg-filllight relative">
       <div className="custom-shape-divider-top-1706911286">
         <svg
           data-name="Layer 1"
@@ -21,12 +17,15 @@ const Footer = () => {
         >
           <path
             d="M1200 120L0 16.48 0 0 1200 0 1200 120z"
-            className="shape-fill"
+            className="dark:fill-bgdark fill-bglight"
           ></path>
         </svg>
       </div>
       <div className="container mx-auto px-4 pt-24">
-        <Link href="/" className="font-black text-[1.2rem] text-tertiary-dark">
+        <Link
+          href="/"
+          className="font-black text-[1.2rem] text-tertiary-dark dark:text-tertiary-light"
+        >
           2024 - WeisAIR®
         </Link>
         <h4 className="font-semibold text-[2rem] pt-4 pb-2">Contact</h4>
@@ -66,7 +65,7 @@ const Footer = () => {
       <Link
         href="https://github.com/pizzaboi87"
         target="_blank"
-        className="flex items-center justify-center text-tertiary-dark mt-10"
+        className="flex items-center justify-center text-tertiary-dark dark:text-tertiary-light mt-10"
       >
         <FaGithub />
         <p className="ml-2">made by Pizzaboi87</p>
