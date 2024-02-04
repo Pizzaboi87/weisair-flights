@@ -1,12 +1,38 @@
 "use client";
 
 import ThemeContext from "@/context/themeContext";
-import React, { useContext, useState } from "react";
+import React, { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 
+const defaultForm = {
+  name: "",
+  email: "",
+  password: "",
+};
+
 const Auth = () => {
   const { darkTheme } = useContext(ThemeContext);
+  const [formData, setFormData] = useState(defaultForm);
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    try {
+      console.log(formData);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setFormData(defaultForm);
+    }
+  };
+
+  const { name, email, password } = formData;
 
   const inputStyle = `${
     darkTheme ? "darkinput" : "lightinput"
@@ -30,34 +56,37 @@ const Auth = () => {
           </span>
         </div>
 
-        <form className="space-y-4 md:space-y-6">
-          <div className={containerStyle}>
+        <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+          <div className={`${containerStyle} ${name ? "filled" : ""}`}>
             <input
               type="text"
               name="name"
-              id="John Smith"
+              value={name}
               required
+              onChange={handleInputChange}
               className={inputStyle}
             />
             <label className={labelStyle}>Your name</label>
           </div>
-          <div className={containerStyle}>
+          <div className={`${containerStyle} ${email ? "filled" : ""}`}>
             <input
               type="email"
               name="email"
-              id="email"
+              value={email}
               required
+              onChange={handleInputChange}
               className={inputStyle}
             />
             <label className={labelStyle}>Your email</label>
           </div>
-          <div className={containerStyle}>
+          <div className={`${containerStyle} ${password ? "filled" : ""}`}>
             <input
               type="password"
               name="password"
-              id="password"
+              value={password}
               required
               min={6}
+              onChange={handleInputChange}
               className={inputStyle}
             />
             <label className={labelStyle}>Your password</label>

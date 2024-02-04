@@ -23,7 +23,8 @@
   transform: rotateY(180deg);
 }
 
-.input-container:focus-within label {
+.input-container:focus-within label,
+.filled label {
   transform: translate(-0.5rem, 0.5rem) scale(0.8);
 }
 
