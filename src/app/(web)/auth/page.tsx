@@ -2,8 +2,12 @@
 
 import ThemeContext from "@/context/themeContext";
 import React, { ChangeEvent, FormEvent, useContext, useState } from "react";
+import toast from "react-hot-toast";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
+import { signUp } from "next-auth-sanity/client";
+import { signIn, useSession } from "next-auth/react";
+import { Icon } from "@iconify/react";
 
 const defaultForm = {
   name: "",
@@ -14,25 +18,33 @@ const defaultForm = {
 const Auth = () => {
   const { darkTheme } = useContext(ThemeContext);
   const [formData, setFormData] = useState(defaultForm);
+  const [isLoading, setIsLoading] = useState(false);
+  const { name, email, password } = formData;
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsLoading(true);
 
     try {
-      console.log(formData);
+      const user = await signUp(formData);
+      if (user) {
+        toast.success("Success, please sign-in!");
+        setIsLoading(false);
+      }
     } catch (error) {
       console.log(error);
+      toast.error("Something went wrong.");
+      setIsLoading(false);
     } finally {
       setFormData(defaultForm);
+      setIsLoading(false);
     }
   };
-
-  const { name, email, password } = formData;
 
   const inputStyle = `${
     darkTheme ? "darkinput" : "lightinput"
@@ -59,10 +71,12 @@ const Auth = () => {
         <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
           <div className={`${containerStyle} ${name ? "filled" : ""}`}>
             <input
-              type="text"
+              //avoid autocomplete
+              type="search"
               name="name"
               value={name}
               required
+              autoComplete="off"
               onChange={handleInputChange}
               className={inputStyle}
             />
@@ -74,6 +88,7 @@ const Auth = () => {
               name="email"
               value={email}
               required
+              autoComplete="off"
               onChange={handleInputChange}
               className={inputStyle}
             />
@@ -85,14 +100,23 @@ const Auth = () => {
               name="password"
               value={password}
               required
+              //avoid autocomplete
+              autoComplete="new-password"
               min={6}
               onChange={handleInputChange}
               className={inputStyle}
             />
             <label className={labelStyle}>Your password</label>
           </div>
-          <button className="w-full dark:bg-gradientlight bg-gradientdark text-textlight dark:text-textdark focus:outline-none font-medium rounded-lg text-xl px-5 py-2.5 text-center shadow-xl">
-            Sign Up
+          <button className="w-full min-h-[3rem] dark:bg-gradientlight bg-gradientdark text-textlight dark:text-textdark focus:outline-none font-medium rounded-lg px-5 text-center shadow-xl">
+            {isLoading ? (
+              <Icon
+                icon="eos-icons:bubble-loading"
+                className="text-[2rem] mx-auto"
+              />
+            ) : (
+              <p className="text-[1.5rem]">Sign-up</p>
+            )}
           </button>
           <button className="underline mx-auto block text-md dark:text-textlight">
             login

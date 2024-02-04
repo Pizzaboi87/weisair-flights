@@ -30,6 +30,14 @@ const user = {
             description: "Image of the user"
         }),
         defineField({
+            name: "email",
+            title: "Email Address",
+            description: "Email address of the user",
+            type: "string",
+            readOnly: true,
+            validation: Rule => Rule.required()
+        }),
+        defineField({
             name: "password",
             title: "Password",
             type: "string",

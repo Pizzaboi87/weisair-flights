@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import ThemeProvider from "@/components/themeProvider/ThemeProvider";
+import NextAuthProvider from "@/components/auth-provider/AuthProvider";
+import Toast from "@/components/toast/Toast";
 
 const cuprum = Cuprum({
   subsets: ["latin"],
@@ -25,13 +27,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${cuprum.className} overflow-x-hidden`}>
-        <ThemeProvider>
-          <main className="font-normal dark:bg-bgdark bg-bglight w-full h-full">
-            <Header />
-            {children}
-            <Footer />
-          </main>
-        </ThemeProvider>
+        <NextAuthProvider>
+          <ThemeProvider>
+            <Toast />
+            <main className="font-normal dark:bg-bgdark bg-bglight w-full h-full">
+              <Header />
+              {children}
+              <Footer />
+            </main>
+          </ThemeProvider>
+        </NextAuthProvider>
       </body>
     </html>
   );
