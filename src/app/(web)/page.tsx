@@ -1,7 +1,9 @@
+import Hero from "@/components/hero/Hero";
+
 const Home = () => {
   return (
     <div className="py-24">
-      <h1>Home</h1>
+      <Hero />
     </div>
   );
 };

@@ -72,12 +72,7 @@ const Auth = () => {
     }
   };
 
-  const inputStyle = `${
-    darkTheme ? "darkinput" : "lightinput"
-  } h-16 rounded-md border-none p-4 pb-0 text-base leading-2 outline-none shadow-none transition-all duration-200 ease-in-out shadow-lg`;
-  const containerStyle = "input-container flex flex-col relative";
-  const labelStyle =
-    "absolute pointer-events-none transform translate-y-6 scale-120 transform-origin-top-left transition-transform duration-200 ease-in-out text-blue-500 text-sm leading-4 left-4";
+  const inputStyle = `${darkTheme ? "darkinput" : "lightinput"} input-style`;
 
   return (
     <section className="container mx-auto relative z-[2]">
@@ -101,7 +96,7 @@ const Auth = () => {
         </div>
 
         <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
-          <div className={`${containerStyle} ${name ? "filled" : ""}`}>
+          <div className={`${name ? "filled" : ""} container-style`}>
             <input
               //avoid autocomplete
               type="search"
@@ -112,9 +107,9 @@ const Auth = () => {
               onChange={handleInputChange}
               className={inputStyle}
             />
-            <label className={labelStyle}>Your name</label>
+            <label className="label-style">Your name</label>
           </div>
-          <div className={`${containerStyle} ${email ? "filled" : ""}`}>
+          <div className={`${email ? "filled" : ""} container-style`}>
             <input
               type="email"
               name="email"
@@ -124,9 +119,9 @@ const Auth = () => {
               onChange={handleInputChange}
               className={inputStyle}
             />
-            <label className={labelStyle}>Your email</label>
+            <label className="label-style">Your email</label>
           </div>
-          <div className={`${containerStyle} ${password ? "filled" : ""}`}>
+          <div className={`${password ? "filled" : ""} container-style`}>
             <input
               type="password"
               name="password"
@@ -138,7 +133,7 @@ const Auth = () => {
               onChange={handleInputChange}
               className={inputStyle}
             />
-            <label className={labelStyle}>Your password</label>
+            <label className="label-style">Your password</label>
           </div>
           <button className="w-full min-h-[3rem] dark:bg-gradientlight bg-gradientdark text-textlight dark:text-textdark focus:outline-none font-medium rounded-lg px-5 text-center shadow-xl">
             {isLoading ? (

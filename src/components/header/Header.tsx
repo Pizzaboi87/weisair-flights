@@ -57,7 +57,7 @@ const Header = () => {
                       alt={session.user.name!}
                       width={40}
                       height={40}
-                      className="scale-anim profimg"
+                      className="scale-anim img"
                     />
                   </div>
                 ) : (
