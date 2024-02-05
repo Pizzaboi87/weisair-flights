@@ -35,3 +35,11 @@
 .darkinput:focus {
   box-shadow: 0 0 0 2px #fff989;
 }
+
+.profimg {
+  @apply object-cover w-full h-full;
+}
+
+.scale-anim {
+  @apply hover:scale-125 transition-all duration-700;
+}

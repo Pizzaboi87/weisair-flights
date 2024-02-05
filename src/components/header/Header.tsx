@@ -3,11 +3,15 @@
 import ThemeContext from "@/context/themeContext";
 import Link from "next/link";
 import { useContext } from "react";
-import { FaSignInAlt, FaSun } from "react-icons/fa";
+import { useSession } from "next-auth/react";
+import { FaSignInAlt, FaSun, FaUserCog } from "react-icons/fa";
 import { MdDarkMode } from "react-icons/md";
+import Image from "next/image";
 
 const Header = () => {
   const { darkTheme, setDarkTheme } = useContext(ThemeContext);
+
+  const { data: session } = useSession();
 
   const switchTheme = () => {
     if (darkTheme) {
@@ -44,19 +48,37 @@ const Header = () => {
         </Link>
         <ul className="flex items-center ml-5">
           <li className="items-center">
-            <Link href="/auth">
-              <FaSignInAlt className="cursor-pointer text-[2rem]" />
-            </Link>
+            {session?.user ? (
+              <Link href={`/users/${session.user.id}`}>
+                {session.user.image ? (
+                  <div className="w-[2.5rem] h-[2.5rem] rounded-full overflow-hidden">
+                    <Image
+                      src={session.user.image}
+                      alt={session.user.name!}
+                      width={40}
+                      height={40}
+                      className="scale-anim profimg"
+                    />
+                  </div>
+                ) : (
+                  <FaUserCog className="cursor-pointer text-[2.5rem]" />
+                )}
+              </Link>
+            ) : (
+              <Link href="/auth">
+                <FaSignInAlt className="cursor-pointer text-[2.5rem]" />
+              </Link>
+            )}
           </li>
           <li className="ml-2">
             {darkTheme ? (
               <FaSun
-                className="cursor-pointer text-[2rem]"
+                className="cursor-pointer text-[2.5rem]"
                 onClick={switchTheme}
               />
             ) : (
               <MdDarkMode
-                className="cursor-pointer text-[2rem]"
+                className="cursor-pointer text-[2.5rem]"
                 onClick={switchTheme}
               />
             )}

@@ -1,13 +1,20 @@
 "use client";
 
 import ThemeContext from "@/context/themeContext";
-import React, { ChangeEvent, FormEvent, useContext, useState } from "react";
+import React, {
+  ChangeEvent,
+  FormEvent,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import toast from "react-hot-toast";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { signUp } from "next-auth-sanity/client";
 import { signIn, useSession } from "next-auth/react";
 import { Icon } from "@iconify/react";
+import { useRouter } from "next/navigation";
 
 const defaultForm = {
   name: "",
@@ -24,6 +31,25 @@ const Auth = () => {
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const { data: session } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (session) {
+      router.push("/");
+    }
+  }, [router, session]);
+
+  const loginHandler = async () => {
+    try {
+      await signIn();
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong.");
+    }
   };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -62,9 +88,15 @@ const Auth = () => {
           </h1>
           <p className="dark:text-textlight">OR</p>
           <span className="inline-flex items-center dark:text-textlight">
-            <AiFillGithub className="mr-3 text-4xl cursor-pointer" />
+            <AiFillGithub
+              onClick={loginHandler}
+              className="mr-3 text-4xl cursor-pointer"
+            />
             |
-            <FcGoogle className="ml-3 text-4xl cursor-pointer" />
+            <FcGoogle
+              onClick={loginHandler}
+              className="ml-3 text-4xl cursor-pointer"
+            />
           </span>
         </div>
 
@@ -118,7 +150,10 @@ const Auth = () => {
               <p className="text-[1.5rem]">Sign-up</p>
             )}
           </button>
-          <button className="underline mx-auto block text-md dark:text-textlight">
+          <button
+            onClick={loginHandler}
+            className="underline mx-auto block text-md dark:text-textlight"
+          >
             login
           </button>
         </form>
