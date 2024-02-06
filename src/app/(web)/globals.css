@@ -50,7 +50,7 @@
 }
 
 .font-heading {
-  @apply font-medium md:font-semibold md:text-[4rem] text-[2.5rem] text-textdark dark:text-textlight;
+  @apply font-medium md:font-semibold xl:text-[4.5rem] md:text-[3.5rem] text-[2.5rem] text-textdark dark:text-textlight xl:tracking-wider;
 }
 
 .font-normal {
@@ -62,11 +62,11 @@
 }
 
 .fleet-title {
-  @apply text-xs md:text-[1.75rem] text-center mb-2 text-textdark dark:text-textlight;
+  @apply md:text-[1.75rem] text-[2rem] text-center mb-2 text-textdark dark:text-textlight;
 }
 
 .fleet-sub {
-  @apply md:font-bold font-medium text-lg md:text-[3rem] text-textdark dark:text-textlight;
+  @apply md:font-bold font-medium text-lg text-[3rem] text-textdark dark:text-textlight;
 }
 
 .input-style {
