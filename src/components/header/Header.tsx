@@ -24,29 +24,30 @@ const Header = () => {
   };
 
   return (
-    <header className="py-10 px-16 mx-auto text-xl flex flex-wrap md:flex-nowrap items-center justify-between relative dark:text-textlight">
-      <div className="custom-shape-divider-top-1707038123 md:top-[-3vh] top-0">
+    <header className="py-10 px-16 mx-auto text-xl flex flex-wrap md:flex-nowrap items-center justify-between relative">
+      <div className="custom-shape-divider-bottom-1707239478">
         <svg
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1200 120"
           preserveAspectRatio="none"
-          className="h-[40vh] md:h-[25vh]"
+          className="h-[32vh] dark:bg-gradientdark bg-gradientlight"
         >
           <path
-            d="M1200 120L0 16.48 0 0 1200 0 1200 120z"
-            className="dark:fill-filldark fill-filllight"
-          />
+            d="M1200 0L0 103.52 0 120 1200 120 1200 0z"
+            className="dark:fill-bgdark fill-bglight"
+          ></path>
         </svg>
       </div>
-      <div className="flex items-center w-full md:2/3 z-[2]">
+
+      <div className="flex items-center w-full md:2/3 z-[2] mt-10">
         <Link
           href="/"
-          className="font-black dark:text-tertiary-light text-tertiary-dark text-[2.2rem] mt-1"
+          className="font-black dark:text-textlight text-textdark text-[2.2rem] mt-1"
         >
           WeisAIR
         </Link>
-        <ul className="flex items-center ml-5">
+        <ul className="flex items-center ml-5 dark:text-textlight text-textdark">
           <li className="items-center">
             {session?.user ? (
               <Link href={`/users/${session.user.id}`}>

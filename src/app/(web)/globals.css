@@ -2,25 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-.custom-shape-divider-top-1707038123,
+.custom-shape-divider-bottom-1707239478,
 .custom-shape-divider-top-1706911286 {
   position: absolute;
   left: 0;
+  top: 0;
   width: 100%;
   overflow: hidden;
   line-height: 0;
   z-index: 1;
 }
 
-.custom-shape-divider-top-1707038123 svg,
+.custom-shape-divider-bottom-1707239478 svg,
 .custom-shape-divider-top-1706911286 svg {
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
-}
-
-.custom-shape-divider-top-1707038123 svg {
-  transform: rotateY(180deg);
 }
 
 .input-container:focus-within label,
@@ -45,7 +42,7 @@
 }
 
 .btn-primary {
-  @apply px-[5rem] md:px-[3rem] py-[1rem] md:py-[1.2rem] bg-gradientdark dark:bg-gradientlight rounded-lg md:rounded-xl shadow-sm shadow-textdark text-textlight dark:text-textdark font-bold text-base md:text-xl hover:scale-110 duration-300 transition-all;
+  @apply px-[5rem] md:px-[3rem] py-[1rem] md:py-[1.2rem] bg-gradientlight dark:bg-gradientdark rounded-lg md:rounded-xl shadow-sm shadow-textdark text-textdark dark:text-textlight font-bold text-base md:text-xl hover:scale-110 duration-300 transition-all;
 }
 
 .btn-tertiary {
