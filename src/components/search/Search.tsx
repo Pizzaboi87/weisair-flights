@@ -1,4 +1,37 @@
-const Search = () => {
+"use client";
+
+import { useRouter } from "next/navigation";
+import { ChangeEvent, FC } from "react";
+
+type Props = {
+  flightTypeFilter: string;
+  searchQuery: string;
+  setFlightTypeFilter: (value: string) => void;
+  setSearchQuery: (value: string) => void;
+};
+
+const Search: FC<Props> = ({
+  flightTypeFilter,
+  searchQuery,
+  setFlightTypeFilter,
+  setSearchQuery,
+}) => {
+  const router = useRouter();
+
+  const handleFlightTypeChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setFlightTypeFilter(event.target.value);
+  };
+
+  const handleSearchQueryChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleFilterClick = () => {
+    router.push(
+      `/flights?flightType=${flightTypeFilter}&searchQuery=${searchQuery}`
+    );
+  };
+
   return (
     <section className="bg-gradientlight dark:bg-gradientdark px-4 py-6">
       <div className="container mx-auto flex gap-4 flex-wrap justify-between items-center">
@@ -7,8 +40,8 @@ const Search = () => {
           <div className="relative">
             <select
               className="search-input capitalize"
-              //value={flightTypeFilter}
-              //onChange={handleFlightChange}
+              value={flightTypeFilter}
+              onChange={handleFlightTypeChange}
             >
               <option value="all">All</option>
               <option value="airplane">Airplane</option>
@@ -27,8 +60,8 @@ const Search = () => {
             type="search"
             id="search"
             placeholder="Search..."
-            //value={searchQuery}
-            //onChange={handleSearchQueryChange}
+            value={searchQuery}
+            onChange={handleSearchQueryChange}
             className="search-input placeholder:text-black"
           />
         </div>
@@ -36,7 +69,7 @@ const Search = () => {
         <button
           className="btn-secondary self-end"
           type="button"
-          //onClick={handleFilterClick}
+          onClick={handleFilterClick}
         >
           Search
         </button>

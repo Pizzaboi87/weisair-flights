@@ -52,11 +52,11 @@ const Footer = () => {
           </div>
 
           <div className="flex-1 md:text-left">
-            <p className="pt-2">Our Story</p>
-            <p className="pt-2">Career</p>
-            <p className="pt-2">Privacy Policy</p>
-            <p className="pt-2">Terms and Conditions</p>
-            <p className="pt-2">About</p>
+            <p className="pt-2">Our Fleet</p>
+            <p className="pt-2">Gallery</p>
+            <p className="pt-2">FAQ</p>
+            <p className="pt-2">Other Services</p>
+            <p className="pt-2">Flight Experiences</p>
           </div>
         </div>
       </div>
