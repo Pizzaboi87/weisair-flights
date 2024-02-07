@@ -16,8 +16,8 @@ export const images = (
       <Image
         src="/images/balloon_04.webp"
         alt="hero-1"
-        width={300}
-        height={300}
+        width={600}
+        height={600}
         className="img scale-anim"
       />
     </div>
@@ -27,8 +27,8 @@ export const images = (
         <Image
           src="/images/heli_03.webp"
           alt="hero-2"
-          width={300}
-          height={300}
+          width={400}
+          height={400}
           className="img scale-anim"
         />
       </div>
@@ -37,8 +37,8 @@ export const images = (
         <Image
           src="/images/plane_01.webp"
           alt="hero-3"
-          width={300}
-          height={300}
+          width={400}
+          height={400}
           className="img scale-anim"
         />
       </div>

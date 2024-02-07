@@ -8,7 +8,7 @@ const PageSearch = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <div className="mt-12">
+    <div className="mt-24">
       <Search
         flightTypeFilter={flightTypeFilter}
         searchQuery={searchQuery}
