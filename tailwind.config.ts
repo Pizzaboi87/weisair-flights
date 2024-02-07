@@ -11,14 +11,14 @@ const config: Config = {
     extend: {
       backgroundImage: {
         gradientlight: "radial-gradient(circle 763px at 18.3% 24.1%, rgba(255, 249, 137, 1) 7.4%, rgba(226, 183, 40, 1) 58.3% )",
-        gradientdark: "linear-gradient( 86.3deg,  rgba(0,119,182,1) 3.6%, rgba(8,24,68,1) 87.6% );"
+        gradientdark: "linear-gradient( 86.3deg,  rgba(0,119,172,1) 3.6%, rgba(8,24,100,1) 87.6% );"
       },
       colors: {
         primary: "#038C7F",
         secondary: "#F2C641",
         filllight: "#FAEDCD",
         filldark: "#264653",
-        bgdark: "#565656",
+        bgdark: "#14213d",
         bglight: "#FEFAE0",
         textlight: "#FAEDCD",
         textdark: "#14213d",

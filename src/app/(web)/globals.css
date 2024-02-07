@@ -42,7 +42,11 @@
 }
 
 .btn-primary {
-  @apply px-[5rem] md:px-[3rem] py-[1rem] md:py-[1.2rem] bg-gradientlight dark:bg-gradientdark rounded-lg md:rounded-xl shadow-sm shadow-textdark text-textdark dark:text-textlight font-bold text-base md:text-xl hover:scale-110 duration-300 transition-all;
+  @apply px-[5rem] md:px-[3rem] py-[1rem] md:py-[1.2rem] bg-gradientlight dark:bg-gradientdark rounded-lg md:rounded-xl shadow-sm shadow-textdark dark:shadow-textlight text-textdark dark:text-textlight font-bold text-base md:text-xl hover:scale-110 duration-300 transition-all;
+}
+
+.btn-secondary {
+  @apply px-[5rem] py-[0.5rem] rounded-lg text-textdark dark:text-textlight dark:bg-black bg-white font-bold text-base md:text-xl hover:scale-110 duration-300 transition-all;
 }
 
 .btn-tertiary {
@@ -79,4 +83,16 @@
 
 .label-style {
   @apply absolute pointer-events-none transform translate-y-6 scale-125 origin-top-left transition-transform duration-200 ease-in-out text-blue-500 text-sm leading-4 left-4;
+}
+
+.search-label {
+  @apply block text-[1.2rem] font-medium mb-2 text-black dark:text-textlight;
+}
+
+.search-container {
+  @apply w-full md:w-1/3 lg:w-auto mb-4 md:mb-0;
+}
+
+.search-input {
+  @apply w-full px-4 py-2 rounded leading-tight dark:bg-black focus:outline-none;
 }
