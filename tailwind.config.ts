@@ -14,14 +14,13 @@ const config: Config = {
         gradientdark: "linear-gradient( 86.3deg,  rgba(0,119,172,1) 3.6%, rgba(8,24,100,1) 87.6% );"
       },
       colors: {
-        primary: "#038C7F",
-        secondary: "#F2C641",
         filllight: "#FAEDCD",
         filldark: "#264653",
         bgdark: "#14213d",
         bglight: "#FEFAE0",
         textlight: "#FAEDCD",
         textdark: "#14213d",
+        yellow: "#F2C641",
         tertiary: {
           dark: "#fca311",
           light: "#bde0fe"

@@ -1,5 +1,6 @@
 import Gallery from "@/components/gallery/Gallery";
 import Hero from "@/components/hero/Hero";
+import NewsLetter from "@/components/newsletter/Newsletter";
 import PageSearch from "@/components/page-search/PageSearch";
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
       <Hero />
       <PageSearch />
       <Gallery />
+      <NewsLetter />
     </div>
   );
 };
