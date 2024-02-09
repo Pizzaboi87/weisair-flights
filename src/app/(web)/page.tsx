@@ -1,13 +1,18 @@
 import Gallery from "@/components/gallery/Gallery";
 import Hero from "@/components/hero/Hero";
+import Highlight from "@/components/highlight/Highlight";
 import NewsLetter from "@/components/newsletter/Newsletter";
 import PageSearch from "@/components/page-search/PageSearch";
+import { getHighlightedProgram } from "@/libs/apis";
 
-const Home = () => {
+const Home = async () => {
+  const highlightedFlight = await getHighlightedProgram();
+
   return (
     <div className="py-24">
       <Hero />
       <PageSearch />
+      <Highlight highlightOffer={highlightedFlight} />
       <Gallery />
       <NewsLetter />
     </div>
