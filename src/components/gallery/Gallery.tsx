@@ -22,7 +22,7 @@ const ImageWrapper: FC<Props> = ({ imghref, lg }) => {
 
 const Gallery = () => {
   return (
-    <div className="mx-auto container py-24 h-full">
+    <div className="mx-auto container pb-24 pt-16 h-full">
       <div className="flex flex-wrap md:-m-2">
         <div className="flex w-1/2 flex-wrap">
           <ImageWrapper imghref="/images/romantic_02.webp" lg={false} />
