@@ -1,6 +1,6 @@
 const NewsLetter = () => {
   return (
-    <section className="container mx-auto px-4">
+    <section className="container mx-auto px-4 md:mt-16">
       <form className="bg-gradientlight dark:bg-gradientdark text-textdark dark:text-textlight px-4 rounded-xl md:rounded-xl flex flex-col justify-center items-center py-6 md:py-24">
         <p className="md:font-semibold text-lg md:text-xl text-center mb-3">
           Be the first to learn about our monthly offers!

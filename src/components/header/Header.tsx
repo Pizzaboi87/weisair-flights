@@ -24,7 +24,7 @@ const Header = () => {
   };
 
   return (
-    <header className="py-10 px-16 mx-auto text-xl flex flex-wrap md:flex-nowrap items-center justify-between relative">
+    <header className="py-10 md:px-16 px-4 mx-auto text-xl flex flex-wrap md:flex-nowrap items-center justify-between relative">
       <div className="custom-shape-divider-bottom-1707239478">
         <svg
           data-name="Layer 1"
@@ -40,7 +40,7 @@ const Header = () => {
         </svg>
       </div>
 
-      <div className="flex items-center w-full md:w-2/3 z-[2] mt-10">
+      <div className="flex items-center justify-between md:justify-normal w-full md:w-2/3 z-[2] md:mt-10 mt-4">
         <Link
           href="/"
           className="font-black dark:text-textlight text-textdark text-[2.2rem] mt-1"

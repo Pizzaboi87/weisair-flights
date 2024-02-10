@@ -42,11 +42,11 @@
 }
 
 .btn-primary {
-  @apply px-[5rem] md:px-[3rem] py-[1rem] md:py-[1.2rem] bg-gradientlight dark:bg-gradientdark rounded-lg md:rounded-xl shadow-sm shadow-textdark text-textdark dark:text-textlight font-bold text-base md:text-xl hover:scale-110 duration-300 transition-all;
+  @apply px-[5rem] md:px-[3rem] py-[1rem] md:py-[1.2rem] bg-gradientlight dark:bg-filllight rounded-lg md:rounded-xl shadow-sm shadow-textdark text-textdark font-bold text-base md:text-xl hover:scale-110 duration-300 transition-all;
 }
 
 .btn-secondary {
-  @apply px-[5rem] py-[0.5rem] rounded-lg text-textdark dark:text-textlight dark:bg-black bg-white font-bold text-base md:text-xl hover:scale-110 duration-300 transition-all;
+  @apply px-[5rem] py-[0.5rem] rounded-lg text-textdark bg-filllight font-bold text-base md:text-xl hover:scale-110 duration-300 transition-all;
 }
 
 .btn-tertiary {
@@ -54,7 +54,7 @@
 }
 
 .font-heading {
-  @apply font-medium md:font-semibold xl:text-[4.5rem] md:text-[3.5rem] text-[2.5rem] text-textdark dark:text-textlight xl:tracking-wider;
+  @apply font-medium md:font-semibold xl:text-[4.5rem] text-[2.5rem] text-textdark dark:text-textlight xl:tracking-wide;
 }
 
 .font-normal {
@@ -62,11 +62,11 @@
 }
 
 .fleet-container {
-  @apply flex gap-3 flex-col items-center justify-center;
+  @apply flex gap-3 mr-4 flex-col items-center justify-center;
 }
 
 .fleet-title {
-  @apply md:text-[1.75rem] text-[2rem] text-center mb-2 text-textdark dark:text-textlight;
+  @apply text-[1.75rem] text-center mb-2 text-textdark dark:text-textlight;
 }
 
 .fleet-sub {
@@ -86,7 +86,7 @@
 }
 
 .search-label {
-  @apply block text-[1.2rem] font-medium mb-2 text-black dark:text-textlight;
+  @apply block text-[1.2rem] font-medium mb-2 text-textdark dark:text-textlight;
 }
 
 .search-container {
@@ -94,5 +94,5 @@
 }
 
 .search-input {
-  @apply w-full px-4 py-2 rounded leading-tight dark:bg-black focus:outline-none;
+  @apply w-full px-4 py-2 rounded leading-tight bg-white text-textdark focus:outline-none;
 }
