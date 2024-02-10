@@ -24,8 +24,8 @@ const Header = () => {
   };
 
   return (
-    <header className="py-10 md:px-16 px-4 mx-auto text-xl flex flex-wrap md:flex-nowrap items-center justify-between relative">
-      <div className="custom-shape-divider-bottom-1707239478">
+    <header className="py-10 md:px-16 px-4 mx-auto text-xl flex flex-wrap md:flex-nowrap items-center justify-between relative bg-gradientlight dark:bg-gradientdark">
+      <div className="custom-shape-divider-bottom-1707239478 hidden md:block">
         <svg
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +86,7 @@ const Header = () => {
           </li>
         </ul>
       </div>
-      <ul className="flex items-center justify-between w-full md:w-1/3 mt-4 z-[2]">
+      <ul className="flex items-center justify-evenly w-full md:w-1/3 mt-4 z-[2]">
         <li className="hover:-translate-y-2 duration-500 transition-all text-[1.5rem]">
           <Link href="/">Home</Link>
         </li>

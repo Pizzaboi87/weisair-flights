@@ -57,6 +57,10 @@
   @apply font-medium md:font-semibold xl:text-[4.5rem] text-[2.5rem] text-textdark dark:text-textlight xl:tracking-wide;
 }
 
+.font-subheading {
+  @apply font-medium md:font-semibold xl:text-[2.5rem] text-[1.5rem] text-textdark dark:text-textlight xl:tracking-wide;
+}
+
 .font-normal {
   @apply text-[1.25rem] text-textdark dark:text-textlight;
 }

@@ -8,7 +8,7 @@ import { MdOutlineAlternateEmail } from "react-icons/md";
 const Footer = () => {
   return (
     <footer className="dark:bg-filldark dark:text-textdark dark:bg-gradientdark bg-gradientlight relative">
-      <div className="custom-shape-divider-top-1706911286">
+      <div className="custom-shape-divider-top-1706911286 hidden md:block">
         <svg
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
@@ -22,11 +22,11 @@ const Footer = () => {
           ></path>
         </svg>
       </div>
-      <div className="container mx-auto md:px-4 px-12 md:pt-24 pt-40 text-textdark dark:text-textlight">
+      <div className="container mx-auto md:px-4 px-12 md:pt-24 pt-8 text-textdark dark:text-textlight">
         <Link href="/" className="font-black text-[1.5rem]">
           2024 - WeisAIR®
         </Link>
-        <div className="flex flex-col-reverse md:flex-row items-center justify-between text-[1.2rem] mt-12 gap-8 md:gap-0">
+        <div className="flex flex-col-reverse md:flex-row items-center justify-between text-[1.2rem] mt-8 gap-8 md:gap-0">
           <div className="flex flex-col md:flex-1">
             <span className="flex gap-2 pt-2 items-center">
               <FaMapLocationDot />

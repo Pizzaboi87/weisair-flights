@@ -67,7 +67,7 @@ const Search: FC<Props> = ({
         </div>
 
         <button
-          className="btn-secondary self-end"
+          className="btn-secondary self-end w-full md:w-auto"
           type="button"
           onClick={handleFilterClick}
         >

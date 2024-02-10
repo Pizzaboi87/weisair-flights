@@ -1,5 +1,6 @@
-import { Flight } from "@/app/models/flight";
+import { Flight } from "@/models/flight";
 import Image from "next/image";
+import Link from "next/link";
 import { FC } from "react";
 
 type Props = {
@@ -59,7 +60,12 @@ const Highlight: FC<Props> = ({ highlightOffer }) => {
             </div>
           </span>
 
-          <button className="btn-tertiary">Learn More</button>
+          <Link
+            href={`/flights/${highlightOffer.slug.current}`}
+            className="btn-tertiary"
+          >
+            Learn More
+          </Link>
         </div>
       </div>
     </section>
