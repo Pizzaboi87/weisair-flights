@@ -35,7 +35,7 @@ const Highlight: FC<Props> = ({ highlightOffer }) => {
         </div>
       </div>
 
-      <div className="md:py-8 py-3 lg:w-2/3 text-left px-5 bg-gradientlight dark:bg-gradientdark rounded-xl">
+      <div className="md:py-9 py-3 lg:w-2/3 text-left px-5 bg-gradientlight dark:bg-gradientdark rounded-xl">
         <h3 className="font-heading mb-1">Special Offer</h3>
         <p className="font-norml text-justify">{highlightOffer.description}</p>
 

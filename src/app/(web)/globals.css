@@ -42,19 +42,19 @@
 }
 
 .btn-primary {
-  @apply px-[5rem] md:px-[3rem] py-[1rem] md:py-[1.2rem] bg-gradientlight dark:bg-filllight rounded-lg md:rounded-xl shadow-sm shadow-textdark text-textdark font-bold text-base md:text-xl hover:scale-110 duration-300 transition-all;
+  @apply px-[5rem] md:px-[3rem] py-[1rem] md:py-[1.2rem] bg-gradientlight dark:bg-filllight rounded-lg md:rounded-xl shadow-sm shadow-textdark text-textdark font-bold text-base md:text-xl hover:scale-110 duration-300 transition-all text-center;
 }
 
 .btn-secondary {
-  @apply px-[5rem] py-[0.5rem] rounded-lg text-textdark bg-filllight font-bold text-base md:text-xl hover:scale-110 duration-300 transition-all;
+  @apply px-[5rem] py-[0.5rem] rounded-lg text-textdark bg-filllight font-bold text-base md:text-xl hover:scale-110 duration-300 transition-all text-center;
 }
 
 .btn-tertiary {
-  @apply px-[5rem] md:px-[4rem] py-[1rem] md:py-[1.1rem] bg-filllight rounded-xl shadow-sm shadow-textdark text-textdark font-semibold text-base md:text-xl hover:scale-110 duration-300 transition-all;
+  @apply px-[5rem] md:px-[4rem] py-[1rem] md:py-[1.1rem] bg-filllight rounded-xl shadow-sm shadow-textdark text-textdark font-semibold text-base md:text-xl hover:scale-110 duration-300 transition-all text-center;
 }
 
 .font-heading {
-  @apply font-medium md:font-semibold xl:text-[4.5rem] text-[2.5rem] text-textdark dark:text-textlight xl:tracking-wide;
+  @apply font-medium md:font-semibold xl:text-[4rem] text-[2.5rem] text-textdark dark:text-textlight xl:tracking-wide;
 }
 
 .font-subheading {

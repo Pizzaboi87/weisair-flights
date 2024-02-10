@@ -1,5 +1,6 @@
 "use client";
 
+import FlightCard from "@/components/flight-card/FlightCard";
 import Search from "@/components/search/Search";
 import { getFlightProgram } from "@/libs/apis";
 import { Flight } from "@/models/flight";
@@ -56,15 +57,22 @@ const Flights = () => {
 
   return (
     <div className="md:mt-20">
-      <h1 className="font-subheading text-center mb-2">
+      <h1 className="font-subheading text-center mb-2 pt-10 pb-5">
         Search Flight Programs
       </h1>
+
       <Search
         flightTypeFilter={flightTypeFilter}
         searchQuery={searchQuery}
         setFlightTypeFilter={setFlightTypeFilter}
         setSearchQuery={setSearchQuery}
       />
+
+      <div className="flex mt-20 justify-between flex-wrap container mx-auto">
+        {filteredFlights.map((flight) => (
+          <FlightCard key={flight._id} flight={flight} />
+        ))}
+      </div>
     </div>
   );
 };
