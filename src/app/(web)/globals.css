@@ -41,6 +41,10 @@
   @apply hover:scale-125 transition-all duration-700;
 }
 
+.btn-fit {
+  @apply hover:w-full hover:rounded-none hover:bg-gradientgreen hover:shadow-none;
+}
+
 .btn-primary {
   @apply px-[5rem] md:px-[3rem] py-[1rem] md:py-[1.2rem] bg-gradientlight dark:bg-filllight rounded-lg md:rounded-xl shadow-sm shadow-textdark text-textdark font-bold text-base md:text-xl hover:scale-110 duration-300 transition-all text-center;
 }

@@ -12,8 +12,8 @@ type Props = {
 
 const FlightCard: FC<Props> = ({ flight }) => {
   return (
-    <div className="rounded-xl w-80 mb-10 mx-auto md:mx-0 overflow-hidden shadow-sm shadow-textdark">
-      <div className="h-60 overflow-hidden">
+    <div className="sm:rounded-xl lg:w-[24rem] sm:w-[22rem] w-full mb-10 mx-auto md:mx-0 overflow-hidden md:shadow-sm shadow-textdark">
+      <div className="h-[16rem] overflow-hidden">
         <Image
           src={flight.coverImage.url}
           alt={flight.programName}
@@ -29,7 +29,7 @@ const FlightCard: FC<Props> = ({ flight }) => {
         </div>
 
         <p className="text-justify text-[1rem] mt-3">
-          {flight.description.slice(0, 170)}...
+          {flight.description.slice(0, 175)}...
         </p>
 
         <div className="flex items-end justify-between py-4">
@@ -49,7 +49,10 @@ const FlightCard: FC<Props> = ({ flight }) => {
           </span>
         </div>
 
-        <Link href={`/flights/${flight.slug.current}`} className="btn-tertiary">
+        <Link
+          href={`/flights/${flight.slug.current}`}
+          className="btn-tertiary btn-fit"
+        >
           Book Now
         </Link>
       </div>

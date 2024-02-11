@@ -6,19 +6,27 @@ export const getHighlightedProgramQuery = groq`*[_type == "flight" && isFeatured
     description,
     discount,
     images,
-    isBooked,
     isFeatured,
-    offeredAmenities,
+    price,
+    programName,
+    slug,
+    type,
+}`
+
+export const getFlightProgramQuery = groq`*[_type == "flight"] {
+    _id,
+    coverImage,
+    description,
+    images,
     price,
     programLength,
     programName,
     seats,
     slug,
-    specialNote,
     type,
 }`
 
-export const getFlightProgramQuery = groq`*[_type == "flight"] {
+export const getFlightDetails = groq`*[_type == "flight" && slug.current == $slug][0] {
     _id,
     coverImage,
     description,

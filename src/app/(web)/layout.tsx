@@ -16,7 +16,8 @@ const cuprum = Cuprum({
 
 export const metadata: Metadata = {
   title: "WeisAir Flights",
-  description: "Discover Hungary from the sky!",
+  description:
+    "Elevate your senses and discover Hungary's enchanting beauty from the sky.",
 };
 
 export default function RootLayout({

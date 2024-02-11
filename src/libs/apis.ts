@@ -14,7 +14,19 @@ export const getHighlightedProgram = async () => {
 
 export const getFlightProgram = async () => {
     const result = await sanityClient.fetch<Flight[]>(
-        queries.getFlightProgramQuery
+        queries.getFlightProgramQuery,
+        {},
+        { cache: "no-cache" }
+    );
+
+    return result;
+}
+
+export const getFlightProgramDetails = async (slug: string) => {
+    const result = await sanityClient.fetch<Flight>(
+        queries.getFlightDetails,
+        { slug },
+        { cache: "no-cache" }
     );
 
     return result;

@@ -68,7 +68,7 @@ const Flights = () => {
         setSearchQuery={setSearchQuery}
       />
 
-      <div className="flex mt-20 justify-between flex-wrap container mx-auto">
+      <div className="flex mt-20 justify-evenly lg:gap-12 flex-wrap container mx-auto">
         {filteredFlights.map((flight) => (
           <FlightCard key={flight._id} flight={flight} />
         ))}
