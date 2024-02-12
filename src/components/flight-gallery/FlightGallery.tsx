@@ -30,7 +30,7 @@ const FlightGallery: FC<Props> = ({ photos }) => {
           alt={`photo-${photos[currentIndex]}`}
           width={800}
           height={800}
-          className="w-full h-full object-cover md:rounded-xl"
+          className="img"
         />
         {photos.map((photo, index) => {
           const position =

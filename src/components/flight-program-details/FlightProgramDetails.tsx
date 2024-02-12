@@ -1,5 +1,6 @@
 import { Flight } from "@/models/flight";
 import { FC } from "react";
+import BookingBox from "../booking-box/BookingBox";
 
 type Props = {
   flight: Flight;
@@ -7,18 +8,20 @@ type Props = {
 
 const FlightProgramDetails: FC<Props> = ({ flight }) => {
   return (
-    <div className="container mx-auto md:my-20 my-10">
-      <div className="md:grid md:grid-cols-12 gap-10 px-3">
-        <div className="md:col-span-7 md:w-full bg-gradientlight dark:bg-gradientdark px-4 rounded-xl py-4">
+    <div className="container mx-auto md:my-20 mb-10">
+      <div className="md:grid md:grid-cols-12 gap-12 px-3">
+        <div className="md:col-span-7 w-full bg-gradientlight dark:bg-gradientdark px-4 md:px-6 rounded-xl py-4 md:py-6">
           <h2 className="font-bold text-[2rem]">Flight Details</h2>
-          <div className="flex my-11 gap-3 items-center justify-center md:justify-start">
+          <div className="flex mb-11 mt-8 gap-3 items-center justify-center md:justify-start">
             {flight.offeredAmenities.map((amenity) => (
               <div
                 key={amenity._key}
-                className="w-[7rem] md:w-[8rem] h-[7rem] md:h-[8rem] text-center px-2 md:px-1 bg-filllight shadow-sm shadow-textdark text-textdark rounded-lg flex flex-col items-center justify-center"
+                className="w-[6rem] md:w-[8rem] h-[6rem] md:h-[8rem] text-center px-1 bg-filllight shadow-sm shadow-textdark text-textdark rounded-lg flex flex-col items-center justify-center"
               >
                 <i className={`fa-solid ${amenity.icon} text-[2.5rem]`} />
-                <p className="mt-4">{amenity.amenity}</p>
+                <p className="mt-4 text-[0.85rem] md:text-[1.1rem]">
+                  {amenity.amenity}
+                </p>
               </div>
             ))}
           </div>
@@ -44,6 +47,12 @@ const FlightProgramDetails: FC<Props> = ({ flight }) => {
               })}
           </div>
         </div>
+
+        <BookingBox
+          note={flight.specialNote}
+          price={flight.price}
+          discount={flight.discount}
+        />
       </div>
     </div>
   );
