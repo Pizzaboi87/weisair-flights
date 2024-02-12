@@ -4,6 +4,9 @@ import FlightGallery from "@/components/flight-gallery/FlightGallery";
 import { getFlightProgramDetails } from "@/libs/apis";
 import useSWR from "swr";
 import LoadingSpinner from "../../loading";
+import OfferGallery from "@/components/offer-gallery/OfferGallery";
+import DiscountTag from "@/components/discount-tag/DiscountTag";
+import OfferPanel from "@/components/offer-panel/OfferPanel";
 
 const FlightDetails = (props: { params: { slug: string } }) => {
   const {
@@ -25,6 +28,21 @@ const FlightDetails = (props: { params: { slug: string } }) => {
 
   return (
     <div className="md:my-24 my-12">
+      <div className="flex lg:flex-row flex-col px-4 py-10 md:mt-20 items-center gap-12 container mx-auto">
+        <OfferGallery
+          url={flight.coverImage.url}
+          alt={flight.programName}
+          images={flight.images}
+        />
+        <OfferPanel
+          title={flight.programName}
+          description={flight.description}
+          discount={flight.discount}
+          price={flight.price}
+          slug={flight.slug.current}
+          isSpecial={false}
+        />
+      </div>
       <FlightGallery photos={flight.images} />
     </div>
   );

@@ -10,59 +10,59 @@ type Props = {
 };
 
 const FlightGallery: FC<Props> = ({ photos }) => {
-  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
-  const [showModal, setShowModal] = useState(false);
-
-  const openModal = (index: number) => {
-    setCurrentPhotoIndex(index);
-    setShowModal(true);
-  };
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleSlide = (isNext: boolean) => {
     isNext
-      ? setCurrentPhotoIndex((prevIndex) =>
+      ? setCurrentIndex((prevIndex) =>
           prevIndex === photos.length - 1 ? 0 : prevIndex + 1
         )
-      : setCurrentPhotoIndex((prevIndex) =>
+      : setCurrentIndex((prevIndex) =>
           prevIndex === 0 ? photos.length - 1 : prevIndex - 1
         );
   };
 
   return (
-    <div className="container mx-auto">
-      <div className="grid md:grid-cols-2 relative gap-5 px-3">
-        <div className="h-[25rem] relative rounded-xl overflow-hidden">
-          <div className="hidden md:flex justify-center items-center w-full h-full">
-            <Image
-              src={photos[0].url}
-              alt={`Flight Photo ${currentPhotoIndex + 1}`}
-              width={600}
-              height={600}
-              className="img scale-anim cursor-pointer"
-              onClick={openModal.bind(this, 0)}
+    <div className="container mx-auto flex flex-col justify-center items-center">
+      <div className="h-[40rem] md:w-[75%] self-center relative">
+        <Image
+          src={photos[currentIndex].url}
+          alt={`photo-${photos[currentIndex]}`}
+          width={800}
+          height={800}
+          className="w-full h-full object-cover md:rounded-xl"
+        />
+        {photos.map((photo, index) => {
+          const position =
+            (index - currentIndex + photos.length - 1) % photos.length;
+          const offset = position * 12;
+
+          return (
+            <div
+              key={photo._key}
+              className="hidden md:flex cursor-pointer scale-anim hover:z-10 absolute md:top-[70%] shadow-xl w-[11rem] h-[15rem] translate-x-4 border-1 border-gray-300 transition-all duration-700 rounded-lg bg-center bg-cover"
+              style={{
+                backgroundImage: `url(${photo.url})`,
+                right: `-${offset}rem`,
+              }}
+              onClick={() => setCurrentIndex(index)}
             />
-          </div>
-          <div className="md:hidden flex justify-center items-center w-full h-full">
-            <Image
-              src={photos[currentPhotoIndex].url}
-              alt={`Flight Photo ${currentPhotoIndex + 1}`}
-              width={400}
-              height={400}
-              className="img"
-              onClick={openModal.bind(this, 0)}
-            />
-          </div>
-        </div>
-        <div className="md:hidden flex justify-between items-center">
-          <div className="flex space-x-2 text-[2.25rem]">
-            <BsArrowLeftSquareFill onClick={() => handleSlide(false)} />
-            <BsArrowRightSquareFill onClick={() => handleSlide(true)} />
-          </div>
-          <span className="text-[1.75rem]">
-            {currentPhotoIndex + 1} / {photos.length}
-          </span>
-        </div>
+          );
+        })}
       </div>
+      <span className="flex gap-4 mt-4 text-[2rem]">
+        <BsArrowLeftSquareFill
+          className="cursor-pointer scale-anim"
+          onClick={() => handleSlide(false)}
+        />
+        <BsArrowRightSquareFill
+          className="cursor-pointer scale-anim"
+          onClick={() => handleSlide(true)}
+        />
+      </span>
+      <p className="mt-1">
+        {currentIndex + 1} / {photos.length}
+      </p>
     </div>
   );
 };
