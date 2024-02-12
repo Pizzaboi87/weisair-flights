@@ -11,7 +11,7 @@ const config: Config = {
     extend: {
       backgroundImage: {
         gradientlight: "radial-gradient(circle 763px at 18.3% 24.1%, rgba(255, 249, 137, 1) 7.4%, rgba(226, 183, 40, 1) 58.3% )",
-        gradientdark: "linear-gradient( 86.3deg,  rgba(0,119,172,1) 3.6%, rgba(8,24,100,1) 87.6% );",
+        gradientdark: "linear-gradient( 86.3deg,  rgba(0,78,150,1) 3.6%, rgba(8,24,100,1) 87.6% );",
         gradientgreen: "linear-gradient( 117deg,  rgba(123,216,96,1) 39.2%, rgba(255,255,255,1) 156.2% );"
       },
       colors: {

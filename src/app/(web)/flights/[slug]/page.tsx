@@ -1,12 +1,12 @@
 "use client";
 
-import FlightGallery from "@/components/flight-gallery/FlightGallery";
 import { getFlightProgramDetails } from "@/libs/apis";
 import useSWR from "swr";
 import LoadingSpinner from "../../loading";
+import FlightGallery from "@/components/flight-gallery/FlightGallery";
 import OfferGallery from "@/components/offer-gallery/OfferGallery";
-import DiscountTag from "@/components/discount-tag/DiscountTag";
 import OfferPanel from "@/components/offer-panel/OfferPanel";
+import FlightProgramDetails from "@/components/flight-program-details/FlightProgramDetails";
 
 const FlightDetails = (props: { params: { slug: string } }) => {
   const {
@@ -34,15 +34,9 @@ const FlightDetails = (props: { params: { slug: string } }) => {
           alt={flight.programName}
           images={flight.images}
         />
-        <OfferPanel
-          title={flight.programName}
-          description={flight.description}
-          discount={flight.discount}
-          price={flight.price}
-          slug={flight.slug.current}
-          isSpecial={false}
-        />
+        <OfferPanel isSpecial={false} flight={flight} />
       </div>
+      <FlightProgramDetails flight={flight} />
       <FlightGallery photos={flight.images} />
     </div>
   );

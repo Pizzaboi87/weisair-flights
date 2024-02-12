@@ -33,5 +33,6 @@ export type Flight = {
     seats: number;
     slug: Slug;
     specialNote: string;
+    generalKnowledge: string;
     type: string;
 }

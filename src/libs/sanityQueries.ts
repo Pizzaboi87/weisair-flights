@@ -41,5 +41,6 @@ export const getFlightDetails = groq`*[_type == "flight" && slug.current == $slu
     seats,
     slug,
     specialNote,
+    generalKnowledge,
     type,
 }`

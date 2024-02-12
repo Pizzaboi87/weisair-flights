@@ -16,14 +16,7 @@ const Highlight: FC<Props> = ({ highlightOffer }) => {
         images={highlightOffer.images}
       />
 
-      <OfferPanel
-        title="Special Offer"
-        description={highlightOffer.description}
-        discount={highlightOffer.discount}
-        price={highlightOffer.price}
-        slug={highlightOffer.slug.current}
-        isSpecial={true}
-      />
+      <OfferPanel flight={highlightOffer} isSpecial={true} />
     </section>
   );
 };

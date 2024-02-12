@@ -90,6 +90,13 @@ const flight = {
             initialValue: "To ensure a smooth booking process, please note that reservations should be made at least 48 hours in advance. You can consider your booking validated only, once you receive the confirmation email.",
         }),
         defineField({
+            name: "generalKnowledge",
+            title: "General Knowledge",
+            type: "text",
+            validation: Rule => Rule.required(),
+            initialValue: "Important Information for Your Flight Experience**Thank you for choosing our service for your upcoming flight adventure! To ensure a smooth and enjoyable experience, please take note of the following essential information:**Package Inclusions:**Your chosen package includes flight tickets, insurance coverage, and other specified amenities. Rest assured, we've taken care of all the essentials to make your journey as convenient and comfortable as possible.**Arrival Time:**We recommend arriving at the airport at least one hour prior to your scheduled departure time. This allows ample time for check-in procedures, security screenings, and any unforeseen delays, ensuring a stress-free start to your adventure.**Ticket Presentation:**You are not required to print your ticket; however, please ensure you have the QR code available for scanning. The QR code is essential for check-in and boarding purposes and will be provided to you via email prior to your travel date.**Pre-flight Briefing:**Before boarding, you will participate in a brief pre-flight orientation session. This session, typically lasting around thirty minutes, covers important safety procedures, boarding instructions, and any other relevant information to ensure your comfort and well-being during the flight.**Weather Conditions:**Please note that flight schedules may be subject to change based on weather conditions and other factors beyond our control. We prioritize the safety of our passengers above all else and will make necessary adjustments to your itinerary if required.**Contact Information:**Should you have any questions or require assistance before or during your journey, our customer service team is available to assist you. Please don't hesitate to reach out to us via phone, email, or our online chat support for prompt assistance.**We look forward to welcoming you aboard and providing you with an unforgettable flight experience. Safe travels and enjoy your adventure!"
+        }),
+        defineField({
             name: "programLength",
             title: "Program length",
             type: "number",

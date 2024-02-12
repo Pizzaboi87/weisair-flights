@@ -1,31 +1,28 @@
+import DiscountTag from "../discount-tag/DiscountTag";
 import Link from "next/link";
 import { FC } from "react";
-import DiscountTag from "../discount-tag/DiscountTag";
+import { Flight } from "@/models/flight";
 
 type Props = {
-  title: string;
-  description: string;
-  discount: number;
-  price: number;
-  slug: string;
+  flight: Flight;
   isSpecial: boolean;
 };
 
-const OfferPanel: FC<Props> = (props) => {
-  const { title, description, discount, price, slug, isSpecial } = props;
+const OfferPanel: FC<Props> = ({ flight, isSpecial }) => {
+  const { programName, description, discount, price, slug } = flight;
 
   return (
     <div
       className={`${
-        !isSpecial ? "md:min-h-[25rem] justify-evenly relative pt-14" : ""
+        !isSpecial ? "md:min-h-[26rem] justify-evenly relative pt-14" : ""
       } flex flex-col md:py-9 py-3 lg:w-2/3 text-left px-5 bg-gradientlight dark:bg-gradientdark rounded-xl`}
     >
-      {!isSpecial && (
+      {!isSpecial && discount > 0 ? (
         <div className="absolute -top-2 right-2">
           <DiscountTag discount={discount} isMirrored={true} />
         </div>
-      )}
-      <h3 className="font-heading mb-1">{title}</h3>
+      ) : null}
+      <h3 className="font-heading mb-1">{programName}</h3>
       <p className="font-norml text-justify">{description}</p>
 
       {isSpecial && (
@@ -43,7 +40,7 @@ const OfferPanel: FC<Props> = (props) => {
             </div>
           </span>
 
-          <Link href={`/flights/${slug}`} className="btn-tertiary">
+          <Link href={`/flights/${slug.current}`} className="btn-tertiary">
             Learn More
           </Link>
         </div>
