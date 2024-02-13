@@ -53,8 +53,6 @@ const Flights = () => {
 
   const filteredFlights = filterFlights(data || []);
 
-  console.log(filteredFlights);
-
   return (
     <div className="md:mt-20">
       <h1 className="font-subheading text-center mb-2 pt-10 pb-5">

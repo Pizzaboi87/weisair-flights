@@ -1,20 +1,22 @@
 "use client";
 
 import { ChangeEvent, FC, useState } from "react";
+import toast from "react-hot-toast";
 
 type Props = {
   note: string;
   price: number;
   discount: number;
+  seats: number;
 };
 
 const defaultForm = {
-  date: "",
+  date: new Date().toISOString().split("T")[0],
   adults: 0,
   children: 0,
 };
 
-const BookingBox: FC<Props> = ({ note, price, discount }) => {
+const BookingBox: FC<Props> = ({ note, price, discount, seats }) => {
   const [bookingForm, setBookingForm] = useState(defaultForm);
   const { date, adults, children } = bookingForm;
 
@@ -23,7 +25,12 @@ const BookingBox: FC<Props> = ({ note, price, discount }) => {
     setBookingForm({ ...bookingForm, [name]: value });
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    if (adults === 0) toast.error("Minimum one adult passanger is mandatory!");
+    if (seats < Number(adults) + Number(children))
+      toast.error("There's more passangers than seats!");
+    else toast.success("Everything is fine.");
+  };
 
   return (
     <div className="sticky top-0 md:col-span-5 mt-10 md:mt-0 w-full h-fit bg-gradientlight dark:bg-gradientdark rounded-xl">
@@ -37,6 +44,7 @@ const BookingBox: FC<Props> = ({ note, price, discount }) => {
             type="date"
             name="date"
             value={date}
+            min={new Date().toISOString().split("T")[0]}
             onChange={handleChange}
             className="search-input placeholder:text-black"
           />
@@ -48,7 +56,7 @@ const BookingBox: FC<Props> = ({ note, price, discount }) => {
             <input
               type="number"
               name="adults"
-              min={0}
+              min={1}
               value={adults}
               onChange={handleChange}
               className="search-input placeholder:text-black"

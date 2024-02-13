@@ -52,6 +52,7 @@ const FlightProgramDetails: FC<Props> = ({ flight }) => {
           note={flight.specialNote}
           price={flight.price}
           discount={flight.discount}
+          seats={flight.seats}
         />
       </div>
     </div>
