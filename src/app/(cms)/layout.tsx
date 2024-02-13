@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "WeisAIR Flight",
+  title: "WeisAIR Flights",
   description:
     "Elevate your senses and discover Hungary's enchanting beauty from the sky.",
 };

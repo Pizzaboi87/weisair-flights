@@ -36,3 +36,13 @@ export type Flight = {
     generalKnowledge: string;
     type: string;
 }
+
+export type BookingDetails = {
+    user: string;
+    flightProgram: string;
+    flightDate: string;
+    adults: number;
+    children: number;
+    discount: number;
+    totalPrice: number;
+}

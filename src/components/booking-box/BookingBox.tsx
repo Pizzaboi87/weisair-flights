@@ -1,5 +1,7 @@
 "use client";
 
+import { getStripe } from "@/libs/stripe";
+import axios from "axios";
 import { ChangeEvent, FC, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -8,6 +10,8 @@ type Props = {
   price: number;
   discount: number;
   seats: number;
+  flightProgram: string;
+  flightSlug: string;
 };
 
 const defaultForm = {
@@ -16,7 +20,14 @@ const defaultForm = {
   children: 0,
 };
 
-const BookingBox: FC<Props> = ({ note, price, discount, seats }) => {
+const BookingBox: FC<Props> = ({
+  note,
+  price,
+  discount,
+  seats,
+  flightProgram,
+  flightSlug,
+}) => {
   const [bookingForm, setBookingForm] = useState(defaultForm);
   const { date, adults, children } = bookingForm;
 
@@ -25,11 +36,37 @@ const BookingBox: FC<Props> = ({ note, price, discount, seats }) => {
     setBookingForm({ ...bookingForm, [name]: value });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (adults === 0) toast.error("Minimum one adult passanger is mandatory!");
     if (seats < Number(adults) + Number(children))
       toast.error("There's more passangers than seats!");
-    else toast.success("Everything is fine.");
+
+    const stripe = await getStripe();
+
+    try {
+      const { data: stripeSession } = await axios.post("/api/stripe", {
+        flightProgram,
+        flightDate: date,
+        flightSlug,
+        adults,
+        children,
+        totalPrice:
+          (adults * price + children * (price - 20)) * ((100 - discount) / 100),
+      });
+
+      if (stripe) {
+        const result = await stripe.redirectToCheckout({
+          sessionId: stripeSession.id,
+        });
+
+        if (result.error) {
+          toast.error("Payment Failed.");
+        }
+      }
+    } catch (error) {
+      console.log("Error: ", error);
+      toast.error("Something went wrong.");
+    }
   };
 
   return (
