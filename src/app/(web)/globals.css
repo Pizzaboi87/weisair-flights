@@ -57,6 +57,10 @@
   @apply px-[5rem] md:px-[4rem] py-[1rem] md:py-[1.1rem] bg-filllight rounded-xl shadow-sm shadow-textdark text-textdark font-semibold text-base md:text-xl hover:scale-110 duration-300 transition-all text-center;
 }
 
+.btn-booking {
+  @apply bg-filllight rounded-xl shadow-sm shadow-textdark text-textdark font-semibold text-base md:text-[2rem] hover:scale-110 duration-300 transition-all text-center;
+}
+
 .font-heading {
   @apply font-medium md:font-semibold xl:text-[4rem] text-[2.5rem] text-textdark dark:text-textlight xl:tracking-wide;
 }

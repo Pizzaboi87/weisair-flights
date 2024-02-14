@@ -13,8 +13,8 @@ import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { signUp } from "next-auth-sanity/client";
 import { signIn, useSession } from "next-auth/react";
-import { Icon } from "@iconify/react";
 import { useRouter } from "next/navigation";
+import LoadingSpinner from "@/components/loading-spinner/LoadingSpinner";
 
 const defaultForm = {
   name: "",
@@ -137,10 +137,7 @@ const Auth = () => {
           </div>
           <button className="w-full min-h-[3rem] dark:bg-gradientlight bg-gradientdark text-textlight dark:text-textdark focus:outline-none font-medium rounded-lg px-5 text-center shadow-xl">
             {isLoading ? (
-              <Icon
-                icon="eos-icons:bubble-loading"
-                className="text-[2rem] mx-auto"
-              />
+              <LoadingSpinner otherClass="h-10 w-10" />
             ) : (
               <p className="text-[1.5rem]">Sign-up</p>
             )}

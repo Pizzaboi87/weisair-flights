@@ -4,6 +4,7 @@ import { getStripe } from "@/libs/stripe";
 import axios from "axios";
 import { ChangeEvent, FC, useState } from "react";
 import toast from "react-hot-toast";
+import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 
 type Props = {
   note: string;
@@ -29,6 +30,7 @@ const BookingBox: FC<Props> = ({
   flightSlug,
 }) => {
   const [bookingForm, setBookingForm] = useState(defaultForm);
+  const [isLoading, setIsLoading] = useState(false);
   const { date, adults, children } = bookingForm;
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -44,6 +46,7 @@ const BookingBox: FC<Props> = ({
     const stripe = await getStripe();
 
     try {
+      setIsLoading(true);
       const { data: stripeSession } = await axios.post("/api/stripe", {
         flightProgram,
         flightDate: date,
@@ -60,17 +63,19 @@ const BookingBox: FC<Props> = ({
         });
 
         if (result.error) {
+          setIsLoading(false);
           toast.error("Payment Failed.");
         }
       }
     } catch (error) {
+      setIsLoading(false);
       console.log("Error: ", error);
       toast.error("Something went wrong.");
     }
   };
 
   return (
-    <div className="sticky top-0 md:col-span-5 mt-10 md:mt-0 w-full h-fit bg-gradientlight dark:bg-gradientdark rounded-xl">
+    <div className="sticky top-0 md:col-span-5 mt-10 md:mt-0 w-full h-fit bg-gradientlight dark:bg-gradientdark rounded-xl overflow-hidden">
       <div className="p-4 flex flex-col">
         <h2 className="font-bold text-[2rem]">Booking Details</h2>
         <p className="text-[1.1rem] text-justify mt-3">{note}</p>
@@ -135,10 +140,13 @@ const BookingBox: FC<Props> = ({
         </div>
 
         <button
-          className="btn-tertiary mt-8 self-center"
+          className={`${
+            isLoading ? "cursor-not-allowed" : "cursor-pointer"
+          } btn-booking w-full h-[4rem] mt-8 self-center flex items-center justify-center`}
           onClick={handleSubmit}
+          disabled={isLoading}
         >
-          Book Now
+          {isLoading ? <LoadingSpinner otherClass="h-10 w-10" /> : "Book Now"}
         </button>
       </div>
     </div>
