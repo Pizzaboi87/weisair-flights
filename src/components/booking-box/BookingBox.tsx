@@ -17,7 +17,7 @@ type Props = {
 
 const defaultForm = {
   date: new Date().toISOString().split("T")[0],
-  adults: 0,
+  adults: 1,
   children: 0,
 };
 
@@ -39,38 +39,39 @@ const BookingBox: FC<Props> = ({
   };
 
   const handleSubmit = async () => {
-    if (adults === 0) toast.error("Minimum one adult passanger is mandatory!");
     if (seats < Number(adults) + Number(children))
       toast.error("There's more passangers than seats!");
+    else {
+      const stripe = await getStripe();
 
-    const stripe = await getStripe();
-
-    try {
-      setIsLoading(true);
-      const { data: stripeSession } = await axios.post("/api/stripe", {
-        flightProgram,
-        flightDate: date,
-        flightSlug,
-        adults,
-        children,
-        totalPrice:
-          (adults * price + children * (price - 20)) * ((100 - discount) / 100),
-      });
-
-      if (stripe) {
-        const result = await stripe.redirectToCheckout({
-          sessionId: stripeSession.id,
+      try {
+        setIsLoading(true);
+        const { data: stripeSession } = await axios.post("/api/stripe", {
+          flightProgram,
+          flightDate: date,
+          flightSlug,
+          adults,
+          children,
+          totalPrice:
+            (adults * price + children * (price - 20)) *
+            ((100 - discount) / 100),
         });
 
-        if (result.error) {
-          setIsLoading(false);
-          toast.error("Payment Failed.");
+        if (stripe) {
+          const result = await stripe.redirectToCheckout({
+            sessionId: stripeSession.id,
+          });
+
+          if (result.error) {
+            setIsLoading(false);
+            toast.error("Payment Failed.");
+          }
         }
+      } catch (error) {
+        setIsLoading(false);
+        console.log("Error: ", error);
+        toast.error("Something went wrong.");
       }
-    } catch (error) {
-      setIsLoading(false);
-      console.log("Error: ", error);
-      toast.error("Something went wrong.");
     }
   };
 
