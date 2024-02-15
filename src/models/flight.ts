@@ -18,7 +18,7 @@ type Slug = {
     current: string;
 }
 
-type Ref = {
+export type RefType = {
     _ref: string;
     _type: string;
 }
@@ -39,7 +39,7 @@ export type Flight = {
     slug: Slug;
     specialNote: string;
     generalKnowledge: string;
-    type: Ref;
+    type: RefType;
 }
 
 export type Aircraft = {
@@ -52,6 +52,7 @@ export type Aircraft = {
 export type BookingDetails = {
     user: string;
     flightProgram: string;
+    flightType: string;
     flightDate: string;
     adults: number;
     children: number;

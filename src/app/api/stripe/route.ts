@@ -58,6 +58,7 @@ export const POST = async (req: Request, res: Response) => {
             metadata: {
                 user: userId,
                 flightProgram: flight._id,
+                flightType: flight.type._ref,
                 flightDate,
                 adults,
                 children,

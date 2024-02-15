@@ -39,6 +39,13 @@ const booking = {
             validation: Rule => Rule.required().error("Flight program name is required.")
         }),
         defineField({
+            name: "flightType",
+            title: "Flight Type",
+            type: "reference",
+            to: [{ type: "aircraft" }],
+            validation: Rule => Rule.required()
+        }),
+        defineField({
             name: "flightDate",
             title: "Flight Date",
             type: "date",
@@ -70,8 +77,7 @@ const booking = {
             title: "Total Price",
             type: "number",
             validation: Rule => Rule.required().min(0).error("The total price should be 0 or above.")
-        }),
-
+        })
     ]
 }
 

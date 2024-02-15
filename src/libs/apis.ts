@@ -14,7 +14,7 @@ export const getHighlightedProgram = async () => {
 }
 
 export const getAircrafts = async () => {
-    const result = await sanityClient.fetch<Aircraft>(
+    const result = await sanityClient.fetch<Aircraft[]>(
         queries.getAircraft,
         {},
         { cache: "no-cache" }
@@ -46,6 +46,7 @@ export const getFlightProgramDetails = async (slug: string) => {
 export const createBooking = async ({
     user,
     flightProgram,
+    flightType,
     flightDate,
     adults,
     children,
@@ -65,6 +66,10 @@ export const createBooking = async ({
                         _type: "reference",
                         _ref: flightProgram
                     },
+                    flightType: {
+                        _type: "reference",
+                        _ref: flightType
+                    },
                     flightDate,
                     adults,
                     children,
@@ -81,4 +86,14 @@ export const createBooking = async ({
     );
 
     return data;
+}
+
+export const getAllBookings = async () => {
+    const result = await sanityClient.fetch<BookingDetails[]>(
+        queries.getBookings,
+        {},
+        { cache: "no-cache" }
+    );
+
+    return result;
 }

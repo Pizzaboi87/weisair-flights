@@ -35,6 +35,7 @@ export const POST = async (req: Request, res: Response) => {
                 metadata: {
                     user,
                     flightProgram,
+                    flightType,
                     flightDate,
                     adults,
                     children,
@@ -46,6 +47,7 @@ export const POST = async (req: Request, res: Response) => {
             await createBooking({
                 user,
                 flightProgram,
+                flightType,
                 flightDate,
                 adults: Number(adults),
                 children: Number(children),

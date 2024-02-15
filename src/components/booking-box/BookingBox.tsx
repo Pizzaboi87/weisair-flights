@@ -5,6 +5,7 @@ import axios from "axios";
 import { ChangeEvent, FC, useState } from "react";
 import toast from "react-hot-toast";
 import LoadingSpinner from "../loading-spinner/LoadingSpinner";
+import { getAircrafts, getAllBookings } from "@/libs/apis";
 
 type Props = {
   note: string;
@@ -13,6 +14,7 @@ type Props = {
   seats: number;
   flightProgram: string;
   flightSlug: string;
+  flightType: string;
 };
 
 const defaultForm = {
@@ -28,6 +30,7 @@ const BookingBox: FC<Props> = ({
   seats,
   flightProgram,
   flightSlug,
+  flightType,
 }) => {
   const [bookingForm, setBookingForm] = useState(defaultForm);
   const [isLoading, setIsLoading] = useState(false);
@@ -39,8 +42,25 @@ const BookingBox: FC<Props> = ({
   };
 
   const handleSubmit = async () => {
+    const bookingData = await getAllBookings();
+    const aircraftData = await getAircrafts();
+
+    const selectedAircraft = aircraftData?.filter(
+      (aircraft) => aircraft._id === flightType
+    );
+
+    const occupied = bookingData?.filter((booking) => {
+      return (
+        booking.flightDate === date &&
+        (booking.flightType as unknown as { _ref: string; _type: string })
+          ._ref === selectedAircraft[0]._id
+      );
+    });
+
     if (seats < Number(adults) + Number(children))
       toast.error("There's more passangers than seats!");
+    else if (selectedAircraft[0].quantity < occupied.length + 1)
+      toast.error("This aircraft is no longer available for the selected day.");
     else {
       const stripe = await getStripe();
 
@@ -49,6 +69,7 @@ const BookingBox: FC<Props> = ({
         const { data: stripeSession } = await axios.post("/api/stripe", {
           flightProgram,
           flightDate: date,
+          flightType,
           flightSlug,
           adults,
           children,

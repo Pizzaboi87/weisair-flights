@@ -51,3 +51,8 @@ export const getFlightDetails = groq`*[_type == "flight" && slug.current == $slu
     generalKnowledge,
     type,
 }`
+
+export const getBookings = groq`*[_type == "booking"] {
+    flightType,
+    flightDate,
+}`

@@ -55,6 +55,7 @@ const FlightProgramDetails: FC<Props> = ({ flight }) => {
           seats={flight.seats}
           flightProgram={flight.programName}
           flightSlug={flight.slug.current}
+          flightType={flight.type._ref}
         />
       </div>
     </div>
