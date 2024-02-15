@@ -1,14 +1,5 @@
 import { defineField } from "sanity";
 
-const flightTypes = [
-    { title: "Airplane", value: "airplane" },
-    { title: "Helicopter", value: "helicopter" },
-    { title: "Group tour", value: "group" },
-    { title: "Wedding Flight", value: "wedding" },
-    { title: "Romantic Flight", value: "romantic" },
-    { title: "Balloon", value: "balloon" }
-]
-
 const flight = {
     name: "flight",
     title: "Flight Program",
@@ -75,12 +66,9 @@ const flight = {
         defineField({
             name: "type",
             title: "Flight Type",
-            type: "string",
-            options: {
-                list: flightTypes
-            },
-            initialValue: "airplane",
-            validation: Rule => Rule.required()
+            type: "reference",
+            to: [{ type: "aircraft" }],
+            validation: Rule => Rule.required().error("Aircraft type is required.")
         }),
         defineField({
             name: "specialNote",

@@ -39,7 +39,7 @@ export const POST = async (req: Request, res: Response) => {
                     adults,
                     children,
                     totalPrice,
-                    discount
+                    discount,
                 }
             } = session;
 

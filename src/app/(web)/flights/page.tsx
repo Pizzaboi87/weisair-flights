@@ -2,8 +2,8 @@
 
 import FlightCard from "@/components/flight-card/FlightCard";
 import Search from "@/components/search/Search";
-import { getFlightProgram } from "@/libs/apis";
-import { Flight } from "@/models/flight";
+import { getAircrafts, getFlightProgram } from "@/libs/apis";
+import { Aircraft, Flight } from "@/models/flight";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
@@ -21,21 +21,31 @@ const Flights = () => {
     if (searchQuery) setSearchQuery(searchQuery);
   }, [searchParams]);
 
-  const fetchData = async () => {
-    return getFlightProgram();
-  };
+  const { data: flightProgramData, error: flightProgramError } = useSWR(
+    "get/flightPrograms",
+    getFlightProgram
+  );
 
-  const { data, error, isLoading } = useSWR("get/flightPrograms", fetchData);
+  const { data: aircraftData, error: aircraftError } = useSWR(
+    "get/aircrafts",
+    getAircrafts
+  );
 
-  if (error || (typeof data === "undefined" && !isLoading))
+  if (flightProgramError || aircraftError)
     throw new Error("Cannot fetch any data.");
 
-  const filterFlights = (flights: Flight[]) => {
+  const filterFlights = (flights: Flight[], aircrafts: Aircraft[]) => {
+    const selectedAircraft = aircrafts.filter(
+      (aircraft) =>
+        aircraft.slug.current.toLowerCase() === flightTypeFilter.toLowerCase()
+    );
+
     return flights.filter((flight) => {
       if (
         flightTypeFilter &&
+        selectedAircraft &&
         flightTypeFilter.toLowerCase() !== "all" &&
-        flight.type.toLowerCase() !== flightTypeFilter.toLowerCase()
+        flight.type._ref !== selectedAircraft[0]._id
       ) {
         return false;
       }
@@ -51,7 +61,10 @@ const Flights = () => {
     });
   };
 
-  const filteredFlights = filterFlights(data || []);
+  const filteredFlights = filterFlights(
+    Array.isArray(flightProgramData) ? flightProgramData : [],
+    Array.isArray(aircraftData) ? aircraftData : []
+  );
 
   return (
     <div className="md:mt-20">

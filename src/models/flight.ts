@@ -18,6 +18,11 @@ type Slug = {
     current: string;
 }
 
+type Ref = {
+    _ref: string;
+    _type: string;
+}
+
 export type Flight = {
     _id: string;
     coverImage: CoverImage;
@@ -34,6 +39,13 @@ export type Flight = {
     slug: Slug;
     specialNote: string;
     generalKnowledge: string;
+    type: Ref;
+}
+
+export type Aircraft = {
+    _id: string;
+    quantity: number;
+    slug: Slug;
     type: string;
 }
 

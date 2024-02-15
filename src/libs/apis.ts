@@ -1,4 +1,4 @@
-import { BookingDetails, Flight } from "@/models/flight";
+import { Aircraft, BookingDetails, Flight } from "@/models/flight";
 import sanityClient from "./sanity"
 import * as queries from "./sanityQueries"
 import axios from "axios";
@@ -6,6 +6,16 @@ import axios from "axios";
 export const getHighlightedProgram = async () => {
     const result = await sanityClient.fetch<Flight>(
         queries.getHighlightedProgramQuery,
+        {},
+        { cache: "no-cache" }
+    );
+
+    return result;
+}
+
+export const getAircrafts = async () => {
+    const result = await sanityClient.fetch<Aircraft>(
+        queries.getAircraft,
         {},
         { cache: "no-cache" }
     );
