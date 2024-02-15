@@ -15,10 +15,11 @@ type RequestData = {
     adults: number;
     children: number;
     totalPrice: number;
+    discount: number;
 }
 
 export const POST = async (req: Request, res: Response) => {
-    const { flightProgram, flightDate, flightSlug, adults, children, totalPrice }: RequestData = await req.json();
+    const { flightProgram, flightDate, flightSlug, adults, children, totalPrice, discount }: RequestData = await req.json();
 
     if (!flightDate || !adults || !flightSlug) {
         return new NextResponse("All fields are required.", { status: 400 });
@@ -53,7 +54,16 @@ export const POST = async (req: Request, res: Response) => {
                 }
             ],
             payment_method_types: ["card"],
-            success_url: `${origin}/users/${userId}`
+            success_url: `${origin}/users/${userId}`,
+            metadata: {
+                user: userId,
+                flightProgram: flight._id,
+                flightDate,
+                adults,
+                children,
+                totalPrice,
+                discount: discount || 0
+            }
         });
 
         return NextResponse.json(stripeSession, {

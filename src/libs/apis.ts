@@ -39,8 +39,8 @@ export const createBooking = async ({
     flightDate,
     adults,
     children,
-    discount,
-    totalPrice
+    totalPrice,
+    discount
 }: BookingDetails) => {
     const mutation = {
         mutations: [
@@ -49,7 +49,7 @@ export const createBooking = async ({
                     _type: "booking",
                     user: {
                         _type: "reference",
-                        _ref: user
+                        _ref: user,
                     },
                     flightProgram: {
                         _type: "reference",
@@ -58,8 +58,8 @@ export const createBooking = async ({
                     flightDate,
                     adults,
                     children,
-                    discount,
-                    totalPrice
+                    totalPrice,
+                    discount
                 }
             }
         ]

@@ -1,9 +1,28 @@
 import { defineField } from "sanity";
 
+type Selection = {
+    userName: string;
+    programName: string;
+}
+
 const booking = {
     name: "booking",
     title: "Booking",
     type: "document",
+    options: {
+        preview: {
+            select: {
+                userName: "user.name",
+                programName: "flightProgram.programName"
+            },
+            prepare(selection: Selection) {
+                const { userName, programName } = selection;
+                return {
+                    title: `User: ${userName}, Flight Program: ${programName}`
+                };
+            }
+        }
+    },
     fields: [
         defineField({
             name: "user",
