@@ -1,4 +1,4 @@
-import { Aircraft, BookingDetails, Flight } from "@/models/flight";
+import { Aircraft, BookingDetails, BookingDetailsPay, Flight } from "@/models/flight";
 import sanityClient from "./sanity"
 import * as queries from "./sanityQueries"
 import axios from "axios";
@@ -52,7 +52,7 @@ export const createBooking = async ({
     children,
     totalPrice,
     discount
-}: BookingDetails) => {
+}: BookingDetailsPay) => {
     const mutation = {
         mutations: [
             {
@@ -92,6 +92,16 @@ export const getAllBookings = async () => {
     const result = await sanityClient.fetch<BookingDetails[]>(
         queries.getBookings,
         {},
+        { cache: "no-cache" }
+    );
+
+    return result;
+}
+
+export const getUserBookings = async (userId: string) => {
+    const result = await sanityClient.fetch<BookingDetails[]>(
+        queries.getUserBookings,
+        { userId },
         { cache: "no-cache" }
     );
 

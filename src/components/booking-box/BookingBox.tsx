@@ -15,6 +15,7 @@ type Props = {
   flightProgram: string;
   flightSlug: string;
   flightType: string;
+  flightTypeId: string;
 };
 
 const defaultForm = {
@@ -29,6 +30,7 @@ const BookingBox: FC<Props> = ({
   discount,
   seats,
   flightProgram,
+  flightTypeId,
   flightSlug,
   flightType,
 }) => {
@@ -42,25 +44,27 @@ const BookingBox: FC<Props> = ({
   };
 
   const handleSubmit = async () => {
-    const bookingData = await getAllBookings();
-    const aircraftData = await getAircrafts();
+    if (new Date(date) < new Date()) {
+      toast.error("Only a future date can be selected.");
+      return;
+    }
 
-    const selectedAircraft = aircraftData?.filter(
-      (aircraft) => aircraft._id === flightType
-    );
+    const allBookings = await getAllBookings();
 
-    const occupied = bookingData?.filter((booking) => {
+    const occupied = allBookings.filter((booking) => {
       return (
         booking.flightDate === date &&
-        (booking.flightType as unknown as { _ref: string; _type: string })
-          ._ref === selectedAircraft[0]._id
+        booking.flightType.slug.current === flightType
       );
     });
 
-    if (seats < Number(adults) + Number(children))
-      toast.error("There's more passangers than seats!");
-    else if (selectedAircraft[0].quantity < occupied.length + 1)
+    if (
+      occupied.length &&
+      occupied[0].flightType.quantity < occupied.length + 1
+    )
       toast.error("This aircraft is no longer available for the selected day.");
+    else if (seats < Number(adults) + Number(children))
+      toast.error("There's more passangers than seats!");
     else {
       const stripe = await getStripe();
 
@@ -69,7 +73,7 @@ const BookingBox: FC<Props> = ({
         const { data: stripeSession } = await axios.post("/api/stripe", {
           flightProgram,
           flightDate: date,
-          flightType,
+          flightTypeId,
           flightSlug,
           adults,
           children,

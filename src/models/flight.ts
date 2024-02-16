@@ -39,7 +39,15 @@ export type Flight = {
     slug: Slug;
     specialNote: string;
     generalKnowledge: string;
-    type: RefType;
+    type: {
+        _id: string,
+        _type: string,
+        quantity: number,
+        slug: {
+            current: string,
+            _type: string
+        }
+    }
 }
 
 export type Aircraft = {
@@ -50,6 +58,26 @@ export type Aircraft = {
 }
 
 export type BookingDetails = {
+    user: string;
+    flightProgram: string;
+    flightTypeId: string;
+    flightType: {
+        _id: string,
+        _type: string,
+        quantity: number,
+        slug: {
+            current: string,
+            _type: string
+        }
+    },
+    flightDate: string;
+    adults: number;
+    children: number;
+    discount: number;
+    totalPrice: number;
+}
+
+export type BookingDetailsPay = {
     user: string;
     flightProgram: string;
     flightType: string;
