@@ -1,4 +1,4 @@
-import { Aircraft, BookingDetails, BookingDetailsPay, Flight } from "@/models/flight";
+import { Aircraft, BookingDetails, BookingDetailsPay, Flight, User } from "@/models/models";
 import sanityClient from "./sanity"
 import * as queries from "./sanityQueries"
 import axios from "axios";
@@ -101,6 +101,16 @@ export const getAllBookings = async () => {
 export const getUserBookings = async (userId: string) => {
     const result = await sanityClient.fetch<BookingDetails[]>(
         queries.getUserBookings,
+        { userId },
+        { cache: "no-cache" }
+    );
+
+    return result;
+}
+
+export const getUserData = async (userId: string) => {
+    const result = await sanityClient.fetch<User>(
+        queries.getUserDetails,
         { userId },
         { cache: "no-cache" }
     );

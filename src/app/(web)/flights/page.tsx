@@ -2,8 +2,8 @@
 
 import FlightCard from "@/components/flight-card/FlightCard";
 import Search from "@/components/search/Search";
-import { getAircrafts, getFlightProgram } from "@/libs/apis";
-import { Aircraft, Flight } from "@/models/flight";
+import { getFlightProgram } from "@/libs/apis";
+import { Flight } from "@/models/models";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
@@ -26,26 +26,15 @@ const Flights = () => {
     getFlightProgram
   );
 
-  const { data: aircraftData, error: aircraftError } = useSWR(
-    "get/aircrafts",
-    getAircrafts
-  );
+  if (flightProgramError) throw new Error("Cannot fetch any data.");
 
-  if (flightProgramError || aircraftError)
-    throw new Error("Cannot fetch any data.");
-
-  const filterFlights = (flights: Flight[], aircrafts: Aircraft[]) => {
-    const selectedAircraft = aircrafts.filter(
-      (aircraft) =>
-        aircraft.slug.current.toLowerCase() === flightTypeFilter.toLowerCase()
-    );
-
+  const filterFlights = (flights: Flight[]) => {
     return flights.filter((flight) => {
       if (
         flightTypeFilter &&
-        selectedAircraft &&
         flightTypeFilter.toLowerCase() !== "all" &&
-        flight.type._ref !== selectedAircraft[0]._id
+        flight.type.slug.current.toLowerCase() !==
+          flightTypeFilter.toLowerCase()
       ) {
         return false;
       }
@@ -62,8 +51,7 @@ const Flights = () => {
   };
 
   const filteredFlights = filterFlights(
-    Array.isArray(flightProgramData) ? flightProgramData : [],
-    Array.isArray(aircraftData) ? aircraftData : []
+    Array.isArray(flightProgramData) ? flightProgramData : []
   );
 
   return (

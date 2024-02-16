@@ -1,6 +1,6 @@
 "use client";
 
-import { Image as ImageType } from "@/models/flight";
+import { Image as ImageType } from "@/models/models";
 import Image from "next/image";
 import { FC, useState } from "react";
 import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from "react-icons/bs";

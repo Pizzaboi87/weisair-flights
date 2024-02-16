@@ -30,7 +30,12 @@ export const getFlightProgramQuery = groq`*[_type == "flight"] {
     programName,
     seats,
     slug,
-    type,
+    type -> {
+        _id,
+        _type,
+        quantity,
+        slug
+    }
 }`
 
 export const getFlightDetails = groq`*[_type == "flight" && slug.current == $slug][0] {
@@ -76,4 +81,15 @@ export const getUserBookings = groq`*[_type == "booking" && user._ref == $userId
     children,
     discount,
     totalPrice,
+}`
+
+export const getUserDetails = groq`*[_type == "user" && _id == $userId][0] {
+    _createdAt,
+    _id,
+    _type,
+    isAdmin,
+    email,
+    image,
+    name,
+    about
 }`

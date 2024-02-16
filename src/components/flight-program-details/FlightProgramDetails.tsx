@@ -1,4 +1,4 @@
-import { Flight } from "@/models/flight";
+import { Flight } from "@/models/models";
 import { FC } from "react";
 import BookingBox from "../booking-box/BookingBox";
 

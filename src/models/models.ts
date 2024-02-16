@@ -87,3 +87,14 @@ export type BookingDetailsPay = {
     discount: number;
     totalPrice: number;
 }
+
+export type User = {
+    _createdAt: string;
+    _id: string;
+    _type: string;
+    isAdmin: boolean,
+    email: string;
+    image: string;
+    name: string;
+    about: string;
+}

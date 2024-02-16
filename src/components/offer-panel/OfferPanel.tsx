@@ -1,7 +1,7 @@
 import DiscountTag from "../discount-tag/DiscountTag";
 import Link from "next/link";
 import { FC } from "react";
-import { Flight } from "@/models/flight";
+import { Flight } from "@/models/models";
 
 type Props = {
   flight: Flight;

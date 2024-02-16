@@ -1,4 +1,4 @@
-import { Flight } from "@/models/flight";
+import { Flight } from "@/models/models";
 import { FC } from "react";
 import OfferGallery from "../offer-gallery/OfferGallery";
 import OfferPanel from "../offer-panel/OfferPanel";
