@@ -17,10 +17,10 @@ const config: Config = {
       colors: {
         filllight: "#FAEDCD",
         filldark: "#264653",
-        bgdark: "#14213d",
+        bgdark: "#14213D",
         bglight: "#FEFAE0",
         textlight: "#FAEDCD",
-        textdark: "#14213d",
+        textdark: "#14213D",
         yellow: "#F2C641",
         tertiary: {
           dark: "#fca311",

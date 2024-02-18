@@ -8,6 +8,9 @@ import useSWR from "swr";
 import LoadingSpinner from "../../loading";
 import { ImExit } from "react-icons/im";
 import { signOut } from "next-auth/react";
+import { MdOutlineRateReview } from "react-icons/md";
+import { GiAirplaneDeparture } from "react-icons/gi";
+import MyBookings from "@/components/my-bookings/MyBookings";
 
 const UserPage = (props: { params: { id: string } }) => {
   const {
@@ -38,12 +41,13 @@ const UserPage = (props: { params: { id: string } }) => {
   if (bookingError || userError) throw new Error("Cannot fetch user data.");
   if (bookingLoading || userLoading) return <LoadingSpinner />;
 
+  console.log("Booking Data: ", bookingData);
   if (userData && bookingData)
     return (
-      <div className="container mx-auto px-2 md:px-4 md:mt-10 py-10">
-        <div className="grid md:grid-cols-12 gap-10 bg-red-500">
-          <div className="md:col-span-5 lg:col-span-4 shadow-lg h-fit sticky top-10 bg-gradientlight dark:bg-gradientdark rounded-lg px-6 py-4">
-            <div className="md:w-32 w-36 md:h-32 h-36 mx-auto mb-5 rounded-full overflow-hidden">
+      <div className="container mx-auto px-2 lg:px-4 md:mt-10 py-10">
+        <div className="flex flex-col w-full md:grid md:grid-cols-12 md:gap-10 gap-10 md:min-h-screen items-center">
+          <div className="w-full md:col-span-5 lg:col-span-4 shadow-lg h-fit self-start md:sticky top-10 bg-gradientlight dark:bg-gradientdark rounded-lg px-6 py-4">
+            <div className="md:w-32 w-36 md:h-32 h-36 mx-auto rounded-full overflow-hidden">
               <Image
                 src={userData.image}
                 alt="user_profileimage"
@@ -73,14 +77,44 @@ const UserPage = (props: { params: { id: string } }) => {
                 <p className="text-[1rem]">{userData.email}</p>
               </span>
 
+              <span>
+                <h6 className="text-xl font-bold">Registration Date</h6>
+                <p className="text-[1rem]">
+                  {userData._createdAt.split("T")[0]}
+                </p>
+              </span>
+
+              <div className="flex justify-evenly text-[2rem] w-full mt-4">
+                <span
+                  className="flex items-center justify-center gap-2 cursor-pointer"
+                  //onClick={}
+                >
+                  <p className="text-[1.3rem]">Reviews</p>
+                  <MdOutlineRateReview className="text-[1.75rem]" />
+                </span>
+                <span
+                  className="flex items-center justify-center gap-2 cursor-pointer"
+                  //onClick={}
+                >
+                  <p className="text-[1.3rem]">My Flights</p>
+                  <GiAirplaneDeparture className="text-[1.75rem]" />
+                </span>
+              </div>
+
               <span
-                className="flex mx-auto items-center justify-center gap-2 cursor-pointer mt-4"
+                className="flex mx-auto items-center justify-center gap-2 cursor-pointer"
                 onClick={signOutUser}
               >
                 <p className="text-[1.3rem]">Sign Out</p>
                 <ImExit className="text-[1.5rem]" />
               </span>
             </div>
+          </div>
+          <div className="flex flex-col bg-gradientlight dark:bg-gradientdark px-2 py-2 rounded-xl w-full md:col-span-7 lg:col-span-8 h-full">
+            <h1 className="text-[2rem] font-bold ml-2">
+              Hello {userData.name.split(" ")[0]}!
+            </h1>
+            <MyBookings bookingData={bookingData} />
           </div>
         </div>
       </div>
