@@ -5,7 +5,7 @@ import axios from "axios";
 import { ChangeEvent, FC, useState } from "react";
 import toast from "react-hot-toast";
 import LoadingSpinner from "../loading-spinner/LoadingSpinner";
-import { getAircrafts, getAllBookings } from "@/libs/apis";
+import { getAllBookings } from "@/libs/apis";
 
 type Props = {
   note: string;
@@ -168,7 +168,7 @@ const BookingBox: FC<Props> = ({
         <button
           className={`${
             isLoading ? "cursor-not-allowed" : "cursor-pointer"
-          } btn-booking w-full h-[4rem] mt-8 self-center flex items-center justify-center`}
+          } btn-booking w-[90%] h-[4rem] mt-8 self-center flex items-center justify-center`}
           onClick={handleSubmit}
           disabled={isLoading}
         >
