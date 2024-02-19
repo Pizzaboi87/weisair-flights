@@ -1,5 +1,6 @@
 import { BookingDetails } from "@/models/models";
 import Image from "next/image";
+import Link from "next/link";
 import { FC } from "react";
 
 type Props = {
@@ -14,9 +15,7 @@ type LineProps = {
 
 const BookingDataLine: FC<LineProps> = ({ data, title, gridClass }) => {
   return (
-    <span
-      className={`${gridClass} lg:col-span-3 w-full lg:block flex justify-between`}
-    >
+    <span className={`${gridClass} w-full lg:block flex justify-between`}>
       <p className="lg:hidden font-bold">{title}:</p>
       <p>{data}</p>
     </span>
@@ -41,8 +40,9 @@ const MyBookings: FC<Props> = ({ bookingData }) => {
         <p className="lg:col-span-2">Price</p>
       </div>
       {sortedBookings.map((booking, index) => (
-        <div
+        <Link
           key={index}
+          href={`/flights/${booking.flightProgram.slug.current}`}
           className="bg-gradientlight dark:bg-gradientdark lg:rounded-full rounded-lg mb-8 w-full lg:grid lg:grid-cols-12 flex flex-col items-start lg:items-center text-center px-2 py-2 lg:px-0 lg:py-0"
         >
           <div className="lg:col-span-1 flex items-center lg:justify-start justify-between w-full p-1 mb-3 lg:mb-0">
@@ -89,7 +89,7 @@ const MyBookings: FC<Props> = ({ bookingData }) => {
             title="Price"
             gridClass="lg:col-span-2"
           />
-        </div>
+        </Link>
       ))}
     </div>
   );
