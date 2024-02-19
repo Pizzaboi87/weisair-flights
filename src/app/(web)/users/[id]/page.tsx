@@ -11,11 +11,15 @@ import { signOut } from "next-auth/react";
 import { MdOutlineRateReview } from "react-icons/md";
 import { GiAirplaneDeparture } from "react-icons/gi";
 import MyBookings from "@/components/my-bookings/MyBookings";
+import { useState } from "react";
+import MyReviews from "@/components/my-reviews/MyReviews";
 
 const UserPage = (props: { params: { id: string } }) => {
   const {
     params: { id },
   } = props;
+
+  const [isBookingPage, setIsBookingPage] = useState(true);
 
   const signOutUser = () => {
     signOut({ callbackUrl: "/" });
@@ -87,14 +91,14 @@ const UserPage = (props: { params: { id: string } }) => {
               <div className="flex justify-evenly text-[2rem] w-full mt-4">
                 <span
                   className="flex items-center justify-center gap-2 cursor-pointer"
-                  //onClick={}
+                  onClick={() => setIsBookingPage(false)}
                 >
                   <p className="text-[1.3rem]">Reviews</p>
                   <MdOutlineRateReview className="text-[1.75rem]" />
                 </span>
                 <span
                   className="flex items-center justify-center gap-2 cursor-pointer"
-                  //onClick={}
+                  onClick={() => setIsBookingPage(true)}
                 >
                   <p className="text-[1.3rem]">My Flights</p>
                   <GiAirplaneDeparture className="text-[1.75rem]" />
@@ -114,7 +118,13 @@ const UserPage = (props: { params: { id: string } }) => {
             <h1 className="text-[2rem] font-bold ml-2">
               Hello {userData.name.split(" ")[0]}!
             </h1>
-            <MyBookings bookingData={bookingData} />
+            <div className="shadow-inner shadow-black bg-filllight dark:bg-filldark px-4 py-6 h-full rounded-xl">
+              {isBookingPage ? (
+                <MyBookings bookingData={bookingData} />
+              ) : (
+                <MyReviews />
+              )}
+            </div>
           </div>
         </div>
       </div>
