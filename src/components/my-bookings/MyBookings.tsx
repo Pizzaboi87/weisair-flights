@@ -6,35 +6,50 @@ type Props = {
   bookingData: BookingDetails[];
 };
 
-/*
-adults
-children
-discount
-flightDate
-flightProgram / coverImage, programName
-totalPrice
+type LineProps = {
+  data: string;
+  title: string;
+  gridClass: string;
+};
 
-*/
+const BookingDataLine: FC<LineProps> = ({ data, title, gridClass }) => {
+  return (
+    <span
+      className={`${gridClass} lg:col-span-3 w-full lg:block flex justify-between`}
+    >
+      <p className="lg:hidden font-bold">{title}:</p>
+      <p>{data}</p>
+    </span>
+  );
+};
 
 const MyBookings: FC<Props> = ({ bookingData }) => {
+  const sortedBookings = [...bookingData].sort((a, b) => {
+    const dateA = new Date(a.flightDate);
+    const dateB = new Date(b.flightDate);
+    return dateB.getTime() - dateA.getTime();
+  });
+
   return (
-    <div className="grid grid-cols-11 gap-10">
-      <div className="flex col-span-11 justify-evenly">
-        <p className="bg-blue-300">Image</p>
-        <p>Name</p>
-        <p>Date</p>
-        <p>Adults</p>
-        <p>Children</p>
-        <p>Discount</p>
-        <p>Price</p>
+    <div className="flex flex-col">
+      <div className="hidden lg:grid lg:grid-cols-12 text-center text-[1rem] mb-2">
+        <p className="lg:col-span-1">Image</p>
+        <p className="lg:col-span-3">Name</p>
+        <p className="lg:col-span-2">Date</p>
+        <p className="lg:col-span-2">Adults / Children</p>
+        <p className="lg:col-span-2">Discount</p>
+        <p className="lg:col-span-2">Price</p>
       </div>
-      {bookingData.map((booking, index) => (
+      {sortedBookings.map((booking, index) => (
         <div
           key={index}
-          className="bg-red-500 col-span-11 grid grid-cols-11 items-center"
+          className="bg-gradientlight dark:bg-gradientdark lg:rounded-full rounded-lg mb-8 w-full lg:grid lg:grid-cols-12 flex flex-col items-start lg:items-center text-center px-2 py-2 lg:px-0 lg:py-0"
         >
-          <div className="col-span-1 bg-green-400 flex items-center justify-center">
-            <div className="w-16 h-16 rounded-full overflow-hidden">
+          <div className="lg:col-span-1 flex items-center lg:justify-start justify-between w-full p-1 mb-3 lg:mb-0">
+            <p className="lg:hidden font-bold text-[1.75rem]">
+              {booking.flightProgram.programName}
+            </p>
+            <div className="lg:h-[3.5rem] h-[5rem] lg:w-[3.5rem] w-[5rem] rounded-full overflow-hidden">
               <Image
                 src={booking.flightProgram.coverImage.url}
                 alt={booking.flightProgram.programName}
@@ -44,22 +59,36 @@ const MyBookings: FC<Props> = ({ bookingData }) => {
               />
             </div>
           </div>
-          <p className="col-span-3 bg-blue-400 pl-2">
-            {booking.flightProgram.programName}
-          </p>
-          <p className="col-span-2 bg-green-400 text-center">
-            {booking.flightDate}
-          </p>
-          <p className="col-span-1 bg-blue-400 text-center">{booking.adults}</p>
-          <p className="col-span-1 bg-green-400 text-center">
-            {booking.children}
-          </p>
-          <p className="col-span-1 bg-blue-400 text-center">
-            {booking.discount}%
-          </p>
-          <p className="col-span-2 bg-green-400 text-center">
-            {booking.totalPrice}€
-          </p>
+
+          <BookingDataLine
+            data={booking.flightProgram.programName}
+            title="Program Name"
+            gridClass="lg:col-span-3"
+          />
+
+          <BookingDataLine
+            data={booking.flightDate}
+            title="Flight Date"
+            gridClass="lg:col-span-2"
+          />
+
+          <BookingDataLine
+            data={`${booking.adults} / ${booking.children}`}
+            title="Adults / Children"
+            gridClass="lg:col-span-2"
+          />
+
+          <BookingDataLine
+            data={`${booking.discount}%`}
+            title="Discount"
+            gridClass="lg:col-span-2"
+          />
+
+          <BookingDataLine
+            data={`${booking.totalPrice}€`}
+            title="Price"
+            gridClass="lg:col-span-2"
+          />
         </div>
       ))}
     </div>
