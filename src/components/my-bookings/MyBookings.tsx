@@ -2,6 +2,7 @@ import { BookingDetails } from "@/models/models";
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
+import { rateFlight } from "./rating";
 
 type Props = {
   bookingData: BookingDetails[];
@@ -36,19 +37,21 @@ const MyBookings: FC<Props> = ({ bookingData }) => {
         <p className="lg:col-span-3">Name</p>
         <p className="lg:col-span-2">Date</p>
         <p className="lg:col-span-2">Adults / Children</p>
-        <p className="lg:col-span-2">Discount</p>
         <p className="lg:col-span-2">Price</p>
+        <p className="lg:col-span-2">Rating</p>
       </div>
       {sortedBookings.map((booking, index) => (
-        <Link
+        <div
           key={index}
-          href={`/flights/${booking.flightProgram.slug.current}`}
           className="bg-gradientlight dark:bg-gradientdark lg:rounded-full rounded-lg mb-8 w-full lg:grid lg:grid-cols-12 flex flex-col items-start lg:items-center text-center px-2 py-2 lg:px-0 lg:py-0"
         >
           <div className="lg:col-span-1 flex items-center lg:justify-start justify-between w-full p-1 mb-3 lg:mb-0">
-            <p className="lg:hidden font-bold text-[1.75rem]">
+            <Link
+              href={`/flights/${booking.flightProgram.slug.current}`}
+              className="lg:hidden font-bold text-[1.75rem]"
+            >
               {booking.flightProgram.programName}
-            </p>
+            </Link>
             <div className="lg:h-[3.5rem] h-[5rem] lg:w-[3.5rem] w-[5rem] rounded-full overflow-hidden">
               <Image
                 src={booking.flightProgram.coverImage.url}
@@ -60,11 +63,15 @@ const MyBookings: FC<Props> = ({ bookingData }) => {
             </div>
           </div>
 
-          <BookingDataLine
-            data={booking.flightProgram.programName}
-            title="Program Name"
-            gridClass="lg:col-span-3"
-          />
+          <span className="lg:col-span-3 w-full lg:block flex justify-between">
+            <p className="lg:hidden font-bold">Program Name:</p>
+            <Link
+              href={`/flights/${booking.flightProgram.slug.current}`}
+              className="font-bold"
+            >
+              {booking.flightProgram.programName}
+            </Link>
+          </span>
 
           <BookingDataLine
             data={booking.flightDate}
@@ -79,17 +86,20 @@ const MyBookings: FC<Props> = ({ bookingData }) => {
           />
 
           <BookingDataLine
-            data={`${booking.discount}%`}
-            title="Discount"
-            gridClass="lg:col-span-2"
-          />
-
-          <BookingDataLine
             data={`${booking.totalPrice}€`}
             title="Price"
             gridClass="lg:col-span-2"
           />
-        </Link>
+
+          <span className="lg:col-span-2 w-full">
+            <p
+              className="inline hover:font-bold cursor-pointer"
+              onClick={rateFlight}
+            >
+              Rating
+            </p>
+          </span>
+        </div>
       ))}
     </div>
   );
