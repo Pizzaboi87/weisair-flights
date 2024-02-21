@@ -76,6 +76,7 @@ export const getUserBookings = groq`*[_type == "booking" && user._ref == $userId
     _id,
     user,
     flightProgram -> {
+        _id,
         coverImage,
         programName,
         slug
@@ -98,3 +99,7 @@ export const getUserDetails = groq`*[_type == "user" && _id == $userId][0] {
     name,
     about
 }`
+
+export const getIfReviewExists = groq`*[_type == "review" && user._ref == $userId && flightBooking._ref == $bookingId][0] {
+        _id
+    }`

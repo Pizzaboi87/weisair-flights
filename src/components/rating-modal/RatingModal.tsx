@@ -3,9 +3,12 @@
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import RatingStars from "../rating-stars/RatingStars";
 import toast from "react-hot-toast";
+import axios from "axios";
+import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 
 type Props = {
-  bookingID: string;
+  programId: string;
+  bookingId: string;
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -15,16 +18,28 @@ const defaultRating = {
   review: "",
 };
 
-const RatingModal: FC<Props> = ({ bookingID, isOpen, setIsOpen }) => {
+const RatingModal: FC<Props> = ({
+  programId,
+  bookingId,
+  isOpen,
+  setIsOpen,
+}) => {
   const [userRating, setUserRating] = useState(defaultRating);
+  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    if (isOpen) setUserRating(defaultRating);
+  const setBackDefault = () => {
+    setUserRating(defaultRating);
     const textarea = document.querySelector("textarea");
     if (textarea) {
       textarea.value = "";
     }
-  }, [isOpen]);
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      setBackDefault();
+    }
+  }, [isOpen, bookingId]);
 
   const handleReview = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setUserRating((prevRating) => ({
@@ -37,11 +52,35 @@ const RatingModal: FC<Props> = ({ bookingID, isOpen, setIsOpen }) => {
     setUserRating((prevRating) => ({ ...prevRating, rating: value }));
   };
 
-  const submitRating = () => {
+  const submitRating = async () => {
+    const regex = /^[a-zA-Z0-9 ,.;:?!'\-()/@&$€"_]+$/;
+
     if (!userRating.rating || !userRating.review.trim().length) {
-      toast.error("Please fill out the form");
+      return toast.error("Please fill out the form");
+    } else if (!regex.test(userRating.review)) {
+      return toast.error(
+        "Please write valid English text with latin characters only."
+      );
     } else {
-      console.log(userRating);
+      setIsLoading(true);
+      try {
+        const { data } = await axios.post("/api/users", {
+          flightProgram: programId,
+          flightBooking: bookingId,
+          userReview: userRating.review,
+          userRating: userRating.rating,
+        });
+        if (data) {
+          toast.success("Review Submitted!");
+        }
+      } catch (error) {
+        console.log("Error while saving review", error);
+        toast.error("The review has not been saved");
+      } finally {
+        setIsLoading(false);
+        setIsOpen(false);
+        setBackDefault();
+      }
     }
   };
 
@@ -71,17 +110,21 @@ const RatingModal: FC<Props> = ({ bookingID, isOpen, setIsOpen }) => {
               onChange={handleReview}
             />
           </div>
-          <span className="flex items-center justify-evenly w-full mt-3">
-            <button className="btn-quaternary" onClick={submitRating}>
-              Save
-            </button>
-            <button
-              className="btn-quaternary"
-              onClick={() => setIsOpen((isOpen) => !isOpen)}
-            >
-              Cancel
-            </button>
-          </span>
+          {isLoading ? (
+            <LoadingSpinner otherClass="h-10 w-10 mt-3" />
+          ) : (
+            <span className="flex items-center justify-evenly w-full mt-3">
+              <button className="btn-quaternary" onClick={submitRating}>
+                Save
+              </button>
+              <button
+                className="btn-quaternary"
+                onClick={() => setIsOpen((isOpen) => !isOpen)}
+              >
+                Cancel
+              </button>
+            </span>
+          )}
         </div>
       </div>
     </div>

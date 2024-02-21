@@ -1,4 +1,4 @@
-import { Aircraft, BookingDetails, BookingDetailsPay, Flight, User } from "@/models/models";
+import { Aircraft, BookingDetails, BookingDetailsPay, CreateReviewData, Flight, ReviewExist, UpdateReviewData, User } from "@/models/models";
 import sanityClient from "./sanity"
 import * as queries from "./sanityQueries"
 import axios from "axios";
@@ -79,6 +79,7 @@ export const createBooking = async ({
             }
         ]
     };
+
     const { data } = await axios.post(
         `https://${process.env.NEXT_PUBLIC_SANITY_STUDIO_PROJECT_ID}.api.sanity.io/v2021-10-21/data/mutate/${process.env.NEXT_PUBLIC_SANITY_STUDIO_DATASET}`,
         mutation,
@@ -115,4 +116,76 @@ export const getUserData = async (userId: string) => {
     );
 
     return result;
+}
+
+export const checkReviewExists = async (userId: string, bookingId: string): Promise<null | { _id: string }> => {
+    const result = await sanityClient.fetch<ReviewExist>(
+        queries.getIfReviewExists,
+        { userId, bookingId },
+        { cache: "no-cache" }
+    );
+
+    return result;
+}
+
+export const updateReview = async ({ reviewId, userReview, userRating }: UpdateReviewData) => {
+    const mutation = {
+        mutations: [
+            {
+                patch: {
+                    id: reviewId,
+                    set: {
+                        userReview,
+                        userRating,
+                    }
+                }
+            }
+        ]
+    };
+
+    const { data } = await axios.post(
+        `https://${process.env.NEXT_PUBLIC_SANITY_STUDIO_PROJECT_ID}.api.sanity.io/v2021-10-21/data/mutate/${process.env.NEXT_PUBLIC_SANITY_STUDIO_DATASET}`,
+        mutation,
+        { headers: { Authorization: `Bearer ${process.env.SANITY_STUDIO_TOKEN}` } }
+    );
+    return data;
+}
+
+export const createReview = async ({
+    userId,
+    flightProgram,
+    flightBooking,
+    userReview,
+    userRating
+}: CreateReviewData) => {
+    const mutation = {
+        mutations: [
+            {
+                create: {
+                    _type: "review",
+                    user: {
+                        _type: "reference",
+                        _ref: userId
+                    },
+                    flightProgram: {
+                        _type: "reference",
+                        _ref: flightProgram
+                    },
+                    flightBooking: {
+                        _type: "reference",
+                        _ref: flightBooking
+                    },
+                    userReview,
+                    userRating
+                }
+            }
+        ]
+    };
+
+    const { data } = await axios.post(
+        `https://${process.env.NEXT_PUBLIC_SANITY_STUDIO_PROJECT_ID}.api.sanity.io/v2021-10-21/data/mutate/${process.env.NEXT_PUBLIC_SANITY_STUDIO_DATASET}`,
+        mutation,
+        { headers: { Authorization: `Bearer ${process.env.SANITY_STUDIO_TOKEN}` } }
+    );
+    return data;
 }

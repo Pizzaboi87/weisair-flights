@@ -27,7 +27,8 @@ const BookingDataLine: FC<LineProps> = ({ data, title, gridClass }) => {
 
 const MyBookings: FC<Props> = ({ bookingData }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [bookingID, setBookingID] = useState("");
+  const [bookingId, setBookingId] = useState("");
+  const [flightId, setFlightId] = useState("");
 
   const sortedBookings = [...bookingData].sort((a, b) => {
     const dateA = new Date(a.flightDate);
@@ -35,9 +36,10 @@ const MyBookings: FC<Props> = ({ bookingData }) => {
     return dateB.getTime() - dateA.getTime();
   });
 
-  const openRatingModal = (id: string) => {
+  const openRatingModal = (booking: string, flight: string) => {
     setIsOpen((isOpen) => !isOpen);
-    setBookingID(id);
+    setBookingId(booking);
+    setFlightId(flight);
   };
 
   return (
@@ -104,7 +106,9 @@ const MyBookings: FC<Props> = ({ bookingData }) => {
           <span className="lg:col-span-2 w-full">
             <p
               className="inline hover:font-bold cursor-pointer"
-              onClick={() => openRatingModal(booking._id)}
+              onClick={() =>
+                openRatingModal(booking._id, booking.flightProgram._id)
+              }
             >
               Rating
             </p>
@@ -112,9 +116,10 @@ const MyBookings: FC<Props> = ({ bookingData }) => {
         </div>
       ))}
       <RatingModal
+        programId={flightId}
+        bookingId={bookingId}
         isOpen={isOpen}
         setIsOpen={setIsOpen}
-        bookingID={bookingID}
       />
     </div>
   );

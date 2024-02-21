@@ -61,6 +61,7 @@ export type BookingDetails = {
     _id: string;
     user: string;
     flightProgram: {
+        _id: string,
         coverImage: CoverImage,
         programName: string,
         slug: Slug
@@ -102,4 +103,22 @@ export type User = {
     image: string;
     name: string;
     about: string;
+}
+
+export type ReviewExist = {
+    _id: string;
+}
+
+export type UpdateReviewData = {
+    reviewId: string;
+    userReview: string;
+    userRating: number;
+}
+
+export type CreateReviewData = {
+    userId: string;
+    flightProgram: string;
+    flightBooking: string;
+    userReview: string;
+    userRating: number;
 }

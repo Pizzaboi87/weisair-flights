@@ -8,19 +8,13 @@ import useSWR from "swr";
 import LoadingSpinner from "../../loading";
 import { ImExit } from "react-icons/im";
 import { signOut } from "next-auth/react";
-import { MdOutlineRateReview } from "react-icons/md";
-import { GiAirplaneDeparture } from "react-icons/gi";
 import MyBookings from "@/components/my-bookings/MyBookings";
 import { useState } from "react";
-import MyReviews from "@/components/my-reviews/MyReviews";
 
 const UserPage = (props: { params: { id: string } }) => {
   const {
     params: { id },
   } = props;
-
-  const [isBookingPage, setIsBookingPage] = useState(true);
-
   const signOutUser = () => {
     signOut({ callbackUrl: "/" });
   };

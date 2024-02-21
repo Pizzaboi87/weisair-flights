@@ -46,7 +46,7 @@ const review = {
             validation: Rule => Rule.required()
         }),
         defineField({
-            name: "text",
+            name: "userReview",
             title: "Review Text",
             type: "text",
             validation: Rule => Rule.required().min(10).error("The review should be minimum 10 characters long.")
