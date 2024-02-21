@@ -1,9 +1,28 @@
 import { defineField } from "sanity";
 
+type Selection = {
+    userName: string;
+    programName: string;
+}
+
 const review = {
     name: "review",
     title: "Review",
     type: "document",
+    options: {
+        preview: {
+            select: {
+                userName: "user.name",
+                programName: "flightProgram.programName"
+            },
+            prepare(selection: Selection) {
+                const { userName, programName } = selection;
+                return {
+                    title: `User: ${userName}, Flight Program: ${programName}`
+                };
+            }
+        }
+    },
     fields: [
         defineField({
             name: "user",
@@ -17,6 +36,13 @@ const review = {
             title: "Flight Program",
             type: "reference",
             to: [{ type: "flight" }],
+            validation: Rule => Rule.required()
+        }),
+        defineField({
+            name: "flightBooking",
+            title: "Flight Booking",
+            type: "reference",
+            to: [{ type: "booking" }],
             validation: Rule => Rule.required()
         }),
         defineField({

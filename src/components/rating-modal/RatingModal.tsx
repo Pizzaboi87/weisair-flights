@@ -1,15 +1,49 @@
 "use client";
 
-import { FC, useState } from "react";
+import { ChangeEvent, FC, useEffect, useState } from "react";
 import RatingStars from "../rating-stars/RatingStars";
+import toast from "react-hot-toast";
 
 type Props = {
+  bookingID: string;
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const RatingModal: FC<Props> = ({ isOpen, setIsOpen }) => {
-  const [rating, setRating] = useState(0);
+const defaultRating = {
+  rating: 0,
+  review: "",
+};
+
+const RatingModal: FC<Props> = ({ bookingID, isOpen, setIsOpen }) => {
+  const [userRating, setUserRating] = useState(defaultRating);
+
+  useEffect(() => {
+    if (isOpen) setUserRating(defaultRating);
+    const textarea = document.querySelector("textarea");
+    if (textarea) {
+      textarea.value = "";
+    }
+  }, [isOpen]);
+
+  const handleReview = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setUserRating((prevRating) => ({
+      ...prevRating,
+      review: event.target.value,
+    }));
+  };
+
+  const handleRating = (value: number) => {
+    setUserRating((prevRating) => ({ ...prevRating, rating: value }));
+  };
+
+  const submitRating = () => {
+    if (!userRating.rating || !userRating.review.trim().length) {
+      toast.error("Please fill out the form");
+    } else {
+      console.log(userRating);
+    }
+  };
 
   return (
     <div
@@ -24,9 +58,9 @@ const RatingModal: FC<Props> = ({ isOpen, setIsOpen }) => {
           <h1 className="font-subheading mb-3">Rate Your Flight!</h1>
           <RatingStars
             count={5}
-            value={rating}
+            value={userRating.rating}
             edit={true}
-            onChange={(value) => setRating(value)}
+            onChange={(value) => handleRating(value)}
             className="flex"
           />
           <div className="container-booking mt-3 md:min-w-[25rem]">
@@ -34,10 +68,13 @@ const RatingModal: FC<Props> = ({ isOpen, setIsOpen }) => {
             <textarea
               rows={5}
               className="search-input placeholder:text-black"
+              onChange={handleReview}
             />
           </div>
           <span className="flex items-center justify-evenly w-full mt-3">
-            <button className="btn-quaternary">Save</button>
+            <button className="btn-quaternary" onClick={submitRating}>
+              Save
+            </button>
             <button
               className="btn-quaternary"
               onClick={() => setIsOpen((isOpen) => !isOpen)}

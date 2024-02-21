@@ -58,6 +58,7 @@ export type Aircraft = {
 }
 
 export type BookingDetails = {
+    _id: string;
     user: string;
     flightProgram: {
         coverImage: CoverImage,

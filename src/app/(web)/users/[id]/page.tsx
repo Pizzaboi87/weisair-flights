@@ -87,29 +87,12 @@ const UserPage = (props: { params: { id: string } }) => {
                 </p>
               </span>
 
-              <div className="flex justify-evenly text-[2rem] w-full mt-4">
-                <span
-                  className="flex items-center justify-center gap-2 cursor-pointer"
-                  onClick={() => setIsBookingPage(false)}
-                >
-                  <p className="text-[1.3rem]">Reviews</p>
-                  <MdOutlineRateReview className="text-[1.75rem]" />
-                </span>
-                <span
-                  className="flex items-center justify-center gap-2 cursor-pointer"
-                  onClick={() => setIsBookingPage(true)}
-                >
-                  <p className="text-[1.3rem]">My Flights</p>
-                  <GiAirplaneDeparture className="text-[1.75rem]" />
-                </span>
-              </div>
-
               <span
-                className="flex mx-auto items-center justify-center gap-2 cursor-pointer"
+                className="flex w-fit mx-auto p-1 items-center justify-center gap-2 cursor-pointer mt-4"
                 onClick={signOutUser}
               >
-                <p className="text-[1.3rem]">Sign Out</p>
-                <ImExit className="text-[1.5rem]" />
+                <p className="text-[1.5rem] lg:text-[1.3rem]">Sign Out</p>
+                <ImExit className="lg:text-[1.5rem] text-[2.75rem]" />
               </span>
             </div>
           </div>
@@ -118,11 +101,7 @@ const UserPage = (props: { params: { id: string } }) => {
               Hello {userData.name.split(" ")[0]}!
             </h1>
             <div className="shadow-inner shadow-black bg-filllight dark:bg-filldark px-4 py-6 h-full rounded-xl">
-              {isBookingPage ? (
-                <MyBookings bookingData={bookingData} />
-              ) : (
-                <MyReviews />
-              )}
+              <MyBookings bookingData={bookingData} />
             </div>
           </div>
         </div>

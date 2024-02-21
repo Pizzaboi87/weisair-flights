@@ -27,6 +27,7 @@ const BookingDataLine: FC<LineProps> = ({ data, title, gridClass }) => {
 
 const MyBookings: FC<Props> = ({ bookingData }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [bookingID, setBookingID] = useState("");
 
   const sortedBookings = [...bookingData].sort((a, b) => {
     const dateA = new Date(a.flightDate);
@@ -34,8 +35,9 @@ const MyBookings: FC<Props> = ({ bookingData }) => {
     return dateB.getTime() - dateA.getTime();
   });
 
-  const openRatingModal = () => {
+  const openRatingModal = (id: string) => {
     setIsOpen((isOpen) => !isOpen);
+    setBookingID(id);
   };
 
   return (
@@ -50,7 +52,7 @@ const MyBookings: FC<Props> = ({ bookingData }) => {
       </div>
       {sortedBookings.map((booking, index) => (
         <div
-          key={index}
+          key={booking._id}
           className="bg-gradientlight dark:bg-gradientdark lg:rounded-full rounded-lg mb-8 w-full lg:grid lg:grid-cols-12 flex flex-col items-start lg:items-center text-center px-2 py-2 lg:px-0 lg:py-0"
         >
           <div className="lg:col-span-1 flex items-center lg:justify-start justify-between w-full p-1 mb-3 lg:mb-0">
@@ -102,14 +104,18 @@ const MyBookings: FC<Props> = ({ bookingData }) => {
           <span className="lg:col-span-2 w-full">
             <p
               className="inline hover:font-bold cursor-pointer"
-              onClick={openRatingModal}
+              onClick={() => openRatingModal(booking._id)}
             >
               Rating
             </p>
           </span>
         </div>
       ))}
-      <RatingModal isOpen={isOpen} setIsOpen={setIsOpen} />
+      <RatingModal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        bookingID={bookingID}
+      />
     </div>
   );
 };

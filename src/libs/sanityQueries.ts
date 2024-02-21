@@ -73,6 +73,7 @@ export const getBookings = groq`*[_type == "booking"] {
 }`
 
 export const getUserBookings = groq`*[_type == "booking" && user._ref == $userId] {
+    _id,
     user,
     flightProgram -> {
         coverImage,
