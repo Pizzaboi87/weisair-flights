@@ -1,8 +1,10 @@
+"use client";
+
 import { BookingDetails } from "@/models/models";
 import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
-import { rateFlight } from "./rating";
+import { FC, useState } from "react";
+import RatingModal from "../rating-modal/RatingModal";
 
 type Props = {
   bookingData: BookingDetails[];
@@ -24,11 +26,17 @@ const BookingDataLine: FC<LineProps> = ({ data, title, gridClass }) => {
 };
 
 const MyBookings: FC<Props> = ({ bookingData }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const sortedBookings = [...bookingData].sort((a, b) => {
     const dateA = new Date(a.flightDate);
     const dateB = new Date(b.flightDate);
     return dateB.getTime() - dateA.getTime();
   });
+
+  const openRatingModal = () => {
+    setIsOpen((isOpen) => !isOpen);
+  };
 
   return (
     <div className="flex flex-col">
@@ -94,13 +102,14 @@ const MyBookings: FC<Props> = ({ bookingData }) => {
           <span className="lg:col-span-2 w-full">
             <p
               className="inline hover:font-bold cursor-pointer"
-              onClick={rateFlight}
+              onClick={openRatingModal}
             >
               Rating
             </p>
           </span>
         </div>
       ))}
+      <RatingModal isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 };

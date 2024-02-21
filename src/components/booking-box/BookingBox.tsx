@@ -71,15 +71,16 @@ const BookingBox: FC<Props> = ({
       try {
         setIsLoading(true);
         const { data: stripeSession } = await axios.post("/api/stripe", {
-          flightProgram,
+          flightProgram: flightProgram,
           flightDate: date,
-          flightTypeId,
-          flightSlug,
-          adults,
-          children,
+          flightTypeId: flightTypeId,
+          flightSlug: flightSlug,
+          adults: adults,
+          children: children,
           totalPrice:
             (adults * price + children * (price - 20)) *
             ((100 - discount) / 100),
+          discount: discount,
         });
 
         if (stripe) {
@@ -106,7 +107,7 @@ const BookingBox: FC<Props> = ({
         <h2 className="font-bold text-[2rem]">Booking Details</h2>
         <p className="text-[1.1rem] text-justify mt-3">{note}</p>
 
-        <div className="search-container mt-6">
+        <div className="container-booking mt-6">
           <label className="search-label">Flight Date</label>
           <input
             type="date"
@@ -119,7 +120,7 @@ const BookingBox: FC<Props> = ({
         </div>
 
         <div className="flex justify-between gap-6">
-          <div className="search-container mt-4">
+          <div className="container-booking mt-4">
             <label className="search-label">Adults</label>
             <input
               type="number"
@@ -130,7 +131,7 @@ const BookingBox: FC<Props> = ({
               className="search-input placeholder:text-black"
             />
           </div>
-          <div className="search-container mt-4">
+          <div className="container-booking mt-4">
             <label className="search-label">Children</label>
             <input
               type="number"

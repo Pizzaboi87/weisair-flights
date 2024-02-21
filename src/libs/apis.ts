@@ -84,7 +84,6 @@ export const createBooking = async ({
         mutation,
         { headers: { Authorization: `Bearer ${process.env.SANITY_STUDIO_TOKEN}` } }
     );
-
     return data;
 }
 

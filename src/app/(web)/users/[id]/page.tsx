@@ -45,7 +45,6 @@ const UserPage = (props: { params: { id: string } }) => {
   if (bookingError || userError) throw new Error("Cannot fetch user data.");
   if (bookingLoading || userLoading) return <LoadingSpinner />;
 
-  console.log("Booking Data: ", bookingData);
   if (userData && bookingData)
     return (
       <div className="container mx-auto px-2 lg:px-4 md:mt-10 py-10">

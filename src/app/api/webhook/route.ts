@@ -61,7 +61,7 @@ export const POST = async (req: Request, res: Response) => {
             });
 
         default:
-            console.log(`Undhandled event type: ${event.type}`);
+            console.log(`Current event successful: ${event.type}`);
             break;
     }
 
