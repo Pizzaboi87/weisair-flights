@@ -35,10 +35,29 @@ const RatingModal: FC<Props> = ({
     }
   };
 
-  useEffect(() => {
-    if (isOpen) {
-      setBackDefault();
+  const getRatingIfExists = async () => {
+    try {
+      setIsLoading(true);
+      const { data } = await axios.get("/api/review", {
+        params: { flightBooking: bookingId },
+      });
+      if (data !== null) {
+        setUserRating({ rating: data.userRating, review: data.userReview });
+        const textarea = document.querySelector("textarea");
+        if (textarea) {
+          textarea.value = data.userReview;
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching review:", error);
+    } finally {
+      setIsLoading(false);
     }
+  };
+
+  useEffect(() => {
+    if (isOpen) getRatingIfExists();
+    else setBackDefault();
   }, [isOpen, bookingId]);
 
   const handleReview = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -64,7 +83,7 @@ const RatingModal: FC<Props> = ({
     } else {
       setIsLoading(true);
       try {
-        const { data } = await axios.post("/api/users", {
+        const { data } = await axios.post("/api/review", {
           flightProgram: programId,
           flightBooking: bookingId,
           userReview: userRating.review,

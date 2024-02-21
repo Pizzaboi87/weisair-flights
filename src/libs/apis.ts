@@ -1,4 +1,4 @@
-import { Aircraft, BookingDetails, BookingDetailsPay, CreateReviewData, Flight, ReviewExist, UpdateReviewData, User } from "@/models/models";
+import { Aircraft, BookingDetails, BookingDetailsPay, CreateReviewData, Flight, GetReviewData, ReviewExist, UpdateReviewData, User } from "@/models/models";
 import sanityClient from "./sanity"
 import * as queries from "./sanityQueries"
 import axios from "axios";
@@ -123,6 +123,16 @@ export const checkReviewExists = async (userId: string, bookingId: string): Prom
         queries.getIfReviewExists,
         { userId, bookingId },
         { cache: "no-cache" }
+    );
+
+    return result;
+}
+
+export const getReview = async (reviewId: string): Promise<null | GetReviewData> => {
+    const result = await sanityClient.fetch<GetReviewData>(
+        queries.getReview,
+        { reviewId },
+        { cache: "force-cache" }
     );
 
     return result;

@@ -122,3 +122,8 @@ export type CreateReviewData = {
     userReview: string;
     userRating: number;
 }
+
+export type GetReviewData = {
+    userReview: string;
+    userRating: number;
+}

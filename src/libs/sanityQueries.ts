@@ -101,5 +101,10 @@ export const getUserDetails = groq`*[_type == "user" && _id == $userId][0] {
 }`
 
 export const getIfReviewExists = groq`*[_type == "review" && user._ref == $userId && flightBooking._ref == $bookingId][0] {
-        _id
-    }`
+    _id
+}`
+
+export const getReview = groq`*[_type == "review" && _id == $reviewId][0] {
+    userRating,
+    userReview
+}`
