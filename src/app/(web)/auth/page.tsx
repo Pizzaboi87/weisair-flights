@@ -76,7 +76,7 @@ const Auth = () => {
 
   return (
     <section className="container mx-auto relative z-[2]">
-      <div className="p-6 space-y-4 md:space-y-6 sm:p-8 w-[85%] md:w-[70%] mx-auto">
+      <div className="p-6 space-y-4 md:space-y-6 sm:p-8 w-[90%] md:w-[50%] mx-auto">
         <div className="flex mb-8 flex-col md:flex-row items-center justify-between">
           <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl dark:text-textlight">
             Create an account
@@ -95,7 +95,7 @@ const Auth = () => {
           </span>
         </div>
 
-        <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+        <form className="space-y-4 md:space-y-7" onSubmit={handleSubmit}>
           <div className={`${name ? "filled" : ""} container-style`}>
             <input
               //avoid autocomplete
@@ -135,7 +135,7 @@ const Auth = () => {
             />
             <label className="label-style">Your password</label>
           </div>
-          <button className="w-full min-h-[3rem] dark:bg-gradientlight bg-gradientdark text-textlight dark:text-textdark focus:outline-none font-medium rounded-lg px-5 text-center shadow-xl">
+          <button className="w-full min-h-[3rem] dark:border-textlight dark:border dark:bg-gradientdark bg-gradientlight dark:text-textlight text-textdark hover:shadow-xl shadow-black hover:-translate-y-2 transition-all duration-700 focus:outline-none font-medium rounded-lg px-5 text-center">
             {isLoading ? (
               <LoadingSpinner otherClass="h-10 w-10" />
             ) : (

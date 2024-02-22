@@ -26,11 +26,11 @@
 }
 
 .lightinput:focus {
-  box-shadow: 0 0 0 2px #79b1ff;
+  box-shadow: 0 0 0 2px #fff989;
 }
 
 .darkinput:focus {
-  box-shadow: 0 0 0 2px #fff989;
+  box-shadow: 0 0 0 2px #14213d;
 }
 
 .img {
@@ -90,7 +90,7 @@
 }
 
 .input-style {
-  @apply h-16 rounded-md border-none p-4 pb-0 text-base outline-none transition-all duration-200 ease-in-out shadow-lg;
+  @apply h-16 rounded-md border-none p-4 pb-0 text-base outline-none transition-all duration-200 ease-in-out shadow-lg text-textdark;
 }
 
 .container-style {
@@ -98,7 +98,7 @@
 }
 
 .label-style {
-  @apply absolute pointer-events-none transform translate-y-6 scale-125 origin-top-left transition-transform duration-200 ease-in-out text-blue-500 text-sm leading-4 left-4;
+  @apply absolute pointer-events-none transform translate-y-6 scale-125 origin-top-left transition-transform duration-200 ease-in-out text-textdark text-sm leading-4 left-4;
 }
 
 .search-label {
