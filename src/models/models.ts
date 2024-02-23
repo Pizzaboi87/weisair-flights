@@ -127,3 +127,8 @@ export type GetReviewData = {
     userReview: string;
     userRating: number;
 }
+
+export type About = {
+    userId: string;
+    aboutMe: string;
+}

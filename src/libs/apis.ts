@@ -1,4 +1,4 @@
-import { Aircraft, BookingDetails, BookingDetailsPay, CreateReviewData, Flight, GetReviewData, ReviewExist, UpdateReviewData, User } from "@/models/models";
+import { About, Aircraft, BookingDetails, BookingDetailsPay, CreateReviewData, Flight, GetReviewData, ReviewExist, UpdateReviewData, User } from "@/models/models";
 import sanityClient from "./sanity"
 import * as queries from "./sanityQueries"
 import axios from "axios";
@@ -199,3 +199,28 @@ export const createReview = async ({
     );
     return data;
 }
+
+export const updateAbout = async ({
+    userId,
+    aboutMe
+}: About) => {
+    const mutation = {
+        mutations: [
+            {
+                patch: {
+                    id: userId,
+                    set: {
+                        about: aboutMe
+                    }
+                }
+            }
+        ]
+    };
+
+    const { data } = await axios.post(
+        `https://${process.env.NEXT_PUBLIC_SANITY_STUDIO_PROJECT_ID}.api.sanity.io/v2021-10-21/data/mutate/${process.env.NEXT_PUBLIC_SANITY_STUDIO_DATASET}`,
+        mutation,
+        { headers: { Authorization: `Bearer ${process.env.SANITY_STUDIO_TOKEN}` } }
+    );
+    return data;
+};

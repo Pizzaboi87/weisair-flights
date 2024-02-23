@@ -29,6 +29,7 @@ const Auth = () => {
   const { name, email, password } = formData;
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
