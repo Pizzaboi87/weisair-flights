@@ -2,6 +2,7 @@ import { Flight } from "@/models/models";
 import { FC } from "react";
 import BookingBox from "../booking-box/BookingBox";
 import DetailButton from "../detail-button/DetailButton";
+import ReviewsBox from "../reviews-box/ReviewsBox";
 
 type Props = {
   flight: Flight;
@@ -9,7 +10,7 @@ type Props = {
 
 const FlightProgramDetails: FC<Props> = ({ flight }) => {
   return (
-    <div className="container mx-auto md:my-20 mb-10">
+    <div className="container mx-auto flex flex-col items-center md:my-20 mb-10">
       <div className="md:grid md:grid-cols-12 gap-12 px-3">
         <div className="md:col-span-7 w-full bg-gradientlight dark:bg-gradientdark p-2 rounded-xl">
           <h2 className="font-bold text-[2rem] ml-2">Flight Details</h2>
@@ -53,6 +54,9 @@ const FlightProgramDetails: FC<Props> = ({ flight }) => {
                 })}
             </div>
           </div>
+
+          <h2 className="font-bold text-[2rem] ml-2 mt-10">Customer Reviews</h2>
+          <ReviewsBox flightId={flight._id} />
         </div>
 
         <BookingBox

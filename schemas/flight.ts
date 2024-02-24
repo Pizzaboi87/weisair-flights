@@ -111,23 +111,11 @@ const flight = {
             }]
         }),
         defineField({
-            name: "isBooked",
-            title: "Is Booked",
-            type: "boolean",
-            initialValue: false
-        }),
-        defineField({
             name: "isFeatured",
             title: "Is Featured",
             type: "boolean",
             initialValue: false
-        }),
-        defineField({
-            name: "reviews",
-            title: "Reviews",
-            type: "array",
-            of: [{ type: "review" }]
-        }),
+        })
     ]
 }
 

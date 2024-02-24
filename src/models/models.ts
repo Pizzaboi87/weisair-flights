@@ -29,7 +29,6 @@ export type Flight = {
     description: string;
     discount: number;
     images: Image[];
-    isBooked: boolean;
     isFeatured: boolean;
     offeredAmenities: Amenity[];
     price: number;
@@ -124,8 +123,16 @@ export type CreateReviewData = {
 }
 
 export type GetReviewData = {
+    _createdAt: Date;
+    _id: string;
     userReview: string;
     userRating: number;
+    flightProgram: {
+        _ref: string;
+    };
+    user: {
+        name: string;
+    }
 }
 
 export type About = {

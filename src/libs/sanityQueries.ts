@@ -44,14 +44,13 @@ export const getFlightDetails = groq`*[_type == "flight" && slug.current == $slu
     description,
     discount,
     images,
-    isBooked,
     isFeatured,
     offeredAmenities,
     price,
     programLength,
     programName,
     seats,
-    slug,
+    slug, 
     specialNote,
     generalKnowledge,
     type -> {
@@ -105,6 +104,16 @@ export const getIfReviewExists = groq`*[_type == "review" && user._ref == $userI
 }`
 
 export const getReview = groq`*[_type == "review" && _id == $reviewId][0] {
+    userRating,
+    userReview
+}`
+
+export const getAllReview = groq`*[_type == "review" && flightProgram._ref == $flightId] {
+    _createdAt,
+    _id,
+    user -> {
+        name
+    },
     userRating,
     userReview
 }`

@@ -33,7 +33,7 @@ const Search: FC<Props> = ({
   };
 
   return (
-    <section className="bg-gradientlight dark:bg-gradientdark px-4 py-6">
+    <section className="bg-gradientlight dark:bg-gradientdark px-4 py-6 2xl:mb-[10rem]">
       <div className="container mx-auto flex gap-4 flex-wrap justify-between items-center">
         <div className="search-container">
           <label className="search-label">Aircraft Type</label>

@@ -46,7 +46,7 @@
 }
 
 .btn-primary {
-  @apply px-[5rem] md:px-[3rem] py-[1rem] md:py-[1.2rem] bg-gradientlight dark:bg-filllight rounded-lg md:rounded-xl shadow-sm shadow-textdark text-textdark font-bold text-base md:text-xl hover:scale-110 duration-300 transition-all text-center;
+  @apply px-[5rem] md:px-[3rem] py-[1rem] md:py-[1.2rem] bg-gradientgold dark:bg-gradientgrey rounded-lg md:rounded-xl shadow-sm shadow-textdark text-textdark font-bold text-base md:text-xl hover:scale-110 duration-300 transition-all text-center;
 }
 
 .btn-secondary {

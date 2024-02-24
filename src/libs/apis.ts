@@ -132,7 +132,17 @@ export const getReview = async (reviewId: string): Promise<null | GetReviewData>
     const result = await sanityClient.fetch<GetReviewData>(
         queries.getReview,
         { reviewId },
-        { cache: "force-cache" }
+        { cache: "no-cache" }
+    );
+
+    return result;
+}
+
+export const getReviews = async (flightId: string) => {
+    const result = await sanityClient.fetch<GetReviewData[]>(
+        queries.getAllReview,
+        { flightId },
+        { cache: "no-cache" }
     );
 
     return result;
