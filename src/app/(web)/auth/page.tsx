@@ -76,7 +76,7 @@ const Auth = () => {
   const inputStyle = `${darkTheme ? "darkinput" : "lightinput"} input-style`;
 
   return (
-    <section className="container mx-auto relative z-[2]">
+    <section className="container mx-auto relative z-[2] 2xl:mt-[8rem]">
       <div className="p-6 space-y-4 md:space-y-6 sm:p-8 w-[90%] md:w-[50%] mx-auto">
         <div className="flex mb-8 flex-col md:flex-row items-center justify-between">
           <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl dark:text-textlight">

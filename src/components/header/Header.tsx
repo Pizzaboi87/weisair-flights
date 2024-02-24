@@ -24,7 +24,7 @@ const Header = () => {
   };
 
   return (
-    <header className="py-10 md:px-16 px-4 mx-auto text-xl flex flex-wrap md:flex-nowrap items-center justify-between relative bg-gradientlight dark:bg-gradientdark">
+    <header className="py-10 2xl:pt-14 md:px-16 px-4 mx-auto text-xl flex flex-wrap md:flex-nowrap items-center justify-between relative bg-gradientlight dark:bg-gradientdark">
       <div className="custom-shape-divider-bottom-1707239478 hidden md:block">
         <svg
           data-name="Layer 1"

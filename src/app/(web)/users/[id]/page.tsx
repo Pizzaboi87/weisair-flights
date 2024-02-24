@@ -44,7 +44,7 @@ const UserPage = (props: { params: { id: string } }) => {
 
   if (userData && bookingData)
     return (
-      <div className="container mx-auto px-2 lg:px-4 md:mt-10 py-10">
+      <div className="container mx-auto px-2 lg:px-4 md:mt-10 py-10 2xl:py-[10rem]">
         <div className="flex flex-col w-full md:grid md:grid-cols-12 md:gap-10 gap-10 md:min-h-screen items-center">
           <UserBox
             userData={userData}

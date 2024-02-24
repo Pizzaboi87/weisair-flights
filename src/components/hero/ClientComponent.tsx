@@ -12,7 +12,7 @@ const ClientComponent: FC<Props> = (props) => {
   const { heading, images } = props;
 
   return (
-    <section className="flex px-4 items-center xl:gap-20 gap-12 md:container mx-auto">
+    <section className="flex px-4 items-center justify-center xl:gap-20 gap-12 md:container mx-auto">
       <div className="h-full">
         {heading}
 

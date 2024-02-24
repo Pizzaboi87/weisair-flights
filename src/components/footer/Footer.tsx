@@ -7,7 +7,7 @@ import { MdOutlineAlternateEmail } from "react-icons/md";
 
 const Footer = () => {
   return (
-    <footer className="dark:bg-filldark dark:text-textdark dark:bg-gradientdark bg-gradientlight relative">
+    <footer className="dark:bg-filldark dark:text-textdark dark:bg-gradientdark bg-gradientlight relative 2xl:pt-6">
       <div className="custom-shape-divider-top-1706911286 hidden md:block">
         <svg
           data-name="Layer 1"
