@@ -108,6 +108,10 @@ export type ReviewExist = {
     _id: string;
 }
 
+export type EmailExist = {
+    emailAddress: string;
+}
+
 export type UpdateReviewData = {
     reviewId: string;
     userReview: string;
@@ -138,4 +142,9 @@ export type GetReviewData = {
 export type About = {
     userId: string;
     aboutMe: string;
+}
+
+export type CreateSubscriberUser = {
+    newAddress: string;
+    userName: string;
 }

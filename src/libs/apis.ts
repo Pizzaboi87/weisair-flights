@@ -1,4 +1,4 @@
-import { About, Aircraft, BookingDetails, BookingDetailsPay, CreateReviewData, Flight, GetReviewData, ReviewExist, UpdateReviewData, User } from "@/models/models";
+import { About, Aircraft, BookingDetails, BookingDetailsPay, CreateReviewData, CreateSubscriberUser, EmailExist, Flight, GetReviewData, ReviewExist, UpdateReviewData, User } from "@/models/models";
 import sanityClient from "./sanity"
 import * as queries from "./sanityQueries"
 import axios from "axios";
@@ -234,3 +234,34 @@ export const updateAbout = async ({
     );
     return data;
 };
+
+export const checkEmailIsExists = async (address: string): Promise<null | { emailAddress: string }> => {
+    const result = await sanityClient.fetch<EmailExist>(
+        queries.getIfEmailExist,
+        { address },
+        { cache: "no-cache" }
+    );
+
+    return result;
+}
+
+export const createNewSubscriberWithUser = async ({ newAddress, userName }: CreateSubscriberUser) => {
+    const mutation = {
+        mutations: [
+            {
+                create: {
+                    _type: "subscriber",
+                    emailAddress: newAddress,
+                    userName
+                }
+            }
+        ]
+    };
+
+    const { data } = await axios.post(
+        `https://${process.env.NEXT_PUBLIC_SANITY_STUDIO_PROJECT_ID}.api.sanity.io/v2021-10-21/data/mutate/${process.env.NEXT_PUBLIC_SANITY_STUDIO_DATASET}`,
+        mutation,
+        { headers: { Authorization: `Bearer ${process.env.SANITY_STUDIO_TOKEN}` } }
+    );
+    return data;
+}

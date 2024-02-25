@@ -3,7 +3,8 @@ import airCraft from "./aircraft";
 import booking from "./booking";
 import flight from "./flight";
 import review from "./review";
+import subscriber from "./subscriber";
 import user from "./user";
 import verificationToken from "./verificationToken";
 
-export const schemaTypes = [user, account, booking, flight, review, verificationToken, airCraft]
+export const schemaTypes = [user, account, booking, flight, review, verificationToken, airCraft, subscriber]

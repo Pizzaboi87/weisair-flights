@@ -117,3 +117,7 @@ export const getAllReview = groq`*[_type == "review" && flightProgram._ref == $f
     userRating,
     userReview
 }`
+
+export const getIfEmailExist = groq`*[_type == "subscriber" && emailAddress == $address][0] {
+    emailAddress
+}`
