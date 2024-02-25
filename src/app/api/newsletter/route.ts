@@ -8,8 +8,8 @@ export const POST = async (req: Request, res: Response) => {
         const existingAddress = await checkEmailIsExists(newAddress);
         let data;
 
-        if (existingAddress == newAddress) {
-            data = { name: "subscriber", email: "already_exist" }
+        if (existingAddress?.emailAddress == newAddress) {
+            data = { results: [{ operation: "duplicated" }] }
         } else {
             data = await createNewSubscriberWithUser({ newAddress, userName })
         }
