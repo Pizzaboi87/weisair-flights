@@ -13,13 +13,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
-/*
-
-<div className="grid grid-cols-2 grid-rows-2 gap-4">
-    <div className="row-span-2">1</div>
-    <div >3</div>
-    <div className="col-start-2">4</div>
-</div>
-    
-*/

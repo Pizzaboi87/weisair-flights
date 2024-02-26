@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.1.0",
     "@sanity/vision": "^3.27.1",
     "@stripe/stripe-js": "^3.0.0",
     "axios": "^1.6.7",
