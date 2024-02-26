@@ -12,7 +12,7 @@ import { signOut } from "next-auth/react";
 import { useState } from "react";
 
 const UserPage = (props: { params: { id: string } }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const {
     params: { id },

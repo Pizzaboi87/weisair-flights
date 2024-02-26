@@ -1,10 +1,10 @@
 "use client";
 
-import { BookingDetails } from "@/models/models";
+import RatingModal from "../rating-modal/RatingModal";
 import Image from "next/image";
 import Link from "next/link";
+import { BookingDetails } from "@/models/models";
 import { FC, useState } from "react";
-import RatingModal from "../rating-modal/RatingModal";
 
 type Props = {
   bookingData: BookingDetails[];
@@ -26,9 +26,9 @@ const BookingDataLine: FC<LineProps> = ({ data, title, gridClass }) => {
 };
 
 const MyBookings: FC<Props> = ({ bookingData }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [bookingId, setBookingId] = useState("");
-  const [flightId, setFlightId] = useState("");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [bookingId, setBookingId] = useState<string>("");
+  const [flightId, setFlightId] = useState<string>("");
 
   const sortedBookings = [...bookingData].sort((a, b) => {
     const dateA = new Date(a.flightDate);

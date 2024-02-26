@@ -1,13 +1,19 @@
 "use client";
 
 import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import LoadingSpinner from "@/components/loading-spinner/LoadingSpinner";
 import toast from "react-hot-toast";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { signUp } from "next-auth-sanity/client";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import LoadingSpinner from "@/components/loading-spinner/LoadingSpinner";
+
+interface Form {
+  name: string;
+  email: string;
+  password: string;
+}
 
 const defaultForm = {
   name: "",
@@ -16,8 +22,8 @@ const defaultForm = {
 };
 
 const Auth = () => {
-  const [formData, setFormData] = useState(defaultForm);
-  const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState<Form>(defaultForm);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { name, email, password } = formData;
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {

@@ -25,6 +25,11 @@
   transform: translate(-0.5rem, 0.5rem) scale(0.8);
 }
 
+.lightinput,
+.darkinput {
+  @apply text-textdark;
+}
+
 .lightinput:focus {
   box-shadow: 0 0 0 2px #fff989;
 }

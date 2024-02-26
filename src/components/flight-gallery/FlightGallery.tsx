@@ -1,7 +1,7 @@
 "use client";
 
-import { Image as ImageType } from "@/models/models";
 import Image from "next/image";
+import { Image as ImageType } from "@/models/models";
 import { FC, useState } from "react";
 import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from "react-icons/bs";
 
@@ -10,7 +10,7 @@ type Props = {
 };
 
 const FlightGallery: FC<Props> = ({ photos }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const handleSlide = (isNext: boolean) => {
     isNext
@@ -30,7 +30,7 @@ const FlightGallery: FC<Props> = ({ photos }) => {
           alt={`photo-${photos[currentIndex]}`}
           width={800}
           height={800}
-          className="img"
+          className="img rounded-xl"
         />
         {photos.map((photo, index) => {
           const position =

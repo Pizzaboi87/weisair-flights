@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import Search from "../search/Search";
+import { useState } from "react";
 
 const PageSearch = () => {
-  const [flightTypeFilter, setFlightTypeFilter] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [flightTypeFilter, setFlightTypeFilter] = useState<string>("");
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   return (
     <div className="mt-24">

@@ -6,7 +6,7 @@ type Props = {
 };
 
 const CountUpNumber: FC<Props> = ({ endValue, duration }) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState<number>(0);
 
   useEffect(() => {
     let startTime: number;

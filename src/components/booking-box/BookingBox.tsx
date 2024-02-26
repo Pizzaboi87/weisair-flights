@@ -1,11 +1,11 @@
 "use client";
 
-import { getStripe } from "@/libs/stripe";
+import LoadingSpinner from "../loading-spinner/LoadingSpinner";
+import toast from "react-hot-toast";
 import axios from "axios";
 import { ChangeEvent, FC, useState } from "react";
-import toast from "react-hot-toast";
-import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 import { getAllBookings } from "@/libs/apis";
+import { getStripe } from "@/libs/stripe";
 
 type Props = {
   note: string;
@@ -17,6 +17,12 @@ type Props = {
   flightType: string;
   flightTypeId: string;
 };
+
+interface Form {
+  date: string;
+  adults: number;
+  children: number;
+}
 
 const defaultForm = {
   date: new Date().toISOString().split("T")[0],
@@ -34,8 +40,8 @@ const BookingBox: FC<Props> = ({
   flightSlug,
   flightType,
 }) => {
-  const [bookingForm, setBookingForm] = useState(defaultForm);
-  const [isLoading, setIsLoading] = useState(false);
+  const [bookingForm, setBookingForm] = useState<Form>(defaultForm);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { date, adults, children } = bookingForm;
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {

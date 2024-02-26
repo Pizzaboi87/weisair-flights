@@ -1,9 +1,14 @@
 "use client";
 
 import axios from "axios";
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import LoadingSpinner from "../loading-spinner/LoadingSpinner";
+import { ChangeEvent, FormEvent, useState } from "react";
+
+interface Form {
+  email: string;
+  userName: string;
+}
 
 const defaultSubscriber = {
   email: "",
@@ -11,8 +16,8 @@ const defaultSubscriber = {
 };
 
 const NewsLetter = () => {
-  const [subscriber, setSubscriber] = useState(defaultSubscriber);
-  const [isLoading, setIsLoading] = useState(false);
+  const [subscriber, setSubscriber] = useState<Form>(defaultSubscriber);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;

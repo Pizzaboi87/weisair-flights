@@ -2,15 +2,15 @@
 
 import FlightCard from "@/components/flight-card/FlightCard";
 import Search from "@/components/search/Search";
+import useSWR from "swr";
 import { getFlightProgram } from "@/libs/apis";
 import { Flight } from "@/models/models";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import useSWR from "swr";
 
 const Flights = () => {
-  const [flightTypeFilter, setFlightTypeFilter] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [flightTypeFilter, setFlightTypeFilter] = useState<string>("");
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const searchParams = useSearchParams();
 
   useEffect(() => {

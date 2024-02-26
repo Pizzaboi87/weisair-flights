@@ -8,9 +8,7 @@ type Props = {
   images: React.ReactNode;
 };
 
-const ClientComponent: FC<Props> = (props) => {
-  const { heading, images } = props;
-
+const ClientComponent: FC<Props> = ({ heading, images }) => {
   return (
     <section className="flex px-4 items-center justify-center xl:gap-20 gap-12 md:container mx-auto">
       <div className="h-full">

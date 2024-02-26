@@ -1,11 +1,11 @@
 "use client";
 
-import { ChangeEvent, FC, useEffect, useState } from "react";
 import RatingStars from "../rating-stars/RatingStars";
 import toast from "react-hot-toast";
 import axios from "axios";
 import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
+import { ChangeEvent, FC, useEffect, useState } from "react";
 
 type Props = {
   programId: string;
@@ -13,6 +13,11 @@ type Props = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
+interface Form {
+  rating: number;
+  review: string;
+}
 
 const defaultRating = {
   rating: 0,
@@ -25,8 +30,8 @@ const RatingModal: FC<Props> = ({
   isOpen,
   setIsOpen,
 }) => {
-  const [userRating, setUserRating] = useState(defaultRating);
-  const [isLoading, setIsLoading] = useState(false);
+  const [userRating, setUserRating] = useState<Form>(defaultRating);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const setBackDefault = () => {
     setUserRating(defaultRating);

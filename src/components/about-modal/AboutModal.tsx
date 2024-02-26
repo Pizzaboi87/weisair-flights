@@ -1,10 +1,10 @@
 "use client";
 
-import { ChangeEvent, FC, useState } from "react";
+import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import toast from "react-hot-toast";
 import axios from "axios";
-import LoadingSpinner from "../loading-spinner/LoadingSpinner";
+import { ChangeEvent, FC, useState } from "react";
 import { User } from "@/models/models";
 
 type Props = {
@@ -20,8 +20,8 @@ const AboutModal: FC<Props> = ({
   setIsOpen,
   fetchUserData,
 }) => {
-  const [aboutText, setAboutText] = useState(defaultAbout);
-  const [isLoading, setIsLoading] = useState(false);
+  const [aboutText, setAboutText] = useState<string>(defaultAbout);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const updateAbout = async () => {
     const regex = /^[a-zA-Z0-9 ,.;:?!'\-()/@&$€"_]+$/;
