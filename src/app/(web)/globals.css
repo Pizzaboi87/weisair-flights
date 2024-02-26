@@ -93,6 +93,10 @@
   @apply h-16 rounded-md border-none p-4 pb-0 text-base outline-none transition-all duration-200 ease-in-out shadow-lg text-textdark;
 }
 
+.textarea-style {
+  @apply resize-none rounded-md border-none px-4 pt-6 min-h-[15rem] pb-0 text-base outline-none transition-all duration-200 ease-in-out shadow-lg text-textdark;
+}
+
 .container-style {
   @apply input-container flex flex-col relative;
 }
@@ -115,4 +119,16 @@
 
 .search-input {
   @apply w-full px-4 py-2 rounded leading-tight bg-white text-textdark focus:outline-none;
+}
+
+.contact {
+  @apply bg-gradientlight dark:bg-gradientdark p-2 rounded-xl shadow-md shadow-[rgba(0,0,0,0.3)];
+}
+
+.contact .wrapper {
+  @apply rounded-xl shadow-inner shadow-black bg-filllight dark:bg-filldark;
+}
+
+.contact-icon {
+  @apply cursor-pointer hover:-translate-y-2 hover:shadow-md rounded-full hover:shadow-black transition-all duration-500 overflow-hidden w-[2rem] h-[2rem] flex items-center justify-center;
 }

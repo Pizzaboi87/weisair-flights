@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { FaGithub, FaMobileAlt } from "react-icons/fa";
-import { FaMapLocationDot } from "react-icons/fa6";
-import { MdOutlineAlternateEmail } from "react-icons/md";
+import { FaGithub } from "react-icons/fa";
+import Contacts from "../contacts/Contacts";
 
 const Footer = () => {
   return (
@@ -27,20 +26,7 @@ const Footer = () => {
           2024 - WeisAIR®
         </Link>
         <div className="flex flex-col-reverse md:flex-row items-center justify-between text-[1.2rem] mt-8 gap-8 md:gap-0">
-          <div className="flex flex-col md:flex-1">
-            <span className="flex gap-2 pt-2 items-center">
-              <FaMapLocationDot />
-              <p>1026 Budapest, Széchenyi street 4.</p>
-            </span>
-            <span className="flex gap-2 pt-2 items-center">
-              <FaMobileAlt />
-              <p>+36 70 225 2256</p>
-            </span>
-            <span className="flex gap-2 pt-2 items-center">
-              <MdOutlineAlternateEmail />
-              <p>contact@weisair.hu</p>
-            </span>
-          </div>
+          <Contacts isContactPage={false} />
 
           <div className="flex flex-col md:flex-1 md:flex-row w-full md:justify-between md:-ml-24">
             <div className="text-left">

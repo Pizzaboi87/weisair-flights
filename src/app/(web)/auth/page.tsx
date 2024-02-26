@@ -1,13 +1,6 @@
 "use client";
 
-import ThemeContext from "@/context/themeContext";
-import React, {
-  ChangeEvent,
-  FormEvent,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
@@ -23,7 +16,6 @@ const defaultForm = {
 };
 
 const Auth = () => {
-  const { darkTheme } = useContext(ThemeContext);
   const [formData, setFormData] = useState(defaultForm);
   const [isLoading, setIsLoading] = useState(false);
   const { name, email, password } = formData;
@@ -73,8 +65,6 @@ const Auth = () => {
     }
   };
 
-  const inputStyle = `${darkTheme ? "darkinput" : "lightinput"} input-style`;
-
   return (
     <section className="container mx-auto relative z-[2] 2xl:mt-[8rem]">
       <div className="p-6 space-y-4 md:space-y-6 sm:p-8 w-[90%] md:w-[50%] mx-auto">
@@ -106,7 +96,7 @@ const Auth = () => {
               required
               autoComplete="off"
               onChange={handleInputChange}
-              className={inputStyle}
+              className="lightinput dark:darkinput input-style"
             />
             <label className="label-style">Your name</label>
           </div>
@@ -118,7 +108,7 @@ const Auth = () => {
               required
               autoComplete="off"
               onChange={handleInputChange}
-              className={inputStyle}
+              className="lightinput dark:darkinput input-style"
             />
             <label className="label-style">Your email</label>
           </div>
@@ -132,7 +122,7 @@ const Auth = () => {
               autoComplete="new-password"
               min={6}
               onChange={handleInputChange}
-              className={inputStyle}
+              className="lightinput dark:darkinput input-style"
             />
             <label className="label-style">Your password</label>
           </div>
