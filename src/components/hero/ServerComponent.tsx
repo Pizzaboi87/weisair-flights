@@ -4,7 +4,8 @@ export const heading = (
   <>
     <h1 className="font-heading mb-6 xl:-mt-12">Explore Our Fleet</h1>
     <p className="text-textdark dark:text-textlight mb-8 max-w-lg font-normal">
-      Elevate your senses and discover Hungary's enchanting beauty from the sky.
+      Elevate your senses and discover the enchanting beauty of Hungary, from
+      the sky.
     </p>
     <button className="btn-primary">Get Started</button>
   </>

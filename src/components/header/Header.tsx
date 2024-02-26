@@ -40,12 +40,20 @@ const Header = () => {
         </svg>
       </div>
 
-      <div className="flex items-center justify-between md:justify-normal w-full md:w-2/3 z-[2] md:mt-10 mt-4">
+      <div className="flex items-center justify-between md:justify-normal w-full md:w-2/3 z-[2] md:mt-0 mt-4">
         <Link
           href="/"
-          className="font-black dark:text-textlight text-textdark text-[2.2rem] mt-1"
+          className="font-black dark:text-textlight text-textdark text-[2.2rem] rotate-[3deg]"
         >
-          WeisAIR
+          <div className="relative w-[10rem] h-[6rem] flex items-start justify-start">
+            <Image
+              src={"/images/logo.png"}
+              width={400}
+              height={400}
+              alt="logo"
+              className="absolute w-full h-auto hue-rotate-120 invert dark:invert-0"
+            />
+          </div>
         </Link>
         <ul className="flex items-center ml-5 dark:text-textlight text-textdark">
           <li className="items-center">
@@ -86,7 +94,7 @@ const Header = () => {
           </li>
         </ul>
       </div>
-      <ul className="flex items-center justify-evenly w-full md:w-1/3 mt-4 z-[2]">
+      <ul className="flex items-center justify-evenly w-full md:w-1/3 mt-4 pt-6 md:pt-0 z-[2]">
         <li className="hover:-translate-y-2 duration-500 transition-all text-[1.5rem]">
           <Link href="/">Home</Link>
         </li>

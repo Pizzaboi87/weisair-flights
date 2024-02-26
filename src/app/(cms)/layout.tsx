@@ -1,7 +1,7 @@
 export const metadata = {
   title: "WeisAIR Flights",
   description:
-    "Elevate your senses and discover Hungary's enchanting beauty from the sky.",
+    "Elevate your senses and discover the enchanting beauty of Hungary, from the sky.",
 };
 
 export default function RootLayout({
