@@ -15,7 +15,7 @@ const FlightCard: FC<Props> = ({ flight }) => {
     <div className="sm:rounded-xl lg:w-[24rem] sm:w-[22rem] w-full mb-10 mx-auto md:mx-0 overflow-hidden md:shadow-sm shadow-textdark">
       <div className="h-[16rem] overflow-hidden">
         <Image
-          src={flight.coverImage.url}
+          src={flight.coverImage.file.asset.url}
           alt={flight.programName}
           height={400}
           width={400}

@@ -57,10 +57,14 @@ const flight = {
             name: "coverImage",
             title: "Cover Image",
             type: "object",
-            fields: [
-                { name: "url", type: "url", title: "URL" },
-                { name: "file", type: "file", title: "File" }
-            ],
+            fields: [{
+                name: "file",
+                type: "image",
+                title: "File",
+                options: {
+                    hotspot: true
+                }
+            }],
             validation: Rule => Rule.required().error("Cover image is required.")
         }),
         defineField({

@@ -30,7 +30,7 @@ const FlightDetails = (props: { params: { slug: string } }) => {
     <div className="md:my-24 my-12 2xl:mt-[10rem]">
       <div className="flex lg:flex-row flex-col px-4 py-10 md:mt-20 items-center gap-12 container mx-auto">
         <OfferGallery
-          url={flight.coverImage.url}
+          url={flight.coverImage.file.asset.url}
           alt={flight.programName}
           images={flight.images}
         />
