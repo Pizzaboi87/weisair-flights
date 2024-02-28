@@ -47,7 +47,7 @@ export const POST = async (req: Request, res: Response) => {
                         currency: "eur",
                         product_data: {
                             name: flightProgram,
-                            images: flight.images.map(image => image.url)
+                            images: flight.images.map(image => image.asset.url)
                         },
                         unit_amount: parseInt((totalPrice * 100).toString())
                     }

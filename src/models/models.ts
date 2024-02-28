@@ -1,14 +1,14 @@
 type CoverImage = {
-    file: {
-        asset: {
-            url: string;
-        }
+    asset: {
+        url: string;
     }
 }
 
 export type Image = {
-    _key: string;
-    url: string;
+    asset: {
+        _id: string;
+        url: string;
+    }
 }
 
 type Amenity = {

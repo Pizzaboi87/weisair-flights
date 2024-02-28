@@ -45,26 +45,22 @@ const flight = {
             title: "Images",
             type: "array",
             of: [{
-                type: "object",
-                fields: [
-                    { name: "url", type: "url", title: "URL" },
-                    { name: "file", type: "file", title: "File" }
-                ]
+                name: "image",
+                title: "Image",
+                type: "image",
+                options: {
+                    hotspot: true
+                },
             }],
             validation: Rule => Rule.required().min(3).error("Minimum three images required.")
         }),
         defineField({
             name: "coverImage",
             title: "Cover Image",
-            type: "object",
-            fields: [{
-                name: "file",
-                type: "image",
-                title: "File",
-                options: {
-                    hotspot: true
-                }
-            }],
+            type: "image",
+            options: {
+                hotspot: true
+            },
             validation: Rule => Rule.required().error("Cover image is required.")
         }),
         defineField({

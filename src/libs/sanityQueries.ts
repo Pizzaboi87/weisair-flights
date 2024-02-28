@@ -10,15 +10,18 @@ export const getAircraft = groq`*[_type == "aircraft"] {
 export const getHighlightedProgramQuery = groq`*[_type == "flight" && isFeatured == true][0] {
     _id,
     coverImage {
-        file {
-            asset -> {
-                url
-            }
+        asset -> {
+            url
         }
     },
     description,
     discount,
-    images,
+    images[] {
+        asset -> {
+            _id,
+            url
+        }
+    },
     isFeatured,
     price,
     programName,
@@ -29,14 +32,17 @@ export const getHighlightedProgramQuery = groq`*[_type == "flight" && isFeatured
 export const getFlightProgramQuery = groq`*[_type == "flight"] {
     _id,
     coverImage {
-        file {
-            asset -> {
-                url
-            }
+        asset -> {
+            url
         }
     },
     description,
-    images,
+    images[] {
+        asset -> {
+            _id,
+            url
+        }
+    },
     price,
     programLength,
     programName,
@@ -53,15 +59,18 @@ export const getFlightProgramQuery = groq`*[_type == "flight"] {
 export const getFlightDetails = groq`*[_type == "flight" && slug.current == $slug][0] {
     _id,
     coverImage {
-        file {
-            asset -> {
-                url
-            }
+        asset -> {
+            url
         }
     },
     description,
     discount,
-    images,
+    images[] {
+        asset -> {
+            _id,
+            url
+        }
+    },
     isFeatured,
     offeredAmenities,
     price,
@@ -95,10 +104,8 @@ export const getUserBookings = groq`*[_type == "booking" && user._ref == $userId
     flightProgram -> {
         _id,
         coverImage {
-            file {
-                asset -> {
-                    url
-                }
+            asset -> {
+                url
             }
         },
         programName,

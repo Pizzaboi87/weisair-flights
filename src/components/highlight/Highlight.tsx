@@ -11,7 +11,7 @@ const Highlight: FC<Props> = ({ highlightOffer }) => {
   return (
     <section className="flex lg:flex-row flex-col px-4 py-10 md:mt-20 items-center gap-12 container mx-auto">
       <OfferGallery
-        url={highlightOffer.coverImage.file.asset.url}
+        url={highlightOffer.coverImage.asset.url}
         alt={highlightOffer.programName}
         images={highlightOffer.images}
       />

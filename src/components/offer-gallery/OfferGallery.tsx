@@ -24,10 +24,10 @@ const OfferGallery: FC<Props> = ({ url, alt, images }) => {
       </div>
       <div className="grid grid-cols-2 gap-8 h-48">
         {images.slice(1, 3).map((image) => (
-          <div key={image._key} className="rounded-xl overflow-hidden">
+          <div key={image.asset._id} className="rounded-xl overflow-hidden">
             <Image
-              src={image.url}
-              alt={image._key}
+              src={image.asset.url}
+              alt={image.asset._id}
               width={400}
               height={400}
               className="img scale-anim"

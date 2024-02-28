@@ -66,7 +66,7 @@ const MyBookings: FC<Props> = ({ bookingData }) => {
             </Link>
             <div className="lg:h-[3.5rem] h-[5rem] lg:w-[3.5rem] w-[5rem] rounded-full overflow-hidden">
               <Image
-                src={booking.flightProgram.coverImage.file.asset.url}
+                src={booking.flightProgram.coverImage.asset.url}
                 alt={booking.flightProgram.programName}
                 width={400}
                 height={400}

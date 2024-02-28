@@ -26,7 +26,7 @@ const FlightGallery: FC<Props> = ({ photos }) => {
     <div className="container mx-auto flex flex-col justify-center items-center">
       <div className="h-[40rem] md:w-[75%] self-center relative">
         <Image
-          src={photos[currentIndex].url}
+          src={photos[currentIndex].asset.url}
           alt={`photo-${photos[currentIndex]}`}
           width={800}
           height={800}
@@ -39,10 +39,10 @@ const FlightGallery: FC<Props> = ({ photos }) => {
 
           return (
             <div
-              key={photo._key}
+              key={photo.asset._id}
               className="hidden md:flex cursor-pointer scale-anim hover:z-10 absolute md:top-[70%] shadow-xl w-[11rem] h-[15rem] translate-x-4 border-1 border-gray-300 transition-all duration-700 rounded-lg bg-center bg-cover"
               style={{
-                backgroundImage: `url(${photo.url})`,
+                backgroundImage: `url(${photo.asset.url})`,
                 right: `-${offset}rem`,
               }}
               onClick={() => setCurrentIndex(index)}
