@@ -1,4 +1,4 @@
-import Image from "next/image";
+import UserImage from "../user-image/UserImage";
 import { ImExit } from "react-icons/im";
 import { User } from "@/models/models";
 import { FC } from "react";
@@ -7,19 +7,19 @@ type Props = {
   userData: User;
   signOutUser: () => void;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  reFetchUserData: () => Promise<User | undefined>;
 };
 
-const UserBox: FC<Props> = ({ userData, signOutUser, setIsOpen }) => {
+const UserBox: FC<Props> = ({
+  userData,
+  reFetchUserData,
+  signOutUser,
+  setIsOpen,
+}) => {
   return (
     <div className="w-full md:col-span-5 lg:col-span-4 shadow-lg h-fit self-start md:sticky top-10 bg-gradientlight dark:bg-gradientdark rounded-lg px-6 py-4">
       <div className="md:w-32 w-36 md:h-32 h-36 mx-auto rounded-full overflow-hidden">
-        <Image
-          src={userData.image}
-          alt="user_profileimage"
-          width={400}
-          height={400}
-          className="img scale-anim"
-        />
+        <UserImage userData={userData} reFetchUserData={reFetchUserData} />
       </div>
       <div className="font-normal py-4 flex flex-col gap-3">
         <span>
@@ -28,7 +28,7 @@ const UserBox: FC<Props> = ({ userData, signOutUser, setIsOpen }) => {
             className="inline text-[1rem] cursor-pointer hover:underline"
             onClick={() => setIsOpen(true)}
           >
-            {userData.about ?? "I believe I can fly..."}
+            {userData.about}
           </p>
         </span>
 

@@ -127,7 +127,12 @@ export const getUserDetails = groq`*[_type == "user" && _id == $userId][0] {
     email,
     image,
     name,
-    about
+    about,
+    avatar {
+        asset -> {
+            url
+        }
+    }
 }`
 
 export const getIfReviewExists = groq`*[_type == "review" && user._ref == $userId && flightBooking._ref == $bookingId][0] {

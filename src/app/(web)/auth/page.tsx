@@ -134,7 +134,7 @@ const Auth = () => {
           </div>
           <button className="w-full min-h-[3rem] dark:border-textlight dark:border dark:bg-gradientdark bg-gradientlight dark:text-textlight text-textdark hover:shadow-xl shadow-black hover:-translate-y-2 transition-all duration-700 focus:outline-none font-medium rounded-lg px-5 text-center">
             {isLoading ? (
-              <LoadingSpinner otherClass="h-10 w-10" />
+              <LoadingSpinner otherClass="h-10 w-10 mx-auto" />
             ) : (
               <p className="text-[1.5rem]">Sign-up</p>
             )}

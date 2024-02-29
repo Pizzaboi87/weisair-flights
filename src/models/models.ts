@@ -106,6 +106,16 @@ export type User = {
     image: string;
     name: string;
     about: string;
+    avatar: {
+        asset: {
+            url: string;
+        }
+    }
+}
+
+export type sessionId = {
+    _id: string;
+    avatar: string;
 }
 
 export type ReviewExist = {

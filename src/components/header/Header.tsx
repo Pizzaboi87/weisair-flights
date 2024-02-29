@@ -2,11 +2,14 @@
 
 import ThemeContext from "@/context/themeContext";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import { FaSignInAlt, FaSun, FaUserCog } from "react-icons/fa";
+import { FaSignInAlt, FaSun } from "react-icons/fa";
 import { MdDarkMode } from "react-icons/md";
 import Image from "next/image";
+import axios from "axios";
+import useSWR from "swr";
+import { User } from "@/models/models";
 
 const Header = () => {
   const { darkTheme, setDarkTheme } = useContext(ThemeContext);
@@ -22,6 +25,25 @@ const Header = () => {
       localStorage.setItem("app-theme", "true");
     }
   };
+
+  const fetchUserData = async () => {
+    if (session?.user) {
+      const { data } = await axios.get<User>("/api/users");
+      return data;
+    } else return;
+  };
+
+  const {
+    data: userData,
+    error: userError,
+    mutate,
+  } = useSWR("get/userData", fetchUserData);
+
+  useEffect(() => {
+    mutate();
+  }, [session]);
+
+  if (userError) throw new Error("Cannot fetch user data.");
 
   return (
     <header className="py-10 2xl:pt-14 md:px-16 px-4 mx-auto text-xl flex flex-wrap md:flex-nowrap items-center justify-between relative bg-gradientlight dark:bg-gradientdark">
@@ -57,21 +79,17 @@ const Header = () => {
         </Link>
         <ul className="flex items-center ml-5 dark:text-textlight text-textdark">
           <li className="items-center">
-            {session?.user ? (
+            {session?.user && userData ? (
               <Link href={`/users/${session.user.id}`}>
-                {session.user.image ? (
-                  <div className="w-[2.5rem] h-[2.5rem] rounded-full overflow-hidden">
-                    <Image
-                      src={session.user.image}
-                      alt={session.user.name!}
-                      width={40}
-                      height={40}
-                      className="scale-anim img"
-                    />
-                  </div>
-                ) : (
-                  <FaUserCog className="cursor-pointer text-[2.5rem]" />
-                )}
+                <div className="w-[2.5rem] h-[2.5rem] rounded-full overflow-hidden">
+                  <Image
+                    src={userData.avatar.asset.url}
+                    alt={session.user.name!}
+                    width={40}
+                    height={40}
+                    className="scale-anim img"
+                  />
+                </div>
               </Link>
             ) : (
               <Link href="/auth">

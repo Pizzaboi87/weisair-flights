@@ -27,7 +27,23 @@ const user = {
             name: "image",
             title: "Image",
             type: "url",
-            description: "Image of the user"
+            description: "Image of the user",
+        }),
+        defineField({
+            name: "avatar",
+            title: "Avatar",
+            type: "image",
+            description: "Avatar of the user",
+            options: {
+                hotspot: true
+            },
+            initialValue: {
+                _type: "image",
+                asset: {
+                    _type: "reference",
+                    _ref: "image-d26040832b67ae4abd37719a322f67339e0cb430-512x512-webp"
+                }
+            }
         }),
         defineField({
             name: "email",
@@ -48,7 +64,8 @@ const user = {
             name: "about",
             title: "About",
             type: "text",
-            description: "Brief description of the user"
+            description: "Brief description of the user",
+            initialValue: "I believe I can fly..."
         })
     ]
 }

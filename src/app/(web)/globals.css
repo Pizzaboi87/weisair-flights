@@ -137,3 +137,15 @@
 .contact-icon {
   @apply cursor-pointer hover:-translate-y-2 hover:shadow-md rounded-full hover:shadow-black transition-all duration-500 overflow-hidden w-[2rem] h-[2rem] flex items-center justify-center;
 }
+
+.profilecontainer:hover .changeimage {
+  opacity: 1;
+  transition: 0.5s ease-in-out;
+  transform: translateY(0);
+}
+
+.changeimage {
+  opacity: 0;
+  transform: translateY(100%);
+  transition: 0.5s ease-in-out;
+}

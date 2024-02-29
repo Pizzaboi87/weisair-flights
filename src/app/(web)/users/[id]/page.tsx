@@ -50,6 +50,7 @@ const UserPage = (props: { params: { id: string } }) => {
             userData={userData}
             signOutUser={signOutUser}
             setIsOpen={setIsOpen}
+            reFetchUserData={mutateUserData}
           />
           <div className="flex flex-col bg-gradientlight dark:bg-gradientdark px-2 py-2 rounded-xl w-full md:col-span-7 lg:col-span-8 h-full">
             <h1 className="text-[2rem] font-bold ml-2">
