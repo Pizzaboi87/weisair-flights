@@ -113,9 +113,14 @@ export type User = {
     }
 }
 
-export type sessionId = {
+export type UserId = {
     _id: string;
-    avatar: string;
+    avatar: {
+        asset: {
+            url: string;
+        }
+    },
+    about: string;
 }
 
 export type ReviewExist = {

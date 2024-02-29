@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export const heading = (
   <>
@@ -7,7 +8,9 @@ export const heading = (
       Elevate your senses and discover the enchanting beauty of Hungary, from
       the sky.
     </p>
-    <button className="btn-primary">Get Started</button>
+    <Link href="/flights" className="btn-primary">
+      Get Started
+    </Link>
   </>
 );
 

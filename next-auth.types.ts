@@ -4,9 +4,10 @@ declare module "next-auth" {
     interface Session {
         user: DefaultSession["user"] & {
             id: string;
+            about: string;
             avatar: {
                 asset: {
-                    url: string;
+                    _ref: string;
                 }
             }
         }

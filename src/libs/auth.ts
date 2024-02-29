@@ -3,7 +3,6 @@ import GoogleProvider from "next-auth/providers/google";
 import { NextAuthOptions } from "next-auth";
 import { SanityAdapter, SanityCredentials } from "next-auth-sanity";
 import sanityClient from "./sanity";
-import { sessionId } from "@/models/models";
 
 export const authOptions: NextAuthOptions = {
     providers: [
@@ -26,20 +25,15 @@ export const authOptions: NextAuthOptions = {
     callbacks: {
         session: async ({ session, token }) => {
             const userEmail = token.email;
-            const userIdObject = await sanityClient.fetch<sessionId>(`*[_type == "user" && email == $email][0] {
-                _id,
-                avatar {
-                    asset -> {
-                        url
-                    }
-                }
+            const userIdObject = await sanityClient.fetch<{ _id: string }>(`*[_type == "user" && email == $email][0] {
+                _id
             }`, { email: userEmail });
+
             return {
                 ...session,
                 user: {
                     ...session.user,
                     id: userIdObject._id,
-                    avatar: userIdObject.avatar
                 }
             }
         }

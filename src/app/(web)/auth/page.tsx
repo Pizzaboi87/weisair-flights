@@ -56,7 +56,17 @@ const Auth = () => {
     setIsLoading(true);
 
     try {
-      const user = await signUp(formData);
+      const user = await signUp({
+        ...formData,
+        avatar: {
+          _type: "image",
+          asset: {
+            _type: "reference",
+            _ref: "image-d26040832b67ae4abd37719a322f67339e0cb430-512x512-webp",
+          },
+        },
+        about: "I believe I can fly...",
+      });
       if (user) {
         toast.success("Success, please sign-in!");
         setIsLoading(false);
