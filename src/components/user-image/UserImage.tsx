@@ -33,18 +33,18 @@ const UserImage: FC<Props> = ({ userData, reFetchUserData }) => {
         const formData = new FormData();
         formData.append("userImage", file);
 
-        const { data } = await axios.post("/api/avatar", formData, {
+        await axios.post("/api/avatar", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         });
-        if (data) reFetchUserData();
         toast.success("Profile image updated successfully");
       } catch (error) {
         console.log("Error during image update: ", error);
         toast.error("Image update was not successful");
       } finally {
         setIsLoading(false);
+        reFetchUserData();
       }
     } else {
       toast.error("Please select a vaild image");
