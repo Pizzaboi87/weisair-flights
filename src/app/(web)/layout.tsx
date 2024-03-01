@@ -3,6 +3,7 @@ import ThemeProvider from "@/components/themeProvider/ThemeProvider";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import Toast from "@/components/toast/Toast";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Cuprum } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
@@ -47,6 +48,7 @@ export default function RootLayout({
           </ThemeProvider>
         </NextAuthProvider>
       </body>
+      <GoogleAnalytics gaId="G-PWMM303M4E" />
     </html>
   );
 }

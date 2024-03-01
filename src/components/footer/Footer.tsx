@@ -6,7 +6,7 @@ import { FaGithub } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="dark:bg-filldark dark:text-textdark dark:bg-gradientdark bg-gradientlight relative 2xl:pt-6">
+    <footer className="dark:bg-filldark dark:text-textdark dark:bg-gradientdark bg-gradientlight relative flex flex-col 2xl:pt-6">
       <div className="custom-shape-divider-top-1706911286 hidden md:block">
         <svg
           data-name="Layer 1"
@@ -50,7 +50,7 @@ const Footer = () => {
       <Link
         href="https://github.com/pizzaboi87"
         target="_blank"
-        className="flex items-center justify-center text-textdark dark:text-textlight mt-10 pb-4"
+        className="inline-flex mx-auto items-center justify-center text-textdark dark:text-textlight mt-10 pb-4"
       >
         <FaGithub />
         <p className="ml-2">made by Pizzaboi87</p>

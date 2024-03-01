@@ -55,7 +55,7 @@ const Flights = () => {
   );
 
   return (
-    <div className="md:mt-20 2xl:mt-[10rem]">
+    <div className="md:mt-20 2xl:mt-[4rem]">
       <h1 className="font-subheading text-center mb-2 pt-10 pb-5">
         Search Flight Programs
       </h1>

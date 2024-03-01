@@ -9,7 +9,7 @@ const Home = async () => {
   const highlightedFlight = await getHighlightedProgram();
 
   return (
-    <div className="py-24 2xl:mt-[6rem]">
+    <div className="py-24 2xl:mt-[2rem]">
       <Hero />
       <PageSearch />
       <Highlight highlightOffer={highlightedFlight} />
