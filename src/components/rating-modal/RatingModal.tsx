@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
-import { ChangeEvent, FC, useEffect, useState } from "react";
+import { ChangeEvent, FC, useCallback, useEffect, useState } from "react";
 
 type Props = {
   programId: string;
@@ -33,15 +33,15 @@ const RatingModal: FC<Props> = ({
   const [userRating, setUserRating] = useState<Form>(defaultRating);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const setBackDefault = () => {
+  const setBackDefault = useCallback(() => {
     setUserRating(defaultRating);
     const textarea = document.getElementById("review") as HTMLTextAreaElement;
     if (textarea) {
       textarea.value = "";
     }
-  };
+  }, [defaultRating]);
 
-  const getRatingIfExists = async () => {
+  const getRatingIfExists = useCallback(async () => {
     try {
       setIsLoading(true);
       const { data } = await axios.get("/api/review", {
@@ -59,12 +59,12 @@ const RatingModal: FC<Props> = ({
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [bookingId]);
 
   useEffect(() => {
     if (isOpen) getRatingIfExists();
     else setBackDefault();
-  }, [isOpen, bookingId]);
+  }, [isOpen, bookingId, getRatingIfExists, setBackDefault]);
 
   const handleReview = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setUserRating((prevRating) => ({

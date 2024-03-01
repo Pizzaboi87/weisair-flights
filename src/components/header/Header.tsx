@@ -41,7 +41,7 @@ const Header = () => {
 
   useEffect(() => {
     mutate();
-  }, [session]);
+  }, [session, mutate]);
 
   if (session?.user && userError) throw new Error("Cannot fetch user data.");
 
