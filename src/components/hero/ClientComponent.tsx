@@ -14,7 +14,7 @@ const ClientComponent: FC<Props> = ({ heading, images }) => {
       <div className="h-full">
         {heading}
 
-        <div className="flex justify-between mt-16">
+        <div className="flex justify-between mt-16 ml-2 md:ml-0">
           <div className="fleet-container">
             <p className="fleet-title">Airplanes</p>
             <CountUpNumber duration={1000} endValue={14} />

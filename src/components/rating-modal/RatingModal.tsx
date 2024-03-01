@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
-import { ChangeEvent, FC, useCallback, useEffect, useState } from "react";
+import { ChangeEvent, FC, useEffect, useState } from "react";
 
 type Props = {
   programId: string;
@@ -33,15 +33,15 @@ const RatingModal: FC<Props> = ({
   const [userRating, setUserRating] = useState<Form>(defaultRating);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const setBackDefault = useCallback(() => {
+  const setBackDefault = () => {
     setUserRating(defaultRating);
     const textarea = document.getElementById("review") as HTMLTextAreaElement;
     if (textarea) {
       textarea.value = "";
     }
-  }, [defaultRating]);
+  };
 
-  const getRatingIfExists = useCallback(async () => {
+  const getRatingIfExists = async () => {
     try {
       setIsLoading(true);
       const { data } = await axios.get("/api/review", {
@@ -59,12 +59,12 @@ const RatingModal: FC<Props> = ({
     } finally {
       setIsLoading(false);
     }
-  }, [bookingId]);
+  };
 
   useEffect(() => {
     if (isOpen) getRatingIfExists();
     else setBackDefault();
-  }, [isOpen, bookingId, getRatingIfExists, setBackDefault]);
+  }, [isOpen, bookingId]);
 
   const handleReview = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setUserRating((prevRating) => ({
@@ -123,7 +123,7 @@ const RatingModal: FC<Props> = ({
       <div
         className={`${
           userRating.review ? "filled" : ""
-        } container-style relative mt-3 md:min-w-[25rem]`}
+        } container-style relative mt-3 w-full md:min-w-[25rem]`}
       >
         <textarea
           rows={5}
@@ -138,14 +138,14 @@ const RatingModal: FC<Props> = ({
         <LoadingSpinner otherClass="h-10 w-10 mt-3" />
       ) : (
         <span className="flex items-center justify-evenly w-full mt-3">
-          <button className="btn-quaternary" onClick={submitRating}>
-            Save
-          </button>
           <button
             className="btn-quaternary"
             onClick={() => setIsOpen((isOpen) => !isOpen)}
           >
             Cancel
+          </button>
+          <button className="btn-quaternary px-2" onClick={submitRating}>
+            Save
           </button>
         </span>
       )}

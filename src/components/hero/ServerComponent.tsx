@@ -3,12 +3,14 @@ import Link from "next/link";
 
 export const heading = (
   <>
-    <h1 className="font-heading mb-6 xl:-mt-12">Explore Our Fleet</h1>
-    <p className="text-textdark dark:text-textlight mb-8 max-w-lg font-normal">
+    <h1 className="font-heading mb-6 xl:-mt-12 ml-2 md:ml-0">
+      Explore Our Fleet
+    </h1>
+    <p className="text-textdark dark:text-textlight mb-8 max-w-lg font-normal ml-2 md:ml-0">
       Elevate your senses and discover the enchanting beauty of Hungary, from
       the sky.
     </p>
-    <Link href="/flights" className="btn-primary">
+    <Link href="/flights" className="btn-primary ml-2 md:ml-0">
       Get Started
     </Link>
   </>
