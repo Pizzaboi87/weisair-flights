@@ -51,7 +51,9 @@ const ReviewsBox: FC<Props> = ({ flightId }) => {
                 size={24}
               />
             </span>
-            <p className="mt-4 text-[1.1rem]">"{review.userReview}"</p>
+            <p className="mt-4 text-[1.1rem]">
+              &quot;{review.userReview}&quot;
+            </p>
             <p className="text-[1rem] italic mt-4 self-end">
               {new Date(review._createdAt).toISOString().split("T")[0]}
             </p>

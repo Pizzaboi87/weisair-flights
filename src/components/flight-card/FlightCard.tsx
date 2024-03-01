@@ -35,7 +35,7 @@ const FlightCard: FC<Props> = ({ flight }) => {
         <div className="flex items-end justify-between py-4">
           <span className="flex items-center justify-center text-[1.75rem] gap-1">
             <FaClock />
-            <p>{flight.programLength}'</p>
+            <p>{flight.programLength}&rsquo;</p>
           </span>
 
           <span className="flex items-center justify-center text-[1.75rem] gap-1">

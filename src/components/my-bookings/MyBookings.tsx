@@ -118,7 +118,7 @@ const MyBookings: FC<Props> = ({ bookingData }) => {
         ))
       ) : (
         <p className="text-center mt-[15rem] text-[1.5rem]">
-          You don't have any bookings yet
+          You don&rsquo;t have any bookings yet
         </p>
       )}
       <RatingModal
