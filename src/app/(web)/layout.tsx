@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
-import { Cuprum } from "next/font/google";
-import "./globals.css";
+import NextAuthProvider from "@/components/auth-provider/AuthProvider";
+import ThemeProvider from "@/components/themeProvider/ThemeProvider";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
-import ThemeProvider from "@/components/themeProvider/ThemeProvider";
-import NextAuthProvider from "@/components/auth-provider/AuthProvider";
 import Toast from "@/components/toast/Toast";
+import { Cuprum } from "next/font/google";
+import type { Metadata } from "next";
+import "./globals.css";
 
 const cuprum = Cuprum({
   subsets: ["latin"],

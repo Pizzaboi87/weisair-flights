@@ -1,8 +1,8 @@
+import DetailButton from "../detail-button/DetailButton";
+import BookingBox from "../booking-box/BookingBox";
+import ReviewsBox from "../reviews-box/ReviewsBox";
 import { Flight } from "@/models/models";
 import { FC } from "react";
-import BookingBox from "../booking-box/BookingBox";
-import DetailButton from "../detail-button/DetailButton";
-import ReviewsBox from "../reviews-box/ReviewsBox";
 
 type Props = {
   flight: Flight;

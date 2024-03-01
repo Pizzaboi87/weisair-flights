@@ -1,7 +1,7 @@
 "use client";
 
-import { FC, cloneElement, useState } from "react";
 import { BiSolidStar, BiStar } from "react-icons/bi";
+import { FC, cloneElement, useState } from "react";
 
 interface RatingProps {
   className?: string;

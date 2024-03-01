@@ -1,21 +1,11 @@
 import { About, Aircraft, BookingDetails, BookingDetailsPay, CreateReviewData, CreateSubscriberUser, EmailExist, Flight, GetReviewData, ReviewExist, UpdateReviewData, User } from "@/models/models";
-import sanityClient from "./sanity"
 import * as queries from "./sanityQueries"
+import sanityClient from "./sanity"
 import axios from "axios";
 
 export const getHighlightedProgram = async () => {
     const result = await sanityClient.fetch<Flight>(
         queries.getHighlightedProgramQuery,
-        {},
-        { cache: "no-cache" }
-    );
-
-    return result;
-}
-
-export const getAircrafts = async () => {
-    const result = await sanityClient.fetch<Aircraft[]>(
-        queries.getAircraft,
         {},
         { cache: "no-cache" }
     );

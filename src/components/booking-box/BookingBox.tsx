@@ -2,12 +2,12 @@
 
 import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 import toast from "react-hot-toast";
+import Link from "next/link";
 import axios from "axios";
 import { ChangeEvent, FC, useState } from "react";
 import { getAllBookings } from "@/libs/apis";
-import { getStripe } from "@/libs/stripe";
 import { useSession } from "next-auth/react";
-import Link from "next/link";
+import { getStripe } from "@/libs/stripe";
 
 type Props = {
   note: string;

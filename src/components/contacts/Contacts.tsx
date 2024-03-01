@@ -1,3 +1,4 @@
+import { MdOutlineAlternateEmail } from "react-icons/md";
 import { FC } from "react";
 import {
   FaFacebookSquare,
@@ -9,7 +10,6 @@ import {
   FaSquareXTwitter,
   FaLinkedin,
 } from "react-icons/fa6";
-import { MdOutlineAlternateEmail } from "react-icons/md";
 
 type Props = {
   isContactPage: boolean;

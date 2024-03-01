@@ -1,8 +1,8 @@
 "use client";
 
+import Contacts from "../contacts/Contacts";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
-import Contacts from "../contacts/Contacts";
 
 const Footer = () => {
   return (

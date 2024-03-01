@@ -1,8 +1,8 @@
+import PageSearch from "@/components/page-search/PageSearch";
+import NewsLetter from "@/components/newsletter/Newsletter";
+import Highlight from "@/components/highlight/Highlight";
 import Gallery from "@/components/gallery/Gallery";
 import Hero from "@/components/hero/Hero";
-import Highlight from "@/components/highlight/Highlight";
-import NewsLetter from "@/components/newsletter/Newsletter";
-import PageSearch from "@/components/page-search/PageSearch";
 import { getHighlightedProgram } from "@/libs/apis";
 
 const Home = async () => {

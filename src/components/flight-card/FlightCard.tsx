@@ -1,10 +1,10 @@
-import { Flight } from "@/models/models";
 import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
 import { AiFillEuroCircle } from "react-icons/ai";
-import { FaClock } from "react-icons/fa";
 import { FaPerson } from "react-icons/fa6";
+import { Flight } from "@/models/models";
+import { FaClock } from "react-icons/fa";
+import { FC } from "react";
 
 type Props = {
   flight: Flight;

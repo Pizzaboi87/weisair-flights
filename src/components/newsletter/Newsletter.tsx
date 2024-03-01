@@ -1,8 +1,8 @@
 "use client";
 
-import axios from "axios";
-import toast from "react-hot-toast";
 import LoadingSpinner from "../loading-spinner/LoadingSpinner";
+import toast from "react-hot-toast";
+import axios from "axios";
 import { ChangeEvent, FormEvent, useState } from "react";
 
 interface Form {

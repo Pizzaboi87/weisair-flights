@@ -1,6 +1,6 @@
+import Stripe from "stripe";
 import { createBooking } from "@/libs/apis";
 import { NextResponse } from "next/server";
-import Stripe from "stripe";
 
 const checkout_session_completed = "checkout.session.completed";
 

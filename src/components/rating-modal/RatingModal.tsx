@@ -1,10 +1,10 @@
 "use client";
 
+import LoadingSpinner from "../loading-spinner/LoadingSpinner";
+import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import RatingStars from "../rating-stars/RatingStars";
 import toast from "react-hot-toast";
 import axios from "axios";
-import LoadingSpinner from "../loading-spinner/LoadingSpinner";
-import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import { ChangeEvent, FC, useEffect, useState } from "react";
 
 type Props = {

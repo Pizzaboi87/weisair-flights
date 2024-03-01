@@ -1,8 +1,8 @@
+import Stripe from "stripe";
 import { getFlightProgramDetails } from "@/libs/apis";
-import { authOptions } from "@/libs/auth";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
-import Stripe from "stripe";
+import { authOptions } from "@/libs/auth";
 
 const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY as string, {
     apiVersion: "2023-10-16"

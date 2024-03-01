@@ -1,7 +1,7 @@
 "use client";
 
-import { FC } from "react";
 import { BiSolidError } from "react-icons/bi";
+import { FC } from "react";
 
 type Props = {
   error: Error & { digest?: string };

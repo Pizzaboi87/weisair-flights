@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from "react-icons/bs";
 import { Image as ImageType } from "@/models/models";
 import { FC, useState } from "react";
-import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from "react-icons/bs";
 
 type Props = {
   photos: ImageType[];

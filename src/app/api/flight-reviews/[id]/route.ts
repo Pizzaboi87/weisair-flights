@@ -1,5 +1,5 @@
-import { getReviews } from "@/libs/apis";
 import { NextResponse } from "next/server";
+import { getReviews } from "@/libs/apis";
 
 export const GET = async (req: Request, { params }: { params: { id: string } }) => {
     const flightId = params.id;

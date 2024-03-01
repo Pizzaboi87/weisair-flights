@@ -1,9 +1,9 @@
-import LoadingSpinner from "@/app/(web)/loading";
-import { GetReviewData } from "@/models/models";
-import axios from "axios";
-import { FC } from "react";
-import useSWR from "swr";
 import RatingStars from "../rating-stars/RatingStars";
+import LoadingSpinner from "@/app/(web)/loading";
+import axios from "axios";
+import useSWR from "swr";
+import { GetReviewData } from "@/models/models";
+import { FC } from "react";
 
 type Props = {
   flightId: string;

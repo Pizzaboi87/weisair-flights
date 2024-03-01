@@ -1,7 +1,7 @@
-import { authOptions } from "@/libs/auth";
 import sanityClient from "@/libs/sanity";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
+import { authOptions } from "@/libs/auth";
 
 export const POST = async (req: Request, res: Response) => {
     const session = await getServerSession(authOptions);

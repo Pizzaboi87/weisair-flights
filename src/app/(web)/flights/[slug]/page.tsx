@@ -1,12 +1,12 @@
 "use client";
 
-import { getFlightProgramDetails } from "@/libs/apis";
-import useSWR from "swr";
-import LoadingSpinner from "../../loading";
+import FlightProgramDetails from "@/components/flight-program-details/FlightProgramDetails";
 import FlightGallery from "@/components/flight-gallery/FlightGallery";
 import OfferGallery from "@/components/offer-gallery/OfferGallery";
 import OfferPanel from "@/components/offer-panel/OfferPanel";
-import FlightProgramDetails from "@/components/flight-program-details/FlightProgramDetails";
+import LoadingSpinner from "../../loading";
+import useSWR from "swr";
+import { getFlightProgramDetails } from "@/libs/apis";
 
 const FlightDetails = (props: { params: { slug: string } }) => {
   const {

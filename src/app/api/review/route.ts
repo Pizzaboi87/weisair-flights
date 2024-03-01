@@ -1,7 +1,7 @@
 import { checkReviewExists, createReview, getReview, updateReview } from "@/libs/apis";
-import { authOptions } from "@/libs/auth"
 import { getServerSession } from "next-auth"
 import { NextResponse } from "next/server";
+import { authOptions } from "@/libs/auth"
 
 export const GET = async (req: Request, res: Response) => {
     const session = await getServerSession(authOptions);

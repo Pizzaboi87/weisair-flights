@@ -3,12 +3,12 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import LoadingSpinner from "@/components/loading-spinner/LoadingSpinner";
 import toast from "react-hot-toast";
+import Head from "next/head";
 import { AiFillGithub } from "react-icons/ai";
 import { BsDiscord } from "react-icons/bs";
 import { signUp } from "next-auth-sanity/client";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import Head from "next/head";
 import { MdAlternateEmail } from "react-icons/md";
 
 interface Form {

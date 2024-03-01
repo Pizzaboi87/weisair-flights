@@ -1,7 +1,7 @@
 "use client";
 
-import { Image as ImageType } from "@/models/models";
 import Image from "next/image";
+import { Image as ImageType } from "@/models/models";
 import { FC } from "react";
 
 type Props = {

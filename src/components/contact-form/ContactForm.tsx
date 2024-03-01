@@ -1,9 +1,9 @@
 "use client";
 
-import { ChangeEvent, FormEvent, useState } from "react";
+import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 import emailjs from "@emailjs/browser";
 import toast from "react-hot-toast";
-import LoadingSpinner from "../loading-spinner/LoadingSpinner";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 interface FormValues {
   firstName: string;

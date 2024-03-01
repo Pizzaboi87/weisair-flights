@@ -75,11 +75,11 @@ const AboutModal: FC<Props> = ({
         <LoadingSpinner otherClass="h-10 w-10 mt-3" />
       ) : (
         <span className="flex items-center justify-evenly w-full mt-3">
-          <button className="btn-quaternary" onClick={updateAbout}>
-            Save
-          </button>
           <button className="btn-quaternary" onClick={() => setIsOpen(false)}>
             Cancel
+          </button>
+          <button className="btn-quaternary" onClick={updateAbout}>
+            Save
           </button>
         </span>
       )}

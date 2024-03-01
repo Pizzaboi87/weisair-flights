@@ -117,7 +117,7 @@ const MyBookings: FC<Props> = ({ bookingData }) => {
           </div>
         ))
       ) : (
-        <p className="text-center mt-[15rem] text-[1.5rem]">
+        <p className="text-center md:mt-[15rem] text-[1.5rem]">
           You don&rsquo;t have any bookings yet
         </p>
       )}

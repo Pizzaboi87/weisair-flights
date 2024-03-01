@@ -1,14 +1,14 @@
 "use client";
 
 import ThemeContext from "@/context/themeContext";
-import Link from "next/link";
-import { useContext, useEffect } from "react";
-import { useSession } from "next-auth/react";
-import { FaSignInAlt, FaSun } from "react-icons/fa";
-import { MdDarkMode } from "react-icons/md";
 import Image from "next/image";
+import Link from "next/link";
 import axios from "axios";
 import useSWR from "swr";
+import { FaSignInAlt, FaSun } from "react-icons/fa";
+import { useContext, useEffect } from "react";
+import { useSession } from "next-auth/react";
+import { MdDarkMode } from "react-icons/md";
 import { User } from "@/models/models";
 
 const Header = () => {
@@ -77,35 +77,35 @@ const Header = () => {
             />
           </div>
         </Link>
-        <ul className="flex items-center ml-5 dark:text-textlight text-textdark">
+        <ul className="flex items-center md:ml-5 gap-2 dark:text-textlight text-textdark">
           <li className="items-center">
             {session?.user && userData ? (
               <Link href={`/users/${session.user.id}`}>
-                <div className="w-[2.5rem] h-[2.5rem] rounded-full overflow-hidden">
+                <div className="w-[3rem] md:w-[2.5rem] h-[3rem] md:h-[2.5rem] rounded-full overflow-hidden">
                   <Image
                     src={userData.avatar?.asset?.url ?? userData.image}
                     alt={session.user.name!}
-                    width={40}
-                    height={40}
+                    width={400}
+                    height={400}
                     className="scale-anim img"
                   />
                 </div>
               </Link>
             ) : (
               <Link href="/auth">
-                <FaSignInAlt className="cursor-pointer text-[2.5rem]" />
+                <FaSignInAlt className="cursor-pointer text-[3rem] md:text-[2.5rem]" />
               </Link>
             )}
           </li>
           <li className="ml-2">
             {darkTheme ? (
               <FaSun
-                className="cursor-pointer text-[2.5rem]"
+                className="cursor-pointer text-[3rem] md:text-[2.5rem]"
                 onClick={switchTheme}
               />
             ) : (
               <MdDarkMode
-                className="cursor-pointer text-[2.5rem]"
+                className="cursor-pointer text-[3.5rem] md:text-[3rem]"
                 onClick={switchTheme}
               />
             )}

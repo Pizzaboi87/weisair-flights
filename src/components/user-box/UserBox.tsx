@@ -1,9 +1,9 @@
 import UserImage from "../user-image/UserImage";
+import toast from "react-hot-toast";
+import axios from "axios";
 import { ImExit } from "react-icons/im";
 import { User } from "@/models/models";
 import { FC, useEffect } from "react";
-import toast from "react-hot-toast";
-import axios from "axios";
 
 type Props = {
   userData: User;

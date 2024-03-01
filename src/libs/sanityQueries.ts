@@ -1,12 +1,5 @@
 import { groq } from "next-sanity";
 
-export const getAircraft = groq`*[_type == "aircraft"] {
-    _id,
-    quantity,
-    slug,
-    type
-}`
-
 export const getHighlightedProgramQuery = groq`*[_type == "flight" && isFeatured == true][0] {
     _id,
     coverImage {

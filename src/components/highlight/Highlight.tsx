@@ -1,7 +1,7 @@
-import { Flight } from "@/models/models";
-import { FC } from "react";
 import OfferGallery from "../offer-gallery/OfferGallery";
 import OfferPanel from "../offer-panel/OfferPanel";
+import { Flight } from "@/models/models";
+import { FC } from "react";
 
 type Props = {
   highlightOffer: Flight;

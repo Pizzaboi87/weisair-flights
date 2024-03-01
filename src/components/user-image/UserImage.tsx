@@ -1,9 +1,9 @@
+import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 import toast from "react-hot-toast";
-import { User } from "@/models/models";
+import axios from "axios";
 import { ChangeEvent, FC, useRef, useState } from "react";
 import { RiImageEditFill } from "react-icons/ri";
-import axios from "axios";
-import LoadingSpinner from "../loading-spinner/LoadingSpinner";
+import { User } from "@/models/models";
 
 type Props = {
   userData: User;
