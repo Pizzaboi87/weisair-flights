@@ -6,16 +6,6 @@ const user = {
     type: "document",
     fields: [
         defineField({
-            name: "isAdmin",
-            title: "Is Admin",
-            type: "boolean",
-            description: "Check if the user is admin",
-            initialValue: false,
-            validation: Rule => Rule.required(),
-            //readOnly: true,
-            //hidden: true
-        }),
-        defineField({
             name: "name",
             title: "Name",
             type: "string",

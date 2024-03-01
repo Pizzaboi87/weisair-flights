@@ -83,7 +83,7 @@ const Header = () => {
               <Link href={`/users/${session.user.id}`}>
                 <div className="w-[2.5rem] h-[2.5rem] rounded-full overflow-hidden">
                   <Image
-                    src={userData.avatar.asset.url}
+                    src={userData.avatar?.asset?.url ?? userData.image}
                     alt={session.user.name!}
                     width={40}
                     height={40}

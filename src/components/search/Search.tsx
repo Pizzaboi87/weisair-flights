@@ -60,7 +60,7 @@ const Search: FC<Props> = ({
             placeholder="Search..."
             value={searchQuery}
             onChange={handleSearchQueryChange}
-            className="search-input placeholder:text-black"
+            className="search-input"
           />
         </div>
 

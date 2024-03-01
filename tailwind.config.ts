@@ -26,7 +26,7 @@ const config: Config = {
         yellow: "#F2C641",
         tertiary: {
           dark: "#fca311",
-          light: "#bde0fe"
+          light: "#5865F2"
         },
       },
       fontFamily: {

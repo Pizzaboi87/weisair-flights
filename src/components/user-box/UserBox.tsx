@@ -1,7 +1,9 @@
 import UserImage from "../user-image/UserImage";
 import { ImExit } from "react-icons/im";
 import { User } from "@/models/models";
-import { FC } from "react";
+import { FC, useEffect } from "react";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 type Props = {
   userData: User;
@@ -16,6 +18,26 @@ const UserBox: FC<Props> = ({
   signOutUser,
   setIsOpen,
 }) => {
+  const updateAboutFirstLogin = async () => {
+    if (!userData.about) {
+      try {
+        await axios.post("/api/users", {
+          aboutMe: "I believe I can fly...",
+        });
+        reFetchUserData();
+      } catch (error) {
+        console.log("Error while updating About Me", error);
+        toast.error("Unable to update About Me");
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (!userData.about) {
+      updateAboutFirstLogin();
+    }
+  }, [userData]);
+
   return (
     <div className="w-full md:col-span-5 lg:col-span-4 shadow-lg h-fit self-start md:sticky top-10 bg-gradientlight dark:bg-gradientdark rounded-lg px-6 py-4">
       <div className="md:w-32 w-36 md:h-32 h-36 mx-auto rounded-full overflow-hidden">

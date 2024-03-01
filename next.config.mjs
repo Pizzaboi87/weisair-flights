@@ -6,6 +6,7 @@ const nextConfig = {
       "lh3.googleusercontent.com",
       "peterweiser.com",
       "cdn.sanity.io",
+      "cdn.discordapp.com",
     ],
   },
 };

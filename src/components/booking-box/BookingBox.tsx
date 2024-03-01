@@ -6,6 +6,8 @@ import axios from "axios";
 import { ChangeEvent, FC, useState } from "react";
 import { getAllBookings } from "@/libs/apis";
 import { getStripe } from "@/libs/stripe";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 type Props = {
   note: string;
@@ -43,6 +45,8 @@ const BookingBox: FC<Props> = ({
   const [bookingForm, setBookingForm] = useState<Form>(defaultForm);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { date, adults, children } = bookingForm;
+
+  const { data: session } = useSession();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -121,7 +125,7 @@ const BookingBox: FC<Props> = ({
             value={date}
             min={new Date().toISOString().split("T")[0]}
             onChange={handleChange}
-            className="search-input placeholder:text-black"
+            className="search-input"
           />
         </div>
 
@@ -134,7 +138,7 @@ const BookingBox: FC<Props> = ({
               min={1}
               value={adults}
               onChange={handleChange}
-              className="search-input placeholder:text-black"
+              className="search-input"
             />
           </div>
           <div className="container-booking mt-4">
@@ -145,7 +149,7 @@ const BookingBox: FC<Props> = ({
               min={0}
               value={children}
               onChange={handleChange}
-              className="search-input placeholder:text-black"
+              className="search-input"
             />
           </div>
         </div>
@@ -171,16 +175,24 @@ const BookingBox: FC<Props> = ({
             €
           </p>
         </div>
-
-        <button
-          className={`${
-            isLoading ? "cursor-not-allowed" : "cursor-pointer"
-          } btn-booking w-[90%] h-[4rem] mt-8 self-center flex items-center justify-center`}
-          onClick={handleSubmit}
-          disabled={isLoading}
-        >
-          {isLoading ? <LoadingSpinner otherClass="h-10 w-10" /> : "Book Now"}
-        </button>
+        {session?.user ? (
+          <button
+            className={`${
+              isLoading ? "cursor-not-allowed" : "cursor-pointer"
+            } btn-booking w-[90%] h-[4rem] mt-8 self-center flex items-center justify-center`}
+            onClick={handleSubmit}
+            disabled={isLoading}
+          >
+            {isLoading ? <LoadingSpinner otherClass="h-10 w-10" /> : "Book Now"}
+          </button>
+        ) : (
+          <Link
+            href="/auth"
+            className="btn-booking w-[90%] h-[4rem] mt-8 self-center flex items-center justify-center"
+          >
+            Go to Login
+          </Link>
+        )}
       </div>
     </div>
   );

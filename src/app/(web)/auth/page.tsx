@@ -4,10 +4,12 @@ import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import LoadingSpinner from "@/components/loading-spinner/LoadingSpinner";
 import toast from "react-hot-toast";
 import { AiFillGithub } from "react-icons/ai";
-import { FcGoogle } from "react-icons/fc";
+import { BsDiscord } from "react-icons/bs";
 import { signUp } from "next-auth-sanity/client";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Head from "next/head";
+import { MdAlternateEmail } from "react-icons/md";
 
 interface Form {
   name: string;
@@ -55,34 +57,58 @@ const Auth = () => {
     event.preventDefault();
     setIsLoading(true);
 
-    try {
-      const user = await signUp({
-        ...formData,
-        avatar: {
-          _type: "image",
-          asset: {
-            _type: "reference",
-            _ref: "image-d26040832b67ae4abd37719a322f67339e0cb430-512x512-webp",
+    const textRegex = /^[a-zA-Z0-9 ,.;:?!'\-+()/@&$€"_]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex =
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%_&*-]).{8,}$/;
+
+    if (!textRegex.test(name)) {
+      toast.error("Please use latin characters only in your name");
+      setIsLoading(false);
+      return;
+    } else if (!emailRegex.test(email)) {
+      toast.error("Please write a valid email address");
+      setIsLoading(false);
+      return;
+    } else if (!passwordRegex.test(password)) {
+      toast.error(
+        "Password is minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character"
+      );
+      setIsLoading(false);
+      return;
+    } else {
+      try {
+        const user = await signUp({
+          ...formData,
+          avatar: {
+            _type: "image",
+            asset: {
+              _type: "reference",
+              _ref: "image-d26040832b67ae4abd37719a322f67339e0cb430-512x512-webp",
+            },
           },
-        },
-        about: "I believe I can fly...",
-      });
-      if (user) {
-        toast.success("Success, please sign-in!");
+          about: "I believe I can fly...",
+        });
+        if (user) {
+          toast.success("Success, please sign-in!");
+          setIsLoading(false);
+        }
+      } catch (error) {
+        console.log(error);
+        toast.error("Something went wrong.");
+        setIsLoading(false);
+      } finally {
+        setFormData(defaultForm);
         setIsLoading(false);
       }
-    } catch (error) {
-      console.log(error);
-      toast.error("Something went wrong.");
-      setIsLoading(false);
-    } finally {
-      setFormData(defaultForm);
-      setIsLoading(false);
     }
   };
 
   return (
     <section className="container mx-auto relative z-[2] 2xl:mt-[8rem]">
+      <Head>
+        <link rel="icon" href="/faviconwa.ico" />
+      </Head>
       <div className="p-6 space-y-4 md:space-y-6 sm:p-8 w-[90%] md:w-[50%] mx-auto">
         <div className="flex mb-8 flex-col md:flex-row items-center justify-between">
           <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl dark:text-textlight">
@@ -90,14 +116,16 @@ const Auth = () => {
           </h1>
           <p className="dark:text-textlight">OR</p>
           <span className="inline-flex items-center dark:text-textlight">
-            <AiFillGithub
+            <AiFillGithub onClick={loginHandler} className="mr-3 login-icon" />
+            |
+            <BsDiscord
               onClick={loginHandler}
-              className="mr-3 text-4xl cursor-pointer"
+              className="ml-3 mr-3 login-icon"
             />
             |
-            <FcGoogle
+            <MdAlternateEmail
               onClick={loginHandler}
-              className="ml-3 text-4xl cursor-pointer"
+              className="ml-3 login-icon"
             />
           </span>
         </div>
@@ -148,12 +176,6 @@ const Auth = () => {
             ) : (
               <p className="text-[1.5rem]">Sign-up</p>
             )}
-          </button>
-          <button
-            onClick={loginHandler}
-            className="underline mx-auto block text-md dark:text-textlight"
-          >
-            login
           </button>
         </form>
       </div>

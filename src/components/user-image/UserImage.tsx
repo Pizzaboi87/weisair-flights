@@ -55,7 +55,11 @@ const UserImage: FC<Props> = ({ userData, reFetchUserData }) => {
     <div className="flex flex-col items-center h-full w-full">
       <div
         className="profilecontainer w-full h-full rounded-full bg-center bg-cover overflow-hidden"
-        style={{ backgroundImage: `url(${userData.avatar.asset.url})` }}
+        style={{
+          backgroundImage: `url(${
+            userData.avatar?.asset?.url ?? userData.image
+          })`,
+        }}
       >
         <div className="changeimage w-full h-full bg-[#ffffffbb] rounded-full flex items-center justify-center">
           {isLoading ? (
